@@ -1,0 +1,5 @@
+#!/bin/bash
+
+#cp "$1" $HOME/.local/share/nitrogen
+nitrogen --set-auto "$1"
+#rm "$HOME/.local/share/nitrogen/$1"

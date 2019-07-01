@@ -1,0 +1,21 @@
+#!/bin/bash
+.  $HOME/.dmenurc
+choice=$(fd --type f --hidden --follow --exclude .git --exclude *~ | dmenu $DMENU_OPTIONS -l 15)
+if ![[ -z file "$choice" | grep ASCII ]]; then
+	setsid "$EDITOR" "$choice" >/dev/null 2>&1 &
+	exit
+fi
+case "$choice" in
+	*.png|*.jpg|*.svg|*.bmp) setsid "$IMAGEVIEWER" "$choice" >/dev/null 2>&1 & ;;
+
+	*.pdf|*.ps) setsid "$READER" "$choice" >/dev/null 2>&1 & ;;
+
+	*.txt|*.md) setsid "$EDITOR" "$choice" >/dev/null 2>&1 & ;;
+
+	*.html) setsid "$BROWSER" "$choice" >/dev/null 2>&1 & ;;
+
+	*.mp4|*.avi|*.flv|*.mkv) setsid "$vlc" "$choice" >/dev/null 2>&1 & ;;
+
+	*.tex|*.sh|*.py) setsid "$EDITOR" "$choice" >/dev/null 2>&1 & ;;
+esac
+# xdg-open  "$choice"

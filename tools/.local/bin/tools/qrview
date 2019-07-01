@@ -1,0 +1,15 @@
+#!/bin/bash
+# qrview creates a QR code from the current contents of the clipboard
+if [[ -z $IMAGEVIEWER ]]; then
+	echo "Please set an image viewer as environment variable IMAGEVIEWER\n" && exit;
+fi
+if ! [ $(command -v xclip) ]; then
+	echo "xclip not found. Please install xclip\n" && exit;
+fi
+if ! [ $(command -v qrencode) ]; then
+	echo "qrencode not found. Please install qrencode\n" && exit;
+fi
+TEXT=$(xclip -selection clipboard -o)
+qrencode -s 12 -m 2 -o /tmp/QRENCODE "$TEXT" && $IMAGEVIEWER /tmp/QRENCODE &
+echo "Created QR code of \"$TEXT\"";
+
