@@ -36,7 +36,7 @@ fi
 stty -ixon
 
 # Add my scripts to PATH
-export PATH="$(du $HOME/.local/bin/ | cut -f2 | tr '\n' ':')$PATH"
+export PATH="$(du $HOME/.local/bin/* | cut -f2 | tr '\n' ':')$PATH"
 
 # less/man colors
 export LESS=-R
