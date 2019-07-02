@@ -91,7 +91,7 @@ else:
 
     opts = (os.getenv("MPV") or "mpv").split()
     # opts.extend(["--loop-playlist", "--no-terminal", "--force-window", "--input-file=" + FIFO,
-    opts.extend(["--no-terminal", "--force-window", "--input-file=" + FIFO,
+    opts.extend(["--keep-open", "--no-terminal", "--force-window", "--input-file=" + FIFO,
                  "--"])
     opts.extend(files)
 
