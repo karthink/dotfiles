@@ -38,6 +38,7 @@ call plug#end()
 	set ignorecase
 	set hlsearch incsearch smartcase
         set hidden
+	set showcmd
 	:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 " Enable autocomplete:
@@ -64,7 +65,7 @@ call plug#end()
 	map <leader>b :vsp<space>$BIB<CR>
 
 " Replace all is aliased to S
-	nnoremap % :%s//g<left><left>
+	nnoremap S :%s//g<left><left>
 
 " Compile document, whatever type it is
 	map <leader>c :w! \| !compiler <c-r>%<CR><CR>
@@ -124,3 +125,25 @@ call plug#end()
 	imap <c-x><c-f> <plug>(fzf-complete-path)
 	imap <c-x><c-j> <plug>(fzf-complete-file)
 	imap <c-x><c-l> <plug>(fzf-complete-line)
+
+	" Airline font
+	set guifont=Liberation\ Mono\ for\ Powerline\ 10
+	let g:airline_powerline_fonts = 1
+
+	" if !exists('g:airline_symbols')
+	" 	let g:airline_symbols = {}
+	" endif
+
+	" " unicode symbols
+	" let g:airline_left_sep = '»'
+	" let g:airline_left_sep = '▶'
+	" let g:airline_right_sep = '«'
+	" let g:airline_right_sep = '◀'
+	" let g:airline_symbols.linenr = '␊'
+	" let g:airline_symbols.linenr = '␤'
+	" let g:airline_symbols.linenr = '¶'
+	" let g:airline_symbols.branch = '⎇'
+	" let g:airline_symbols.paste = 'ρ'
+	" let g:airline_symbols.paste = 'Þ'
+	" let g:airline_symbols.paste = '∥'
+	" let g:airline_symbols.whitespace = 'Ξ'

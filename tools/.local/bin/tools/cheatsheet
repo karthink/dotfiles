@@ -1,0 +1,19 @@
+#!/bin/bash
+# Get a cheatsheet for any common linux command via dmenu
+
+ping -q -c 1 1.1.1.1 >/dev/null || exit 1;
+
+if [[ -f $HOME/.dmenurc ]]; then
+	. $HOME/.dmenurc
+fi
+mycommand=$(cat $HOME/.cache/cheatsheet_recent <(compgen -cbk) | dmenu -p "Cheatsheet for command: ")
+recentcmds=$HOME/.cache/cheatsheet_recent
+! [[ -z $mycommand ]] && curl -s "cheat.sh/$mycommand" > $HOME/.local/share/cheatsheet || exit 1;
+
+touch $recentcmds
+echo $mycommand >> $recentcmds
+$TERMINAL -n "cheatsheet" -e less -S $HOME/.local/share/cheatsheet
+
+sort $recentcmds | uniq | tr '\n\n' '\n' > $HOME/.cache/temp
+mv $HOME/.cache/temp $recentcmds
+

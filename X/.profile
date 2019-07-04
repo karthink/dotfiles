@@ -1,6 +1,6 @@
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export TERMINAL="st"
-export EDITOR=/usr/bin/vim
+export EDITOR=/usr/bin/nvim
 # export EDITOR="/usr/bin/emacsclient -t"
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export READER="zathura"

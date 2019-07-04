@@ -44,6 +44,8 @@ bindsym $mod+F1 exec --no-startup-id morc_menu
 
 # Search DuckDuckGo
 bindsym XF86Search exec --no-startup-id ducksearch
+# Get a cheatsheet on common linux commands
+bindsym $mod+XF86Search exec --no-startup-id cheatsheet
 # Show contents of clipboard
 bindsym $mod+Ctrl+c exec --no-startup-id showclip
 # Unicode symbols to clipboard
@@ -250,6 +252,7 @@ for_window [title="*Preferences"] floating enable border normal
 for_window [class="mpv"] floating enable border pixel 2
 no_focus [class="mpv"]
 
+for_window [title="weather"] floating enable border pixel 4 resize set 1280 850
 # Bindings to make the webcam float and stick.
 for_window [title="mpvfloat"] floating enable
 for_window [title="mpvfloat"] sticky enable
@@ -298,8 +301,9 @@ bindsym $mod+Shift+o		exec --no-startup-id i3resize right
 bindsym $mod+9 exec --no-startup-id blurlock
 
 # Autostart applications
+exec --no-startup-id $HOME/.screenlayout/hid_plus_1080p.sh
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+exec --no-startup-id nitrogen --set-auto --restore; sleep 1; compton -b
 # exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
@@ -314,7 +318,8 @@ exec --no-startup-id conky -c $HOME/.config/conky/conky_maia
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec --no-startup-id redshift_location_aware
+exec --no-startup-id redshift
+# exec --no-startup-id redshift_location_aware
 
 
 # Color palette used for the terminal ( ~/.Xresources file )
@@ -351,11 +356,11 @@ set_from_resource $term_color15    color15
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
 i3bar_command i3bar
-status_command i3status
-position bottom
+status_command i3blocks
+position top
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
+	tray_output primary
 #	tray_output eDP1
 
 bindsym button4 nop

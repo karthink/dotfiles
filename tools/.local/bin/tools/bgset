@@ -1,5 +1,40 @@
-#!/bin/bash
+#!/bin/sh
 
-#cp "$1" $HOME/.local/share/nitrogen
-nitrogen --set-auto "$1"
-#rm "$HOME/.local/share/nitrogen/$1"
+CONFIG="$HOME/.config/nitrogen/bg-saved.cfg" # Replace this with whatever the nitrogen config file is.
+WALLPAPERDIR="$HOME/Pictures/wallpapers/"
+FILELINES=$(grep -ne '^file' $CONFIG | awk -F: '{print $1}')
+
+function setwallpaper {
+    # Modify the nitrogen configuration file (default location set in $CONFIG).
+    # $1: Line to modify
+    # TODO: Modify it so that rather than use a line to modify this, we just use the screen name.
+    # Other potential features: allow you to use different modes rather than centre-and-zoom.
+    WALLPAPER=`find $WALLPAPERDIR -type f | grep -E "jpeg|jpg|png" | shuf -n1`
+    echo "$(date -u) -- Setting line $1 to $WALLPAPER."
+    sed -i "$1 c\file=$WALLPAPER" $CONFIG
+    }
+
+for line in $FILELINES; do
+	setwallpaper $line   # screen 1, defined in line #7
+done
+
+# Refresh Nitrogen with new wallpaper.
+nitrogen --restore
+
+# Older bash script, only works with one monitor:
+##!/bin/bash
+
+#if [[ $1 == "--random" ]]; then
+#	nitrogen --set-auto --random "$HOME/Pictures/wallpapers"
+#	exit 0
+#fi
+#ext=$(echo $1 | sed -re 's_^.*\.(.*)$_\1_')
+#if [[ -f "$HOME/.config/wall.$ext" ]]; then
+#	rm "$HOME/.config/wall.$ext"
+#fi
+#cp "$1" "$HOME/.config/wall.$ext"
+
+#nitrogen --set-auto "$1"
+
+#sed -re "s,^file=.*,file=$HOME/.config/wall.$ext," -i $HOME/.config/nitrogen/bg-saved.cfg
+##rm "$HOME/.local/share/nitrogen/$1"
