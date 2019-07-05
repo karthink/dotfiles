@@ -22,9 +22,9 @@ alias   ka="killall" \
 	ccat="highlight --out-format=ansi" \
 	ref="shortcuts >/dev/null; source ~/.config/shortcutrc" \
 	ffmpeg="ffmpeg -hide_banner" \
-	r="ranger"
+	r="ranger" \
 
-# command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d" # Use neovim for vim if present.
+command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d" # Use neovim for vim if present.
 
 # vf() { fzf | xargs -r -I % $EDITOR % ;}
 

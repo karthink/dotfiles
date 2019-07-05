@@ -1,5 +1,6 @@
-# i3 config file (v4)
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+#########################
+## I3 CONFIG FILE (V4) ##
+#########################
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
@@ -7,39 +8,22 @@ set $mod Mod4
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
 
-# Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 1
-new_float normal
-
-# Hide borders
-hide_edge_borders none
-
-# change borders
-# bindsym $mod+u border none
-# bindsym $mod+y border pixel 1
-bindsym $mod+Shift+t border toggle
-
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font xft:URWGothic-Book 11
-
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
+###############
+## UTILITIES ##
+###############
+
 # start a terminal
 bindsym $mod+Return exec $TERMINAL
-
-# kill focused window
-bindsym $mod+Shift+q kill
-bindsym --release button2 kill
-bindsym --whole-window mod+button2 kill
 
 # start program launcher
 bindsym $mod+r exec --no-startup-id dmenu_recency
 bindsym $mod+space exec --no-startup-id dmenu_recency
 
 # launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
+# bindsym $mod+z exec --no-startup-id morc_menu
 bindsym $mod+F1 exec --no-startup-id morc_menu
 
 # Search DuckDuckGo
@@ -61,12 +45,17 @@ bindsym $mod+XF86AudioPrev exec --no-startup-id  mpvcontrol prev
 bindsym $mod+XF86AudioPlay exec --no-startup-id  mpvcontrol quit
 bindsym $mod+Shift+f exec --no-startup-id  mpvcontrol full
 
+# Volume control
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
+
+
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
 # exec --no-startup-id volumeicon
-exec --no-startup-id pa-applet
 #bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 exec --no-startup-id pulseaudio
 #exec --no-startup-id pa-applet
@@ -80,23 +69,33 @@ bindsym $mod+Ctrl+m exec pavucontrol
 bindsym $mod+Shift+equal exec --no-startup-id acdcontrol /dev/usb/hiddev1 +10
 bindsym $mod+Shift+minus exec --no-startup-id acdcontrol /dev/usb/hiddev1 -- -10
 
-# Start Applications
+# Application shortcuts
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-# bindsym $mod+F2 exec palemoon
+bindsym $mod+Menu exec terminal -e 'bmenu'
+bindsym $mod+XF86HomePage exec $BROWSER
 # bindsym $mod+F3 exec pcmanfm
-bindsym $mod+F3 exec ranger
+bindsym $mod+F3 exec terminal -e $FILE
+bindsym XF86HomePage exec terminal -e $FILE
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F5 exec terminal -e 'mocp'
-bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id compton -b
+#bindsym $mod+t exec --no-startup-id pkill compton
+#bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-# bindsym $mod+F1 exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # focus_follows_mouse no
+
+#######################
+## WINDOW MANAGEMENT ##
+#######################
+
+# kill focused window
+bindsym $mod+Shift+q kill
+bindsym --release button2 kill
+bindsym --whole-window mod+button2 kill
 
 # change focus
 bindsym $mod+h focus left
@@ -142,8 +141,8 @@ bindsym $mod+s layout toggle stacking tabbed split
 bindsym $mod+v layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
 bindsym $mod+p floating toggle
+bindsym $mod+Shift+w floating toggle
 
 # change focus between tiling / floating windows
 bindsym mod1+Tab focus mode_toggle
@@ -156,11 +155,15 @@ bindsym $mod+Shift+s sticky toggle
 # bindsym $mod+a focus parent
 
 # move the currently focused window to the scratchpad
-# bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+Shift+grave move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
+
+##########################
+## WORKSPACE NAVIGATION ##
+##########################
 
 #navigate workspaces next / previous
 bindsym $mod+Ctrl+Right workspace next
@@ -209,6 +212,30 @@ bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
+#####################################
+## WINDOW AND WORKSPACE PROPERTIES ##
+#####################################
+
+# Configure border style <normal|1pixel|pixel xx|none|pixel>
+new_window pixel 4
+new_float normal
+
+# Make focused window easier to see
+for_window [class="^client.focused$"] border pixel 10
+
+# Hide borders
+hide_edge_borders none
+
+# change borders
+# bindsym $mod+u border none
+# bindsym $mod+y border pixel 1
+bindsym $mod+Shift+t border toggle
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+#font xft:URWGothic-Book 11
+font pango:Fira Mono Bold, Icons 11
+
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws2
@@ -249,10 +276,13 @@ for_window [window_role="GtkFileChooserDialog"] move position center
 for_window [title="Default - Wine desktop"] floating enable
 for_window [title="Bluetooth Devices"] floating enable border normal
 for_window [title="*Preferences"] floating enable border normal
+
 for_window [class="mpv"] floating enable border pixel 2
 no_focus [class="mpv"]
-
 for_window [title="weather"] floating enable border pixel 4 resize set 1280 850
+for_window [class="Remmina"] floating enable border normal resize set 800 600
+for_window [title="nmtui"] floating enable
+
 # Bindings to make the webcam float and stick.
 for_window [title="mpvfloat"] floating enable
 for_window [title="mpvfloat"] sticky enable
@@ -269,7 +299,38 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-# exit i3 (logs you out of your X session)
+######################
+## DROPDOWN WINDOWS ##
+######################
+
+# General dropdown window traits. The order can matter.
+for_window [title="dropdown_*"] floating enable
+for_window [title="dropdown_*"] move scratchpad
+for_window [title="dropdown_*"] sticky enable
+for_window [title="dropdown_*"] scratchpad show
+for_window [title="dropdown_*"] resize set 625 450
+for_window [title="dropdown_dropdowncalc"] resize set 800 300
+for_window [title="dropdown_tmuxdd"] border pixel 1
+for_window [title="dropdown_dropdowncalc"] border pixel 1
+for_window [title="dropdown_*"] move position center
+
+
+# Dropdown terminal and dropdown calculator setup
+bindsym $mod+grave exec --no-startup-id ddspawn tmuxdd
+bindsym $mod+F2 exec --no-startup-id ddspawn dropdowncalc -f mono:pixelsize=26
+
+# Hover settings
+bindsym $mod+Shift+comma floating toggle; sticky toggle; exec --no-startup-id hover left
+bindsym $mod+Shift+period floating toggle; sticky toggle; exec --no-startup-id hover right
+
+# Allow popups during fullscreen
+# popup_during_fullscreen ignore
+
+
+##############
+## I3 EXIT  ##
+##############
+
 # TODO
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+e exec prompt "Exit i3? " "i3exit logout"
@@ -300,15 +361,18 @@ bindsym $mod+Shift+o		exec --no-startup-id i3resize right
 # Lock screen
 bindsym $mod+9 exec --no-startup-id blurlock
 
-# Autostart applications
+###############
+## AUTOSTART ##
+###############
+
 exec --no-startup-id $HOME/.screenlayout/hid_plus_1080p.sh
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --set-auto --restore; sleep 1; compton -b
 # exec --no-startup-id manjaro-hello
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
-exec --no-startup-id clipit
+# exec --no-startup-id clipit
 exec --no-startup-id blueman-applet
 exec --no-startup-id unclutter
 # exec_always --no-startup-id sbxkb
@@ -321,114 +385,131 @@ exec_always --no-startup-id fix_xcursor
 exec --no-startup-id redshift
 # exec --no-startup-id redshift_location_aware
 
+################
+##   THEME    ##
+################
 
-# Color palette used for the terminal ( ~/.Xresources file )
-# Colors are gathered based on the documentation:
-# https://i3wm.org/docs/userguide.html#xresources
-# Change the variable name at the place you want to match the color
-# of your terminal like this:
-# [example]
-# If you want your bar to have the same background color as your
-# terminal background change the line 362 from:
-# background #14191D
-# to:
-# background $term_background
-# Same logic applied to everything else.
-set_from_resource $term_background background
-set_from_resource $term_foreground foreground
-set_from_resource $term_color0     color0
-set_from_resource $term_color1     color1
-set_from_resource $term_color2     color2
-set_from_resource $term_color3     color3
-set_from_resource $term_color4     color4
-set_from_resource $term_color5     color5
-set_from_resource $term_color6     color6
-set_from_resource $term_color7     color7
-set_from_resource $term_color8     color8
-set_from_resource $term_color9     color9
-set_from_resource $term_color10    color10
-set_from_resource $term_color11    color11
-set_from_resource $term_color12    color12
-set_from_resource $term_color13    color13
-set_from_resource $term_color14    color14
-set_from_resource $term_color15    color15
 
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
+# set primary gruvbox colorscheme colors
+set $bg #282828
+set $fg #689d68
+set $red #cc241d
+set $green #98971a
+set $yellow #d79921
+set $blue #458588
+set $purple #b16286
+set $aqua #689d68
+set $gray #a89984
+set $darkgray #1d2021
+
 bar {
-i3bar_command i3bar
-status_command i3blocks
-position top
-
+	strip_workspace_numbers yes
+	position top
+	status_command i3blocks -c ~/.config/i3blocks/config
+	separator_symbol |
+    colors {
+		# bar background color
+		background $bg
+		# text color used for blocks that do not have a color specified.
+		statusline $yellow
+		# workspaces section
+		#						border		backgr		text
+		focused_workspace		$blue		$blue		$darkgray
+		inactive_workspace		$darkgray	$darkgray	$yellow
+		active_workspace		$darkgray	$darkgray	$yellow
+		urgent_workspace		$red		$red		$bg
+    }
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 	tray_output primary
 #	tray_output eDP1
-
-bindsym button4 nop
-bindsym button5 nop
-#   font xft:URWGothic-Book 11
-strip_workspace_numbers yes
-
-colors {
-background #222D31
-statusline #F9FAF9
-separator  #454947
-
-#                      border  backgr. text
-focused_workspace  #F9FAF9 #16a085 #292F34
-active_workspace   #595B5B #353836 #FDF6E3
-inactive_workspace #595B5B #222D31 #EEE8D5
-binding_mode       #16a085 #2C2C2C #F9FAF9
-urgent_workspace   #16a085 #FDF6E3 #E5201D
-}
 }
 
-# hide/unhide i3status bar
-# bindsym $mod+m bar mode toggle
+client.focused          $blue $blue $darkgray $purple $blue
+# client.focused          $blue $blue $darkgray $purple $darkgray
+client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
+client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+client.urgent           $red $red $white $red $red
 
-# Theme colors
-# class                   border  backgr. text    indic.   child_border
-client.focused          #EFF4F7 #556064 #80FFF9 #FDC93A    #EFF4F7
-client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-client.placeholder      #000000 #0c0c0c #ffffff #000000
-# Originally client.focused border was 556064 and child_border was null
-client.background       #2B2C2B
+## Color palette used for the terminal ( ~/.Xresources file )
+## Colors are gathered based on the documentation:
+## https://i3wm.org/docs/userguide.html#xresources
+## Change the variable name at the place you want to match the color
+## of your terminal like this:
+## [example]
+## If you want your bar to have the same background color as your
+## terminal background change the line 362 from:
+## background #14191D
+## to:
+## background $term_background
+## Same logic applied to everything else.
+#set_from_resource $term_background background
+#set_from_resource $term_foreground foreground
+#set_from_resource $term_color0     color0
+#set_from_resource $term_color1     color1
+#set_from_resource $term_color2     color2
+#set_from_resource $term_color3     color3
+#set_from_resource $term_color4     color4
+#set_from_resource $term_color5     color5
+#set_from_resource $term_color6     color6
+#set_from_resource $term_color7     color7
+#set_from_resource $term_color8     color8
+#set_from_resource $term_color9     color9
+#set_from_resource $term_color10    color10
+#set_from_resource $term_color11    color11
+#set_from_resource $term_color12    color12
+#set_from_resource $term_color13    color13
+#set_from_resource $term_color14    color14
+#set_from_resource $term_color15    color15
 
-# #---Dropdown Windows---# #
-# General dropdown window traits. The order can matter.
-for_window [title="dropdown_*"] floating enable
-for_window [title="dropdown_*"] move scratchpad
-for_window [title="dropdown_*"] sticky enable
-for_window [title="dropdown_*"] scratchpad show
-for_window [title="dropdown_*"] resize set 625 450
-for_window [title="dropdown_dropdowncalc"] resize set 800 300
-for_window [title="dropdown_tmuxdd"] border pixel 1
-for_window [title="dropdown_dropdowncalc"] border pixel 1
-for_window [title="dropdown_*"] move position center
+## Start i3bar to display a workspace bar (plus the system information i3status if available)
+#bar {
+#i3bar_command i3bar
+#status_command i3blocks
+#position top
 
+### please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+#	tray_output primary
+##	tray_output eDP1
 
-# Dropdown terminal and dropdown calculator setup
-bindsym $mod+grave exec --no-startup-id ddspawn tmuxdd
-bindsym $mod+F2 exec --no-startup-id ddspawn dropdowncalc -f mono:pixelsize=26
+#bindsym button4 nop
+#bindsym button5 nop
+##   font xft:URWGothic-Book 11
+#strip_workspace_numbers yes
 
-# Hover settings
-bindsym $mod+Shift+comma floating toggle; sticky toggle; exec --no-startup-id hover left
-bindsym $mod+Shift+period floating toggle; sticky toggle; exec --no-startup-id hover right
+#colors {
+#background #222D31
+#statusline #F9FAF9
+#separator  #454947
 
-# Make focused window easier to see
-for_window [class="^client.focused$"] border pixel 19
+##                      border  backgr. text
+#focused_workspace  #F9FAF9 #16a085 #292F34
+#active_workspace   #595B5B #353836 #FDF6E3
+#inactive_workspace #595B5B #222D31 #EEE8D5
+#binding_mode       #16a085 #2C2C2C #F9FAF9
+#urgent_workspace   #16a085 #FDF6E3 #E5201D
+#}
+#}
 
-# Allow popups during fullscreen
-# popup_during_fullscreen ignore
+## hide/unhide i3status bar
+## bindsym $mod+m bar mode toggle
+
+## Theme colors
+## class                   border  backgr. text    indic.   child_border
+#client.focused          #EFF4F7 #556064 #80FFF9 #FDC93A    #EFF4F7
+#client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
+#client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
+#client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
+#client.placeholder      #000000 #0c0c0c #ffffff #000000
+## Originally client.focused border was 556064 and child_border was null
+#client.background       #2B2C2B
 
 #############################
-### settings for i3-gaps: ###
+### SETTINGS FOR I3-GAPS: ###
 #############################
 
 # Set inner/outer gaps
-gaps inner 14
-gaps outer -2
+gaps inner 18
+gaps outer 0
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>

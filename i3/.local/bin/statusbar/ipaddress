@@ -12,3 +12,5 @@ case $BLOCK_BUTTON in
 esac
 
 echo $my_ip
+echo $my_ip
+echo "#d3869b"

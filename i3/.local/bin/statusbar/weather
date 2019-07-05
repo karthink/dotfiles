@@ -1,11 +1,12 @@
 #!/bin/sh
+nm-online -s >/dev/null || exit;
 location="$1"; [ -z "$location" ] || { location="$location+" && rm -f "$HOME/.local/share/weatherreport" ;}
 
 getforecast() { ping -q -c 1 1.1.1.1 >/dev/null || exit 1
 curl -s "wttr.in/$location?m" > "$HOME/.local/share/weatherreport" || exit 1 ;}
 
-showweather() { printf "%s" "$(sed '16q;d' "$HOME/.local/share/weatherreport" | grep -wo "[0-9]*%" | sort -n | sed -e '$!d' | sed -e "s/^/☔ /g" | tr -d '\n')"
-sed '13q;d' "$HOME/.local/share/weatherreport" | grep -o "m\\(-\\)*[0-9]\\+" | sort -n -t 'm' -k 2n | sed -e 1b -e '$!d' | tr '\n|m' ' ' | awk '{print " ❄️",$1 "°","🌞",$2 "°"}' ;}
+showweather() { printf "%s" "$(sed '16q;d' "$HOME/.local/share/weatherreport" | grep -wo "[0-9]*%" | sort -n | sed -e '$!d' | sed -e "s/^/⛈ /g" | tr -d '\n')"
+sed '13q;d' "$HOME/.local/share/weatherreport" | grep -o "m\\(-\\)*[0-9]\\+" | sort -n -t 'm' -k 2n | sed -e 1b -e '$!d' | tr '\n|m' ' ' | awk '{print "  🌤 ",$1, "-",$2, "°" }' ;} #{print " ❄️",$1 "°","🌞",$2 "°"}
 
 case $BLOCK_BUTTON in
     1) $TERMINAL  -T "weather" -e less -S "$HOME/.local/share/weatherreport" ;;
@@ -21,3 +22,5 @@ if [ "$(stat -c %y "$HOME/.local/share/weatherreport" >/dev/null 2>&1 | awk '{pr
 	then getforecast && showweather
 	else showweather
 fi
+
+# echo "#84a598"
