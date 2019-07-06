@@ -5,4 +5,3 @@ _time=$(date "$timefmt")
 
 echo "$_time" " " #short
 echo "$_time" " " #long
-echo "#ebdbb2" #color

@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 width=200
 height=200
 datefmt="+%a, %b %d, %Y"
-x = 1920
+x=1920
 
 OPTIND=1
 while getopts ":f:W:H:" opt; do
@@ -29,24 +29,23 @@ case $BLOCK_BUTTON in
 - Middle click opens calcurse if installed" ;;
 esac
 
-/* case "$BLOCK_BUTTON" in */
-/*   1|2|3) */
-
-/* 	# the position of the upper left corner of the popup */
-/* 	#posX=$(($BLOCK_X - $width / 2)) */
-/* 	posX=1670 */
-/* 	#posY=$(($BLOCK_Y - $height)) */
-/* 	posY=18 */
-
-
-/* 	i3-msg -q "exec yad --calendar \ */
-/*         --width=$width --height=$height \ */
-/* 	    --undecorated --fixed \ */
-/* 	    --close-on-unfocus --no-buttons \ */
-/* 	    --posx=$posX --posy=$posY \ */
-/* 	    > /dev/null" */
-/* esac */
+# case "$BLOCK_BUTTON" in
+#   1|2|3)
+#
+# 	# the position of the upper left corner of the popup
+# 	#posX=$(($BLOCK_X - $width / 2))
+# 	posX=1670
+# 	#posY=$(($BLOCK_Y - $height))
+# 	posY=18
+#
+#
+# 	i3-msg -q "exec yad --calendar \
+#         --width=$width --height=$height \
+# 	    --undecorated --fixed \
+# 	    --close-on-unfocus --no-buttons \
+# 	    --posx=$posX --posy=$posY \
+# 	    > /dev/null"
+# esac
 
 date "$datefmt" #full
 date "$datefmt" #short
-echo "#8ec07c"  #color

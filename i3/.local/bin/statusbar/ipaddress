@@ -13,4 +13,4 @@ esac
 
 echo $my_ip
 echo $my_ip
-echo "#d3869b"
+echo "#83a598" # color

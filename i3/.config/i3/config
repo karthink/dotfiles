@@ -50,6 +50,9 @@ bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -R
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
 
+bindsym button3+button4 exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks
+bindsym button3+button5 exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
+
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -122,6 +125,10 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
+# Rotate window configuration
+bindsym $mod+period exec --no-startup-id rotate_layout.py --no-multimonitor 1
+bindsym $mod+comma exec --no-startup-id rotate_layout.py --no-multimonitor 0
 
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
@@ -233,8 +240,8 @@ bindsym $mod+Shift+t border toggle
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-#font xft:URWGothic-Book 11
-font pango:Fira Mono Bold, Icons 11
+# font xft:URWGothic-Book 12
+font pango:Fira Mono, Icons 12
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
@@ -424,7 +431,7 @@ bar {
 #	tray_output eDP1
 }
 
-client.focused          $blue $blue $darkgray $purple $blue
+client.focused          $blue $blue $darkgray $purple $aqua
 # client.focused          $blue $blue $darkgray $purple $darkgray
 client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
 client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
