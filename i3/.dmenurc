@@ -3,19 +3,20 @@
 #
 
 ## define the font for dmenu to be used
-DMENU_FN="noto-11.0"
+# Was "Noto-11.0"
+DMENU_FN="Monospace-14.0"
 
 ## background colour for unselected menu-items
-DMENU_NB="#222D31"
+DMENU_NB="#282828"
 
 ## textcolour for unselected menu-items
-DMENU_NF="#F9FAF9"
+DMENU_NF="#CABD9A"
 
 ## background colour for selected menu-items
-DMENU_SB="#16A085"
+DMENU_SB="#BBBB26"
 
 ## textcolour for selected menu-items
-DMENU_SF="#F9FAF9"
+DMENU_SF="#1D1D1D"
 
 ## command for the terminal application to be used:
 TERMINAL_CMD="terminal -e"

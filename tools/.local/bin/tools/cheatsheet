@@ -6,7 +6,7 @@ ping -q -c 1 1.1.1.1 >/dev/null || exit 1;
 if [[ -f $HOME/.dmenurc ]]; then
 	. $HOME/.dmenurc
 fi
-mycommand=$(cat $HOME/.cache/cheatsheet_recent <(compgen -cbk) | dmenu -p "Cheatsheet for command: ")
+mycommand=$(cat $HOME/.cache/cheatsheet_recent <(compgen -cbk) | dmenu $DMENU_OPTIONS -p "Cheatsheet for command: ")
 recentcmds=$HOME/.cache/cheatsheet_recent
 ! [[ -z $mycommand ]] && curl -s "cheat.sh/$mycommand" > $HOME/.local/share/cheatsheet || exit 1;
 

@@ -10,7 +10,7 @@ export BIB="$HOME/Documents/LaTeX/uni.bib"
 export REFER="$HOME/Documents/referbib"
 export SUDO_ASKPASS="$HOME/.local/bin/tools/dmenupass"
 # fix "xdg-open fork-bomb" export your preferred browser from here
-export BROWSER=/usr/bin/qutebrowser
+# export BROWSER=/usr/bin/qutebrowser
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude *~'
 export FZF_DEFAULT_OPTS="--layout=reverse --height=50% -1 --no-mouse --multi --inline-info"
 # Set keyboard repeat rate and delay

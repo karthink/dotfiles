@@ -180,6 +180,18 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
+
+# set $WS1 1:
+# set $WS2 2:
+# set $WS3 3:
+# set $WS4 4:
+# set $WS5 5:
+# set $WS6 6:
+# set $WS7 7:
+# set $WS8 8:
+# set $WS9 9:
+# set $WS10 10:
+
 set $ws1 1
 set $ws2 2
 set $ws3 3
@@ -224,11 +236,11 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 #####################################
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 4
+new_window pixel 3
 new_float normal
 
 # Make focused window easier to see
-for_window [class="^client.focused$"] border pixel 10
+for_window [class="^client.focused$"] border pixel 8
 
 # Hide borders
 hide_edge_borders none
@@ -378,9 +390,9 @@ exec --no-startup-id nitrogen --set-auto --restore; sleep 1; compton -b
 # exec --no-startup-id manjaro-hello
 # exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
+# exec --no-startup-id pamac-tray
 # exec --no-startup-id clipit
-exec --no-startup-id blueman-applet
+# exec --no-startup-id blueman-applet
 exec --no-startup-id unclutter
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
@@ -400,42 +412,61 @@ exec --no-startup-id redshift
 # set primary gruvbox colorscheme colors
 set $bg #282828
 set $fg #689d68
-set $red #cc241d
+# set $red #cc241d
+set $red #b13f47
 set $green #98971a
-set $yellow #d79921
+# set $yellow #d79921
+set $yellow #bbbb26
 set $blue #458588
 set $purple #b16286
 set $aqua #689d68
+set $beige #cabd9a
 set $gray #a89984
-set $darkgray #1d2021
+set $darkgray #1d1d1d
 
 bar {
+	font pango:Monospace 13
 	strip_workspace_numbers yes
+	tray_output none
 	position top
-	status_command i3blocks -c ~/.config/i3blocks/config
-	separator_symbol |
-    colors {
-		# bar background color
-		background $bg
-		# text color used for blocks that do not have a color specified.
-		statusline $yellow
-		# workspaces section
-		#						border		backgr		text
-		focused_workspace		$blue		$blue		$darkgray
-		inactive_workspace		$darkgray	$darkgray	$yellow
-		active_workspace		$darkgray	$darkgray	$yellow
-		urgent_workspace		$red		$red		$bg
-    }
+	status_command bumblebee-status -m title spacer weather redshift nic cpu pacman bluetooth pulseaudio:pasink datetime -p interval=1.5 cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -e htop" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" nic.states="^down" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" date.format="%a_%b_%d" pacman.sum="true" pacman.left-click="pamac-manager" spacer.text="" -t gruvbox-powerline
+	# status_command i3blocks -c ~/.config/i3blocks/config
+	#separator_symbol |
+
+        colors {
+					#border background text
+		focused_workspace       $darkgray $yellow $darkgray
+		active_workspace        $yellow #1D2021 $yellow
+		inactive_workspace      $darkgray $darkgray $gray
+		urgent_workspace        $red $darkgray #47665A
+		background              $bg
+		statusline              #3C3C3C
+		separator               #3C3C3C
+	}
+    #colors {
+		## bar background color
+		#background $bg
+		## text color used for blocks that do not have a color specified.
+		#statusline $yellow
+		## workspaces section
+		##				border		backgr		text
+		#focused_workspace		$blue		$blue		$darkgray
+		#inactive_workspace		$darkgray	$darkgray	$yellow
+		#active_workspace		$darkgray	$darkgray	$yellow
+		#urgent_workspace		$red		$red		$bg
+    #}
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-	tray_output primary
+	# tray_output primary
 #	tray_output eDP1
 }
 
-client.focused          $blue $blue $darkgray $purple $aqua
+# class                 border  backgr. text    indic.   child_border
+client.focused          $blue $beige $darkgray $purple $beige
 # client.focused          $blue $blue $darkgray $purple $darkgray
 client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
 client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
 client.urgent           $red $red $white $red $red
+client.background	$beige
 
 ## Color palette used for the terminal ( ~/.Xresources file )
 ## Colors are gathered based on the documentation:
