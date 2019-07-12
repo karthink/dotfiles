@@ -2,7 +2,7 @@
 # Output locations. Unactivated progs should go to /dev/null.
 shell_shortcuts="$HOME/.config/shortcutrc"
 ranger_shortcuts="$HOME/.config/ranger/shortcuts.conf"
-qute_shortcuts="/dev/null"
+qute_shortcuts="$HOME/.config/qutebrowser/shortcuts.py"
 fish_shortcuts="/dev/null"
 vifm_shortcuts="/dev/null"
 

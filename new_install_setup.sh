@@ -2,7 +2,7 @@
 # Script to install essentials on a fresh Arch-variant install.
 
 # Command line utilities
-pacman -S 7z \
+pamac install 7z \
           bash-completion \
           dmenu \
           figlet \
@@ -21,7 +21,7 @@ pacman -S 7z \
           xcape
 
 # Media viewing utilities
-pacman -S zathura \
+pamac install zathura \
           zathura-pdf-poppler \
           zathura-cb \
           mcomix \
@@ -30,18 +30,18 @@ pacman -S zathura \
 	  w3m
 
 # Video utilities
-pacman -S mps-youtube \
+pamac install mps-youtube \
 	  mpv \
           youtube-dl
 
 # Files and editing utilities
-pacman -S onedrive-abraunegg \
+pamac install onedrive-abraunegg \
           neovim \
           emacs \
           vim-plug
 
 # Misc utilities
-pacman -S jq redshift \
+pamac install jq redshift \
           maim \
           noto-fonts-emoji \
           ttf-ancient \
@@ -49,3 +49,18 @@ pacman -S jq redshift \
           ttf-inconsolata \
           imagewriter \
           libva-intel-driver
+
+pamac build acdcontrol-git \
+	bumblebee-status \
+	cava \
+	debtap \
+	lightdm-webkit-theme-aether \
+	mpv-mpris \
+	onedrive-abraunegg \
+	pamac-dev \
+	pulse-secure \
+	remmina-plugin-teamviewer \
+	st-luke-git \
+	teamviewer \
+	vim-plug \
+	webkitgtk

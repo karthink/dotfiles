@@ -62,7 +62,7 @@ call plug#end()
 	set splitbelow splitright
 
 " Open bibliography file in split
-	map <leader>b :vsp<space>$BIB<CR>
+	" map <leader>b :vsp<space>$BIB<CR>
 
 " Replace all is aliased to S
 	nnoremap S :%s//g<left><left>
@@ -109,6 +109,23 @@ call plug#end()
 	nnoremap  <leader>bp :bp<CR>
 	nnoremap  <leader>bd :bd<CR>
 	nnoremap  <leader>/  :Lines<CR>
+
+"  Split navigation
+	nnoremap  <leader>V  :vsp<CR>:bn<CR><C-w><C-w>
+	nnoremap  <leader>v  :vsp<CR>:bn<CR>
+	nnoremap  <leader>vf :vsp<CR>:Files<CR>
+	nnoremap  <leader>vb :vsp<CR>:Buffers<CR>
+
+"  Leader commands for writing and quitting:
+	nnoremap <Leader>w :w<CR>
+	nnoremap <leader>wq :wq<CR>
+	nnoremap <leader>q :q<CR>
+
+"  Diff current file
+	nmap <leader>d :w !diff % -<CR>
+" Write as root:
+	" command W w !sudo tee % >/dev/null
+
 " This is a <..> template
 " How the <..> does this work?
 " Who knows <..>
@@ -125,6 +142,10 @@ call plug#end()
 	imap <c-x><c-f> <plug>(fzf-complete-path)
 	imap <c-x><c-j> <plug>(fzf-complete-file)
 	imap <c-x><c-l> <plug>(fzf-complete-line)
+
+" Jump out of insert mode with jj or jk
+	inoremap jj <Esc>
+	inoremap kj <Esc>
 
 	" Airline font
 	set guifont=Liberation\ Mono\ for\ Powerline\ 10

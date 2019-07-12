@@ -19,15 +19,24 @@ floating_modifier $mod
 bindsym $mod+Return exec $TERMINAL
 
 # start program launcher
-bindsym $mod+r exec --no-startup-id dmenu_recency
-bindsym $mod+space exec --no-startup-id dmenu_recency
+bindsym $mod+r exec --no-startup-id dmenu_run $DMENU_OPTIONS
+bindsym $mod+space exec --no-startup-id dmenu_run $DMENU_OPTIONS
 
 # launch categorized menu
 # bindsym $mod+z exec --no-startup-id morc_menu
 bindsym $mod+F1 exec --no-startup-id morc_menu
 
-# Search DuckDuckGo
-bindsym XF86Search exec --no-startup-id ducksearch
+# launch window switcher
+# bind to mod key itself, and to R_Alt
+# bindcode --release 133 exec i3-window-switcher
+# bindcode --release 108 exec i3-window-switcher
+bindsym mod1+Tab exec i3-window-switcher
+
+# Handle text selections
+bindsym XF86Back exec --no-startup-id cabl
+
+# Search for file
+bindsym XF86Search exec --no-startup-id dmenufindfile
 # Get a cheatsheet on common linux commands
 bindsym $mod+XF86Search exec --no-startup-id cheatsheet
 # Show contents of clipboard
@@ -37,11 +46,12 @@ bindsym $mod+backslash exec --no-startup dmenuunicode
 # Easy mount
 bindsym $mod+Insert exec --no-startup dmenumount
 # Media controls with mpv
-bindsym XF86AudioPlay exec --no-startup-id  mpvcontrol pause
-bindsym XF86AudioNext exec --no-startup-id  mpvcontrol seekf
-bindsym XF86AudioPrev exec --no-startup-id  mpvcontrol seekb
-bindsym $mod+XF86AudioNext exec --no-startup-id  mpvcontrol next
-bindsym $mod+XF86AudioPrev exec --no-startup-id  mpvcontrol prev
+bindsym XF86AudioPlay exec --no-startup-id  playerctl -p mpv play-pause
+bindsym XF86AudioNext exec --no-startup-id  playerctl -p mpv position 10+
+bindsym XF86AudioPrev exec --no-startup-id  playerctl -p mpv position 10-
+bindsym Shift+XF86AudioNext exec --no-startup-id  playerctl -p mpv next
+bindsym Shift+XF86AudioPrev exec --no-startup-id  playerctl -p mpv previous
+bindsym Shift+XF86AudioPlay exec --no-startup-id  playerctl -p mpv stop
 bindsym $mod+XF86AudioPlay exec --no-startup-id  mpvcontrol quit
 bindsym $mod+Shift+f exec --no-startup-id  mpvcontrol full
 
@@ -69,8 +79,8 @@ bindsym $mod+Ctrl+m exec pavucontrol
 # Screen brightness controls
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
-bindsym $mod+Shift+equal exec --no-startup-id acdcontrol /dev/usb/hiddev1 +10
-bindsym $mod+Shift+minus exec --no-startup-id acdcontrol /dev/usb/hiddev1 -- -10
+bindsym $mod+Shift+equal exec --no-startup-id brightness_HID up
+bindsym $mod+Shift+minus exec --no-startup-id brightness_HID down
 
 # Application shortcuts
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
@@ -106,6 +116,7 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 # bindsym $mod+semicolon focus right
+# bindsym XF86Back [con_mark=_last] focus
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -152,7 +163,7 @@ bindsym $mod+p floating toggle
 bindsym $mod+Shift+w floating toggle
 
 # change focus between tiling / floating windows
-bindsym mod1+Tab focus mode_toggle
+# bindsym mod1+Tab focus mode_toggle
 bindsym $mod+Tab focus mode_toggle
 
 # toggle sticky
@@ -259,7 +270,7 @@ font pango:Fira Mono, Icons 12
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws2
 # assign [class="Pcmanfm"] $ws3
-assign [class="Skype"] $ws5
+assign [class="Skype"] $ws8
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -301,6 +312,7 @@ no_focus [class="mpv"]
 for_window [title="weather"] floating enable border pixel 4 resize set 1280 850
 for_window [class="Remmina"] floating enable border normal resize set 800 600
 for_window [title="nmtui"] floating enable
+for_window [title="fzf"] floating enable move position center resize set 1000 300
 
 # Bindings to make the webcam float and stick.
 for_window [title="mpvfloat"] floating enable
@@ -356,7 +368,7 @@ bindsym $mod+Shift+e exec prompt "Exit i3? " "i3exit logout"
 
 # Set shut down, restart and locking features
 bindsym $mod+x mode "$mode_system"
-set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+set $mode_system  (l)ock,  (e)xit, ጰ switch_(u)ser, ⏾ (s)uspend, … (h)ibernate,  (r)eboot,   (Shift+s)hutdown
 mode "$mode_system" {
 bindsym l exec --no-startup-id i3exit lock, mode "default"
 bindsym s exec --no-startup-id i3exit suspend, mode "default"
@@ -378,7 +390,8 @@ bindsym $mod+Shift+i		exec --no-startup-id i3resize up
 bindsym $mod+Shift+o		exec --no-startup-id i3resize right
 
 # Lock screen
-bindsym $mod+9 exec --no-startup-id blurlock
+bindsym $mod+9 exec --no-startup-id betterlockscreen -l dim
+# bindsym $mod+Backspace exec --no-startup-id dm-tool lock
 
 ###############
 ## AUTOSTART ##
@@ -398,11 +411,13 @@ exec --no-startup-id unclutter
 # exec --no-startup-id start_conky_maia
 exec --no-startup-id conky -c $HOME/.config/conky/conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
+exec --no-startup-id xautolock -time 15 -locker betterlockscreen -l blur
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec --no-startup-id redshift
-# exec --no-startup-id redshift_location_aware
+# exec --no-startup-id redshift
+exec --no-startup-id redshift_location_aware
+# Script to switch between the last two windows
+# exec --no-startup-id window_back_and_forth
 
 ################
 ##   THEME    ##
@@ -428,8 +443,10 @@ bar {
 	font pango:Monospace 13
 	strip_workspace_numbers yes
 	tray_output none
-	position top
-	status_command bumblebee-status -m title spacer weather redshift nic cpu pacman bluetooth pulseaudio:pasink datetime -p interval=1.5 cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -e htop" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" nic.states="^down" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" date.format="%a_%b_%d" pacman.sum="true" pacman.left-click="pamac-manager" spacer.text="" -t gruvbox-powerline
+	position bottom
+	# status_command i3blocks
+	status_command bumblebee-status -m title spacer redshift nic cpu pacman bluetooth pulseaudio:pasink datetime -p interval=1.5 cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -e htop" nic.exclude="lo,enp3s0" nic.format="{state} {ip} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" date.format="%a_%b_%d" pacman.sum="true" pacman.left-click="pamac-manager" spacer.text="" -t gruvbox-powerline
+	# weather -c weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false"
 	# status_command i3blocks -c ~/.config/i3blocks/config
 	#separator_symbol |
 

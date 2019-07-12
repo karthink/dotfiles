@@ -1,0 +1,8 @@
+#!/bin/sh
+device=$(sudo acdcontrol --detect /dev/usb/hiddev* | grep /dev/usb | awk -F: '{print $1}')
+case $1 in
+	"up")
+		sudo acdcontrol $device +10;;
+	"down")
+		sudo acdcontrol $device -- -10;;
+esac

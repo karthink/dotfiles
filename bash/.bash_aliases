@@ -17,12 +17,13 @@ alias   ka="killall" \
 	df='df -h' \
 	free='free -m' \
 	np='nano -w PKGBUILD' \
-	more=less
+	more=less \
 	diff="diff --color=auto" \
 	ccat="highlight --out-format=ansi" \
 	ref="shortcuts >/dev/null; source ~/.config/shortcutrc" \
 	ffmpeg="ffmpeg -hide_banner" \
 	r="ranger" \
+	dff="dmenufindfile"
 
 command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d" # Use neovim for vim if present.
 

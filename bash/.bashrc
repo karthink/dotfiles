@@ -80,9 +80,6 @@ shopt -s expand_aliases
 
 # export QT_SELECT=4
 
-# Enable history appending instead of overwriting.  #139609
-shopt -s histappend
-
 #
 # # ex - archive extractor
 # # usage: ex <file>
@@ -119,6 +116,18 @@ if [[ $PS1 && $(command -v fzf) && -f $HOME/.config/fzf/completion.bash ]]; then
 	. $HOME/.config/fzf/completion.bash
 	. $HOME/.config/fzf/key-bindings.bash
 fi
+
+# Eternal bash history.
+# ---------------------
+# Undocumented feature which sets the size to "unlimited".
+# http://stackoverflow.com/questions/9457233/unlimited-bash-history
+export HISTFILESIZE=-1
+export HISTSIZE=-1
+# export HISTTIMEFORMAT="[%F %T] "
+# Change the file location because certain bash sessions truncate .bash_history file upon close.
+# http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
+export HISTFILE=~/.bash_eternal_history
+
 
 # Auto cd into directories
 shopt -s autocd
