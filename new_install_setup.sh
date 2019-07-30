@@ -2,7 +2,7 @@
 # Script to install essentials on a fresh Arch-variant install.
 
 # Command line utilities
-pamac install 7z \
+trizen -S --needed 7z \
           bash-completion \
           dmenu \
           figlet \
@@ -11,7 +11,6 @@ pamac install 7z \
           ldc \
           stow \
           libnotify \
-          imagewriter \
           socat \
           python-pip \
           neofetch \
@@ -21,46 +20,49 @@ pamac install 7z \
           xcape
 
 # Media viewing utilities
-pamac install zathura \
+trizen -S --needed zathura \
           zathura-pdf-poppler \
           zathura-cb \
           mcomix \
           qutebrowser \
-	  ranger \
-	  w3m
+	  ranger
 
 # Video utilities
-pamac install mps-youtube \
+trizen -S --needed mps-youtube \
 	  mpv \
           youtube-dl
 
 # Files and editing utilities
-pamac install onedrive-abraunegg \
+trizen -S --needed onedrive-abraunegg \
           neovim \
           emacs \
           vim-plug
 
 # Misc utilities
-pamac install jq redshift \
-          maim \
-          noto-fonts-emoji \
-          ttf-ancient \
-          ttf-droid \
-          ttf-inconsolata \
-          imagewriter \
-          libva-intel-driver
+trizen -S --needed jq redshift \
+          maim
 
-pamac build acdcontrol-git \
+trizen -S --needed acdcontrol-git \
 	bumblebee-status \
 	cava \
 	debtap \
-	lightdm-webkit-theme-aether \
+	playerctl \
 	mpv-mpris \
-	onedrive-abraunegg \
-	pamac-dev \
-	pulse-secure \
-	remmina-plugin-teamviewer \
-	st-luke-git \
-	teamviewer \
-	vim-plug \
-	webkitgtk
+	pulse-secure
+
+trizen -S --needed python-i3ipc betterlockscreen
+
+	# lightdm-webkit-theme-aether \
+          # imagewriter \
+	#   w2m
+          # ttf-ancient \
+          # ttf-inconsolata \
+          # ttf-droid \
+          # imagewriter \
+          # libva-intel-driver
+          # noto-fonts-emoji \
+	# remmina-plugin-teamviewer \
+	# st-luke-git \
+	# teamviewer \
+	# vim-plug \
+	# webkitgtk

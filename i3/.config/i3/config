@@ -77,10 +77,11 @@ bindsym $mod+Ctrl+m exec pavucontrol
 ################################################################################################
 
 # Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 bindsym $mod+Shift+equal exec --no-startup-id brightness_HID up
 bindsym $mod+Shift+minus exec --no-startup-id brightness_HID down
+
 
 # Application shortcuts
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
@@ -397,19 +398,20 @@ bindsym $mod+9 exec --no-startup-id betterlockscreen -l dim
 ## AUTOSTART ##
 ###############
 
-exec --no-startup-id $HOME/.screenlayout/hid_plus_1080p.sh
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --set-auto --restore; sleep 1; compton -b
+exec --no-startup-id $HOME/.fehbg
+# exec --no-startup-id $HOME/.screenlayout/hid_plus_1080p.sh
+# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# exec --no-startup-id nitrogen --set-auto --restore; sleep 1; compton -b
 # exec --no-startup-id manjaro-hello
 # exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
+# exec --no-startup-id xfce4-power-manager
 # exec --no-startup-id pamac-tray
 # exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
 exec --no-startup-id unclutter
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
-exec --no-startup-id conky -c $HOME/.config/conky/conky_maia
+# exec --no-startup-id conky -c $HOME/.config/conky/conky_maia
 # exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 15 -locker betterlockscreen -l blur
 exec_always --no-startup-id ff-theme-util
@@ -440,13 +442,12 @@ set $gray #a89984
 set $darkgray #1d1d1d
 
 bar {
-	font pango:Monospace 13
+	font pango:Monospace 12
 	strip_workspace_numbers yes
 	tray_output none
-	position bottom
+	position top
 	# status_command i3blocks
-	status_command bumblebee-status -m title spacer redshift nic cpu pacman bluetooth pulseaudio:pasink datetime -p interval=1.5 cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -e htop" nic.exclude="lo,enp3s0" nic.format="{state} {ip} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" date.format="%a_%b_%d" pacman.sum="true" pacman.left-click="pamac-manager" spacer.text="" -t gruvbox-powerline
-	# weather -c weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false"
+	status_command bumblebee-status -m title spacer weather redshift nic cpu pacman bluetooth pulseaudio:pasink battery datetime -p interval=1.5 cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -e htop" nic.exclude="lo,enp3s0" nic.format="{state} {ip} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" battery.device=BAT1 date.format="%a_%b_%d" pacman.sum="true" pacman.left-click="pamac-manager" spacer.text=""  weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" -t gruvbox-powerline
 	# status_command i3blocks -c ~/.config/i3blocks/config
 	#separator_symbol |
 
