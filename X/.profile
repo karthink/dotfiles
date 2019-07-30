@@ -1,3 +1,4 @@
+#!/bin/bash
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export TERMINAL="st"
 export EDITOR=/usr/bin/nvim

@@ -1,6 +1,6 @@
 ! Make left Alt a Super key
 remove mod1 = Alt_R
-add mod4 = Alt_R
+keycode 108 = Super_L
 
 ! Make caps a ctrl key
 remove Lock = Caps_Lock

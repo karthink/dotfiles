@@ -109,6 +109,9 @@ call plug#end()
 	nnoremap  <leader>bp :bp<CR>
 	nnoremap  <leader>bd :bd<CR>
 	nnoremap  <leader>/  :Lines<CR>
+" Leader commands for quitting Vim
+	nnoremap <leader>wq :wq<CR>
+	nnoremap <leader>qq :q!<CR>
 " This is a <..> template
 " How the <..> does this work?
 " Who knows <..>
@@ -147,3 +150,6 @@ call plug#end()
 	" let g:airline_symbols.paste = 'Þ'
 	" let g:airline_symbols.paste = '∥'
 	" let g:airline_symbols.whitespace = 'Ξ'
+" Open line above, below
+	nnoremap [o O<Esc>j
+	nnoremap ]o o<Esc>k
