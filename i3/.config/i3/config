@@ -55,6 +55,18 @@ bindsym Shift+XF86AudioPlay exec --no-startup-id  playerctl -p mpv stop
 bindsym $mod+XF86AudioPlay exec --no-startup-id  mpvcontrol quit
 bindsym $mod+Shift+f exec --no-startup-id  mpvcontrol full
 
+bindsym XF86LaunchA exec --no-startup-id  playerctl -p mpv play-pause
+bindsym XF86Explorer exec --no-startup-id  playerctl -p mpv position 10+
+bindsym XF86Tools exec --no-startup-id  playerctl -p mpv position 10-
+bindsym Shift+XF86Explorer exec --no-startup-id  playerctl -p mpv next
+bindsym Shift+XF86Tools exec --no-startup-id  playerctl -p mpv previous
+bindsym Shift+XF86LaunchA exec --no-startup-id  playerctl -p mpv stop
+bindsym $mod+XF86LaunchA exec --no-startup-id  mpvcontrol quit
+
+# XF86Tools
+# XF86LaunchA
+# XF86Explorer
+
 # Volume control
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
@@ -399,7 +411,7 @@ bindsym $mod+9 exec --no-startup-id betterlockscreen -l dim
 ###############
 
 exec --no-startup-id $HOME/.fehbg
-# exec --no-startup-id $HOME/.screenlayout/hid_plus_1080p.sh
+exec --no-startup-id $HOME/.screenlayout/HID_mon_to_right.sh
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # exec --no-startup-id nitrogen --set-auto --restore; sleep 1; compton -b
 # exec --no-startup-id manjaro-hello
@@ -408,6 +420,7 @@ exec --no-startup-id $HOME/.fehbg
 # exec --no-startup-id pamac-tray
 # exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
+exec --no-startup-id thinkpad_init
 exec --no-startup-id unclutter
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
