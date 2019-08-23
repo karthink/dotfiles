@@ -7,7 +7,7 @@ export READER="zathura"
 export IMAGEVIEWER="sxiv"
 export MEDIAPLAYER="mpv"
 export FILE="ranger"
-export BIB="$HOME/Documents/LaTeX/uni.bib"
+export BIB="$HOME/Documents/research/control_systems.bib"
 export REFER="$HOME/Documents/referbib"
 export SUDO_ASKPASS="$HOME/.local/bin/tools/dmenupass"
 # fix "xdg-open fork-bomb" export your preferred browser from here

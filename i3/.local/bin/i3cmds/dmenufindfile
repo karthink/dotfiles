@@ -5,7 +5,7 @@ choice=$(fd --type f --hidden --follow --exclude .git \
 				       | dmenu $DMENU_OPTIONS -l 15 -p "Open file: ")
 echo $choice
 if ! [[ -z $(file "$choice" | grep "ASCII") ]]; then
-	setsid terminal -e "$EDITOR" "$choice" >/dev/null 2>&1 &
+	setsid $TERMINAL -e "$EDITOR" "$choice" >/dev/null 2>&1 &
 	exit
 fi
 case "$choice" in
@@ -13,12 +13,12 @@ case "$choice" in
 
 	*.pdf|*.ps) setsid "$READER" "$choice" >/dev/null 2>&1 & ;;
 
-	*.txt|*.md) setsid terminal -e "$EDITOR" "$choice" >/dev/null 2>&1 & ;;
+	*.txt|*.md) setsid $TERMINAL -e "$EDITOR" "$choice" >/dev/null 2>&1 & ;;
 
 	*.html) setsid "$BROWSER" "$choice" >/dev/null 2>&1 & ;;
 
 	*.mp4|*.avi|*.flv|*.mkv) setsid "$MEDIAPLAYER" "$choice" >/dev/null 2>&1 & ;;
 
-	*.tex|*.sh|*.py) setsid terminal -e "$EDITOR" "$choice" >/dev/null 2>&1 & ;;
+	*.tex|*.sh|*.py) setsid $TERMINAL -e "$EDITOR" "$choice" >/dev/null 2>&1 & ;;
 esac
 # xdg-open  "$choice"

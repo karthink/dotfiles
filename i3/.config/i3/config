@@ -19,18 +19,18 @@ floating_modifier $mod
 bindsym $mod+Return exec $TERMINAL
 
 # start program launcher
-bindsym $mod+r exec --no-startup-id dmenu_run $DMENU_OPTIONS
-bindsym $mod+space exec --no-startup-id dmenu_run $DMENU_OPTIONS
+# bindsym $mod+r exec --no-startup-id dmenu_run $DMENU_OPTIONS
+bindsym $mod+space exec --no-startup-id dmenu_recency
 
 # launch categorized menu
 # bindsym $mod+z exec --no-startup-id morc_menu
-bindsym $mod+F1 exec --no-startup-id morc_menu
+# bindsym $mod+F1 exec --no-startup-id morc_menu
 
 # launch window switcher
 # bind to mod key itself, and to R_Alt
 # bindcode --release 133 exec i3-window-switcher
 # bindcode --release 108 exec i3-window-switcher
-bindsym mod1+Tab exec i3-window-switcher
+bindsym $mod+Tab exec i3-window-switcher
 
 # Handle text selections
 bindsym XF86Back exec --no-startup-id cabl
@@ -46,21 +46,21 @@ bindsym $mod+backslash exec --no-startup dmenuunicode
 # Easy mount
 bindsym $mod+Insert exec --no-startup dmenumount
 # Media controls with mpv
-bindsym XF86AudioPlay exec --no-startup-id  playerctl -p mpv play-pause
-bindsym XF86AudioNext exec --no-startup-id  playerctl -p mpv position 10+
-bindsym XF86AudioPrev exec --no-startup-id  playerctl -p mpv position 10-
-bindsym Shift+XF86AudioNext exec --no-startup-id  playerctl -p mpv next
-bindsym Shift+XF86AudioPrev exec --no-startup-id  playerctl -p mpv previous
-bindsym Shift+XF86AudioPlay exec --no-startup-id  playerctl -p mpv stop
+bindsym XF86AudioPlay exec --no-startup-id  playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id  playerctl position 10+
+bindsym XF86AudioPrev exec --no-startup-id  playerctl position 10-
+bindsym Shift+XF86AudioNext exec --no-startup-id  playerctl next
+bindsym Shift+XF86AudioPrev exec --no-startup-id  playerctl previous
+bindsym Shift+XF86AudioPlay exec --no-startup-id  playerctl stop
 bindsym $mod+XF86AudioPlay exec --no-startup-id  mpvcontrol quit
 bindsym $mod+Shift+f exec --no-startup-id  mpvcontrol full
 
-bindsym XF86LaunchA exec --no-startup-id  playerctl -p mpv play-pause
-bindsym XF86Explorer exec --no-startup-id  playerctl -p mpv position 10+
-bindsym XF86Tools exec --no-startup-id  playerctl -p mpv position 10-
-bindsym Shift+XF86Explorer exec --no-startup-id  playerctl -p mpv next
-bindsym Shift+XF86Tools exec --no-startup-id  playerctl -p mpv previous
-bindsym Shift+XF86LaunchA exec --no-startup-id  playerctl -p mpv stop
+bindsym XF86LaunchA exec --no-startup-id  playerctl play-pause
+bindsym XF86Explorer exec --no-startup-id  playerctl position 10+
+bindsym XF86Tools exec --no-startup-id  playerctl position 10-
+bindsym Shift+XF86Explorer exec --no-startup-id  playerctl next
+bindsym Shift+XF86Tools exec --no-startup-id  playerctl previous
+bindsym Shift+XF86LaunchA exec --no-startup-id  playerctl stop
 bindsym $mod+XF86LaunchA exec --no-startup-id  mpvcontrol quit
 
 # XF86Tools
@@ -177,7 +177,7 @@ bindsym $mod+Shift+w floating toggle
 
 # change focus between tiling / floating windows
 # bindsym mod1+Tab focus mode_toggle
-bindsym $mod+Tab focus mode_toggle
+bindsym mod1+Tab focus mode_toggle
 
 # toggle sticky
 bindsym $mod+Shift+s sticky toggle
@@ -283,10 +283,12 @@ font pango:Fira Mono, Icons 12
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws2
 # assign [class="Pcmanfm"] $ws3
-assign [class="Skype"] $ws8
+assign [class="Skype"] $ws6
+assign [class="MATLAB R2018b"] $ws8
 
 # Open specific applications in floating mode
-for_window [title="alsamixer"] floating enable border pixel 1
+for_window [title="Figure "] floating enable border normal
+# for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
@@ -403,15 +405,16 @@ bindsym $mod+Shift+i		exec --no-startup-id i3resize up
 bindsym $mod+Shift+o		exec --no-startup-id i3resize right
 
 # Lock screen
-bindsym $mod+9 exec --no-startup-id betterlockscreen -l dim
-# bindsym $mod+Backspace exec --no-startup-id dm-tool lock
+bindsym $mod+0 exec --no-startup-id betterlockscreen -l 
+# bindsym $mod+BackSpace exec --no-startup-id dm-tool lock
 
 ###############
 ## AUTOSTART ##
 ###############
 
-exec --no-startup-id $HOME/.fehbg
 exec --no-startup-id $HOME/.screenlayout/HID_mon_to_right.sh
+exec --no-startup-id $HOME/.fehbg
+# exec --no-startup-id systemctl start betterlockscreen@$USER
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # exec --no-startup-id nitrogen --set-auto --restore; sleep 1; compton -b
 # exec --no-startup-id manjaro-hello
@@ -426,7 +429,7 @@ exec --no-startup-id unclutter
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id conky -c $HOME/.config/conky/conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 15 -locker betterlockscreen -l blur
+exec --no-startup-id xautolock -time 1  -locker betterlockscreen -l blur
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 # exec --no-startup-id redshift
@@ -460,7 +463,8 @@ bar {
 	tray_output none
 	position top
 	# status_command i3blocks
-	status_command bumblebee-status -m title spacer weather redshift nic cpu pacman bluetooth pulseaudio:pasink battery datetime -p interval=1.5 cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -e htop" nic.exclude="lo,enp3s0" nic.format="{state} {ip} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" battery.device=BAT1 date.format="%a_%b_%d" pacman.sum="true" pacman.left-click="pamac-manager" spacer.text=""  weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" -t gruvbox-powerline
+	status_command bumblebee-status -m mpd weather nic cpu bluetooth pulseaudio:pasink battery datetime -p interval=1.5 cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -e htop" nic.exclude="lo,enp0s25" nic.format="{state} {ip} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" mpd.format="{title} - {artist}" battery.device=BAT1 date.format="%a_%b_%d" pacman.sum="true" pacman.left-click="pamac-manager" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" -t gruvbox-powerline
+	# title spacer redshift spacer.text=""
 	# status_command i3blocks -c ~/.config/i3blocks/config
 	#separator_symbol |
 

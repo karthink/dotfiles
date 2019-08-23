@@ -1,0 +1,5 @@
+#!/bin/bash
+xmodmap -e 'remove mod1 = Alt_R'
+xmodmap -e 'add mod4 = Alt_R'
+setxkbmap -option ctrl:nocaps
+xset r rate 235 45

@@ -10,11 +10,13 @@ else
 	DMENU_OPTIONS="-fn Monospace-14.0"
 fi
 
+echo $DMENU_OPTIONS
+
 if [ -e ~/.config/fontawesome ]; then
     chosen=$(grep -v "#" -h ~/.config/emoji ~/.config/fontawesome | dmenu -i -l 20 $DMENU_OPTIONS)
     #chosen=$(grep -v "#" -h ~/.config/emoji ~/.config/fontawesome | dmenu -i -l 20 -fn noto-12)
 else
-    chosen=$(grep -v "#" ~/.config/emoji | dmenu -i -l 20 -fn Monospace-14)
+    chosen=$(grep -v "#" ~/.config/emoji | dmenu -i -l 20 $DMENU_OPTIONS)
     #chosen=$(grep -v "#" ~/.config/emoji | dmenu -i -l 20 -fn noto-12)
 fi
 
