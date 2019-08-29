@@ -467,7 +467,7 @@
 ## Automatically start playing `<video>` elements. Note: On Qt < 5.11,
 ## this option needs a restart and does not support URL patterns.
 ## Type: Bool
-# c.content.autoplay = True
+c.content.autoplay = False
 
 ## Enable support for the HTML 5 web application cache feature. An
 ## application cache acts like an HTTP cache in some sense. For documents

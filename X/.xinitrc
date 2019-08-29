@@ -70,3 +70,4 @@ get_session(){
 }
 
 exec $(get_session)
+xset r rate 245 48

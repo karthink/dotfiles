@@ -4,4 +4,7 @@
 config_version: 2
 settings:
   content.notifications:
-    https://www.reddit.com: false
+    https://get.cryptobrowser.site: false
+    https://magnetdl.unblock.soy: false
+    https://pushmejs.com: false
+    https://www.fnac.com: false

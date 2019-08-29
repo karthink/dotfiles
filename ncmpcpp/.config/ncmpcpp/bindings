@@ -595,6 +595,12 @@ def_key "K"
   select_item
   scroll_up
 
+def_key "]"
+  seek_forward
+
+def_key "["
+  seek_backward
+
 # not used but bound
 # def_key "J"
 #     move_sort_order_down

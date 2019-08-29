@@ -37,6 +37,7 @@ import subprocess
 import fcntl
 import stat
 import string
+from datetime import datetime
 
 files = sys.argv[1:]
 
@@ -58,6 +59,7 @@ def make_abs(filename):
 files = [make_abs(f) for f in files]
 
 FIFO = os.path.join(os.getenv("HOME"), ".umpv_fifo")
+HISTORY = os.path.join(os.getenv("HOME"), ".cache/umpv_history")
 
 fifo_fd = -1
 try:
@@ -70,6 +72,12 @@ except OSError as e:
     else:
         raise e
 
+try:
+    history = open(HISTORY,"a") 
+except:
+    print("Couldn't open history file")
+    pass
+ 
 if fifo_fd >= 0:
     # Unhandled race condition: what if mpv is terminating right now?
     fcntl.fcntl(fifo_fd, fcntl.F_SETFL, 0) # set blocking mode
@@ -79,6 +87,9 @@ if fifo_fd >= 0:
         f = f.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", "\\n")
         f = "\"" + f + "\""
         fifo.write("raw loadfile " + f + " append\n")
+        history.write(datetime.now().strftime("%Y-%m-%d %H:%M:%S ") + f + "\n")
+    history.close()
+
 else:
     # Recreate pipe if it doesn't already exist.
     # Also makes sure it's safe, and no other user can create a bogus pipe
