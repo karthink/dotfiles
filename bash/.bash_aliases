@@ -1,5 +1,6 @@
 alias   ka="killall" \
 	ls="ls -hN --color=auto --group-directories-first" \
+	ll="ls -hN --color=auto --group-directories-first -l"\
 	mkdir="mkdir -pv" \
 	mpv="mpv --input-ipc-server=/tmp/mpvsoc$(date +%s)" \
 	p="sudo pacman" \
