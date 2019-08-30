@@ -321,6 +321,7 @@ for_window [window_role="GtkFileChooserDialog"] move position center
 for_window [title="Default - Wine desktop"] floating enable
 for_window [title="Bluetooth Devices"] floating enable border normal
 for_window [title="*Preferences"] floating enable border normal
+for_window [title="TexText"] floating enable border normal
 
 for_window [class="mpv"] floating enable border pixel 2
 no_focus [class="mpv"]
@@ -405,7 +406,7 @@ bindsym $mod+Shift+i		exec --no-startup-id i3resize up
 bindsym $mod+Shift+o		exec --no-startup-id i3resize right
 
 # Lock screen
-bindsym $mod+0 exec --no-startup-id betterlockscreen -l 
+bindsym $mod+0 exec --no-startup-id betterlockscreen -l
 # bindsym $mod+BackSpace exec --no-startup-id dm-tool lock
 
 ###############
@@ -414,6 +415,7 @@ bindsym $mod+0 exec --no-startup-id betterlockscreen -l
 
 exec --no-startup-id $HOME/.screenlayout/HID_mon_to_right.sh
 exec --no-startup-id $HOME/.fehbg
+exec --no-startup-id dunst
 # exec --no-startup-id systemctl start betterlockscreen@$USER
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # exec --no-startup-id nitrogen --set-auto --restore; sleep 1; compton -b
