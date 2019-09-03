@@ -1,11 +1,11 @@
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export TERMINAL="konsole"
-export EDITOR=/usr/bin/nvim
-# export EDITOR="/usr/bin/emacsclient -t"
+# export EDITOR=/usr/bin/nvim
+export EDITOR="/usr/bin/emacsclient -c"
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export READER="zathura"
 export IMAGEVIEWER="sxiv"
-export MEDIAPLAYER="mpv"
+export MEDIAPLAYER="umpv"
 export FILE="ranger"
 export BIB="$HOME/Documents/research/control_systems.bib"
 export REFER="$HOME/Documents/referbib"

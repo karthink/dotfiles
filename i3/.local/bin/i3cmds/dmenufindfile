@@ -2,7 +2,7 @@
 .  $HOME/.dmenurc
 choice=$(fd --type f --hidden --follow --exclude .git \
 	                               --exclude *~ \
-				       | dmenu $DMENU_OPTIONS -l 15 -p "Open file: ")
+				       | dmenu $DMENU_OPTIONS -i -l 15 -p "Open file: ")
 echo $choice
 if ! [[ -z $(file "$choice" | grep "ASCII") ]]; then
 	setsid $TERMINAL -e "$EDITOR" "$choice" >/dev/null 2>&1 &

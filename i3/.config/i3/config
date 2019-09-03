@@ -75,6 +75,8 @@ bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN
 bindsym button3+button4 exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks
 bindsym button3+button5 exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
 
+# External monitor support
+bindsym XF86Display exec --no-startup-id screenswitch 
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -91,8 +93,10 @@ bindsym $mod+Ctrl+m exec pavucontrol
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
-bindsym $mod+Shift+equal exec --no-startup-id brightness_HID up
-bindsym $mod+Shift+minus exec --no-startup-id brightness_HID down
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id brightness_HID up
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id brightness_HID down
+# bindsym $mod+Shift+equal exec --no-startup-id brightness_HID up
+# Bindsym $mod+Shift+minus exec --no-startup-id brightness_HID down
 
 
 # Application shortcuts
@@ -294,22 +298,22 @@ assign [class="MATLAB R2018b"] $ws8
 # Open specific applications in floating mode
 for_window [title="Figure "] floating enable border normal
 # for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="calamares"] floating enable border normal
-for_window [class="Clipgrab"] floating enable
+# for_window [class="calamares"] floating enable border normal
+# for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
-for_window [class="Galculator"] floating enable border pixel 1
+# for_window [class="Galculator"] floating enable border pixel 1
 for_window [class="GParted"] floating enable border normal
-for_window [title="i3_help"] floating enable sticky enable border normal
+# for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Manjaro-hello"] floating enable
 for_window [class="Manjaro Settings Manager"] floating enable border normal
-for_window [title="MuseScore: Play Panel"] floating enable
+# for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
-for_window [title="About Pale Moon"] floating enable
-for_window [class="Pamac-manager"] floating enable
+# for_window [title="About Pale Moon"] floating enable
+# for_window [class="Pamac-manager"] floating enable
 for_window [class="Pavucontrol"] floating enable border normal
 for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
@@ -333,12 +337,11 @@ no_focus [class="mpv"]
 for_window [title="weather"] floating enable border pixel 4 resize set 1280 850
 for_window [class="Remmina"] floating enable border normal resize set 800 600
 for_window [title="nmtui"] floating enable
-for_window [title="fzf"] floating enable move position center resize set 1000 300
 
 # Bindings to make the webcam float and stick.
 for_window [title="mpvfloat"] floating enable
 for_window [title="mpvfloat"] sticky enable
-for_window [title="mpvfloat"] border pixel 0
+# for_window [title="mpvfloat"] border pixel 0
 no_focus [title="mpvfloat"]
 bindsym $mod+F10 exec --no-startup-id camtoggle
 
@@ -471,7 +474,7 @@ bar {
 	position top
 	# status_command i3blocks
 	# status_command bumblebee-status -m pomodoro datetime
-	status_command bumblebee-status -m mpd weather nic cpu bluetooth pulseaudio:pasink battery datetime -p interval=0.5 cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -e htop" nic.exclude="lo,enp0s25" nic.format="{state} {ip} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" mpd.format="{title} - {artist}" battery.device=BAT1 date.format="%a_%b_%d" pacman.sum="true" pacman.left-click="pamac-manager" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" -t gruvbox-powerline
+	status_command bumblebee-status -m mpd weather nic cpu bluetooth pulseaudio:pasink battery datetime -p interval=0.5 cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -e htop" nic.exclude="lo,enp0s25" nic.format="{state} {ip} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" mpd.format="{title} - {artist}" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" -t gruvbox-powerline
 	# title spacer redshift spacer.text=""
 	# status_command i3blocks -c ~/.config/i3blocks/config
 	#separator_symbol |

@@ -25,7 +25,15 @@ Plug 'honza/vim-snippets'
 " Fuzzy-find integration
 " Plug 'junegunn/fzf', { 'dir': '~/.config/fzf'}
 Plug 'junegunn/fzf.vim'
+" Alignment with gl{motion}{char}
+Plug 'tommcdo/vim-lion'
+" Exchange objects with cx{motion} cx{motion}
+Plug 'tommcdo/vim-exchange'
+" Search with s{char}{char}
+Plug 'justinmk/vim-sneak'
 
+"Visualstar mode
+Plug 'thinca/vim-visualstar'
 call plug#end()
 
 " Some basics:
@@ -47,7 +55,7 @@ call plug#end()
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Goyo plugin makes text more readable when writing prose:
-	map <leader>v :Goyo \| set linebreak<CR>
+	" map <leader>v :Goyo \| set linebreak<CR>
 
 " Shortcutting split navigation, saving a keypress:
 	map <C-h> <C-w>h
@@ -103,6 +111,7 @@ call plug#end()
 	" inoremap <leader>n <Esc>/<\.\.><Enter>"_c4l
 
 "  Leader commands for quick fuzzy access:
+	nnoremap  <leader>e :e
 	nnoremap  <leader>f :Files<CR>
 	nnoremap  <leader>b :Buffers<CR>
 	nnoremap  <leader>bn :bn<CR>
