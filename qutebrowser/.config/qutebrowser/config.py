@@ -1501,7 +1501,8 @@ c.editor.command = ['emacsclient', '-c', '{file}']
 ## `:open google qutebrowser`.
 ## Type: Dict
 c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}',
-                       'r': 'https://reddit.com/r/{}' }
+                       'r': 'https://reddit.com/r/{}',
+                       'gs!': 'https://scholar.google.com/scholar?q={}'}
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl

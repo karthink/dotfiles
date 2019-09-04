@@ -1,4 +1,4 @@
 #!/bin/bash
 xmodmap ~/.Xmodmap_i3
 setxkbmap -option ctrl:nocaps
-xset r rate 235 45
+xset r rate 260 45

@@ -9,7 +9,7 @@ alias   ka="killall" \
 	g="git" \
 	e="$EDITOR" \
 	ec="emacsclient -c" \
-	x="sxiv -fto *" \
+	x="xclip -selection clipboard" \
 	gua="git remote | xargs -L1 git push --all" \
 	grep="grep --color=auto" \
 	egrep="egrep --colour=auto" \

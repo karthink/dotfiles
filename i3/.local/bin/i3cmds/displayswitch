@@ -1,0 +1,3 @@
+#!/bin/bash
+
+bash ~/.screenlayout/$(ls ~/.screenlayout | dmenu $DMENU_OPTIONS -i -p "Monitor configuration: ") && ~/.fehbg
