@@ -2,3 +2,4 @@
 xmodmap ~/.Xmodmap_i3
 setxkbmap -option ctrl:nocaps
 xset r rate 260 45
+xcape

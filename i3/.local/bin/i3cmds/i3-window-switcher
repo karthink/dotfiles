@@ -7,6 +7,10 @@
 
 progname="$(expr "${0}" : '.*/\([^/]*\)')"
 
+if [ -e $HOME/.dmenurc ]; then
+   . $HOME/.dmenurc
+fi
+
 #variables are impractical to save complex cmds because of shell expantion
 #therefore functions are required: http://mywiki.wooledge.org/BashFAQ/050
 # DMENU() { dmenu -p 'Jump to' -l 20 -i -fn Bahamas-10 \
