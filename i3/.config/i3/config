@@ -314,6 +314,7 @@ for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
 # for_window [title="About Pale Moon"] floating enable
 # for_window [class="Pamac-manager"] floating enable
+for_window [class="ark"] floating enable border normal
 for_window [class="Pavucontrol"] floating enable border normal
 for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
@@ -471,7 +472,7 @@ bar {
 	tray_output none
 	position top
 	# status_command i3blocks
-	status_command bumblebee-status -m mpd weather nic cpu bluetooth pulseaudio:pasink battery datetime -p interval=0.5 cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -e htop" nic.exclude="lo,enp0s25" nic.format="{state} {ip} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" mpd.format="{title} - {artist}" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" -t gruvbox-powerline
+	status_command bumblebee-status -m mpd redshift weather nic cpu bluetooth pulseaudio:pasink battery datetime -p interval=0.5 cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -e htop" nic.exclude="lo,enp0s25" nic.format="{state} {ip} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" mpd.format="{title} - {artist}" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" -t gruvbox-powerline
 	# title spacer redshift spacer.text=""
 	# status_command i3blocks -c ~/.config/i3blocks/config
 	#separator_symbol |

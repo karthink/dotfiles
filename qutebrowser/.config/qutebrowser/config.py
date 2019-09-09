@@ -1539,8 +1539,8 @@ c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}',
 # c.zoom.text_only = False
 
 ## Bindings for normal mode
-config.bind("m", 'spawn umpv {url}')
-config.bind("M", 'hint links spawn umpv {hint-url}')
+config.bind("<Alt-Shift-M>", 'spawn umpv {url}')
+config.bind("<Alt-m>", 'hint links spawn umpv {hint-url}')
 config.bind(";M", 'hint --rapid links spawn umpv {hint-url}')
 # config.bind("'", 'enter-mode jump_mark')
 # config.bind('+', 'zoom-in')
