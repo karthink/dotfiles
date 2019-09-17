@@ -1,1 +1,4 @@
 ivy-actions https://oremacs.com/swiper/#key-bindings
+evil mode basic config steps https://juanjoalvarez.net/es/detail/2014/sep/19/vim-emacsevil-chaotic-migration-guide/
+emacs company config https://emacs.stackexchange.com/questions/3654/filename-completion-using-company-mode
+AC type behavior in company https://github.com/company-mode/company-mode/wiki/Switching-from-AC

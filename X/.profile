@@ -1,7 +1,7 @@
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export TERMINAL="konsole"
-# export EDITOR=/usr/bin/nvim
-export EDITOR="/usr/bin/emacsclient -t"
+export EDITOR=/usr/bin/nvim
+# export EDITOR="/usr/bin/emacsclient -t"
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export READER="zathura"
 export IMAGEVIEWER="sxiv"
@@ -10,11 +10,13 @@ export FILE="ranger"
 export BIB="$HOME/Documents/research/control_systems.bib"
 export REFER="$HOME/Documents/referbib"
 export SUDO_ASKPASS="$HOME/.local/bin/tools/dmenupass"
+export CONFIGDIR="$HOME/.config/"
 # fix "xdg-open fork-bomb" export your preferred browser from here
 export BROWSER=/usr/bin/qutebrowser
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude *~'
 export FZF_DEFAULT_OPTS="--layout=reverse --height=50% -1 --no-mouse --multi --inline-info"
 export DMENU_OPTIONS="-i -fn Monospace-12.0 -nb #282828 -nf #CABD9A -sf #BBBB26 -sb #1D1D1D"
+export SSH_AUTH_SOCK="/run/user/$(id -u)/gnupg/S.gpg-agent.ssh"
 # Set keyboard repeat rate and delay
 # xset r rate 235 44
 # xmodmap $HOME/.Xmodmap

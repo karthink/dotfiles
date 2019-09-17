@@ -91,3 +91,97 @@ trizen -S --needed libselinux \
 	# st-luke-git \
 	# teamviewer \
 	# webkitgtk
+
+# New section - to sort
+######################################################################
+
+# trizen -S abook
+# trizen -S acdcontrol
+# trizen -S acdcontrol-git
+# trizen -S antiword
+# trizen -S audacity
+# trizen -S bash-completion
+# trizen -S bind-tools
+# trizen -S compton
+# trizen -S compton-tryone-blackcapcoder-git
+# trizen -S compton-tryone-git
+# trizen -S ecasound
+# trizen -S fd
+# trizen -S flow-pomodoro
+# trizen -S guvcview-qt
+# trizen -S kwave
+# trizen -S kwin-scripts-khronkite-git
+# trizen -S kwin-scripts-khronkite-tiling
+# trizen -S kwin-scripts-krohnkite-git
+# trizen -S kwin-scripts-tiling
+# trizen -S libselinux
+# trizen -S luke
+# trizen -S mpdris2
+# trizen -S mpv-mpris
+# trizen -S mutt-wizard-git
+# trizen -S networkmanager-l2tp
+# trizen -S pam-gnupg-git
+# trizen -S pavucontrol
+# trizen -S pavucontrol-qt --no-confirm
+# trizen -S pavucontrol-qt --noconfirm
+# trizen -S playerctl
+# trizen -S pomo potato 
+# trizen -S potato
+# trizen -S python-i3ipc
+# trizen -S rxvt-unicode
+# trizen -S silver-searcher-git
+# trizen -S spotify
+# trizen -S spotifyd-dbus-mpris
+# trizen -S spt omodoro-git flow-pomodoro
+# trizen -S st-luke-git
+# trizen -S st-manjaro 
+# trizen -S surf
+# trizen -S textext
+# trizen -S unzip
+# trizen -S xcape
+# trizen -S zotero
+
+# sudo pacman -S aspell-en
+# sudo pacman -S awesome-terminal-fonts
+# sudo pacman -S blender
+# sudo pacman -S dmenu-manjaro
+# sudo pacman -S dunst
+# sudo pacman -S gimp
+# sudo pacman -S i3-scrot
+# sudo pacman -S inkscape
+# sudo pacman -S ktorrent 
+# sudo pacman -S latte-dock
+# sudo pacman -S lxappearance
+# sudo pacman -S lxqt-powermanagement
+# sudo pacman -S lxqt-powermanager
+# sudo pacman -S manjaro-settings-samba
+# sudo pacman -S mpd-mpris
+# sudo pacman -S mpd ncmpcpp mpc
+# sudo pacman -S nerd-fonts-noto-sans-mono 
+# sudo pacman -S networkmanager-dmenu
+# sudo pacman -S powerline-fonts
+# sudo pacman -S pstoedit
+# sudo pacman -S pulseaudio
+# sudo pacman -S python2-dbus
+# sudo pacman -S python2-lxml
+# sudo pacman -S python-lxml
+# sudo pacman -S sc
+# sudo pacman -S texlive
+# sudo pacman -S texlive-bin
+# sudo pacman -S texlive-group
+# sudo pacman -S texlive-groupe
+# sudo pacman -S texlive-most
+# sudo pacman -S tldr
+# sudo pacman -S tmux
+# sudo pacman -S ttf-font-awesome
+# sudo pacman -S ttf-nerd-fonts-symbols
+# sudo pacman -S unrar
+# sudo pacman -S vnstat
+# sudo pacman -S words
+# sudo pacman -S xautolock
+# sudo pacman -S xclip
+# sudo pacman -S xdotool
+# sudo pacman -S xorg-xwininfo
+# sudo pacman -S xwininfo
+
+######################################################################

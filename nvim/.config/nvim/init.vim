@@ -47,6 +47,7 @@ call plug#end()
 	set hlsearch incsearch smartcase
         set hidden
 	set showcmd
+        set formatoptions-=t
 	:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 " Enable autocomplete:

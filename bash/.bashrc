@@ -136,6 +136,10 @@ shopt -s autocd
 source ~/.config/shortcutrc
 source ~/.bash_aliases
 
+# Use gpg-agent to manage ssh keys - this is done in .profile instead.
+# export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+# gpgconf --launch gpg-agent
+
 colors() {
 	local fgc bgc vals seq0
 

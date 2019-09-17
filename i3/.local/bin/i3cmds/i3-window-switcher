@@ -46,10 +46,10 @@ _i3_get_app_tree() {
         #sed '/^#[a-F0-9]\{6\}$/d'
 }
 
-if [ ! -t 0 ]; then
-    #add input comming from pipe or file to $@
-    set -- "${@}" $(cat)
-fi
+# if [ ! -t 0 ]; then
+#     #add input comming from pipe or file to $@
+#     set -- "${@}" $(cat)
+# fi
 
 for arg in "${@}"; do #parse options
     case "${arg}" in
