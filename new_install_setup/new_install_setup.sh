@@ -1,187 +1,201 @@
 #!/bin/bash
 # Script to install essentials on a fresh Arch-variant install.
 
-# Command line utilities
-trizen -S --needed 7z bash-completion \
-          figlet \
-          curl sqlite dmd \
-          fzf \
-          ldc \
-          stow \
-          libnotify \
-          socat \
-          python-pip \
-          neofetch \
-          qrencode \
-          xcape
+sudo pacman -Syu
+sudo pacman -S trizen
 
-# i3 setup
-trizen -S  networkmanager-dmenu \
-	xorg-xwininfo tmux
-	rxvt-unicode \
-	python-i3ipc \
-	i3-scrot \
-	compton \
-	pavucontrol-qt \
-	betterlockscreen \
-	bumblebee-status \
-	maim \
-	unclutter \
-	dmenu \
-	xautolock \
-	i3blocks \
-	dunst \
-	xdotool \
-	lxappearance
-	# dmenu-manjaro
+install() {
+    trizen --needed --noconfirm -S $@
+}
 
-# File viewing utilities
-trizen -S --needed zathura \
+## Command line utilities
+########################################
+install 7z bash-completion \
+        git \
+        figlet \
+        curl sqlite dmd \
+        ldc \
+        stow \
+        libnotify \
+        socat \
+        python-pip \
+        neofetch \
+        qrencode \
+        xcape
+
+install antiword \
+       eless \
+       silver-searcher-git \
+       fzf \
+       fd \
+       unzip \
+       unrar tmux tldr xclip
+
+########################################
+## i3 setup
+install i3 dmenu \
+        networkmanager-dmenu \
+        xorg-xwininfo \
+        rxvt-unicode \
+        python-i3ipc \
+        i3-scrot \
+        compton \
+        pavucontrol-qt \
+        betterlockscreen \
+        bumblebee-status \
+        maim \
+        unclutter \
+        xautolock \
+        i3blocks \
+        dunst \
+        xdotool \
+        lxappearance
+
+# install st-manjaro \
+#         dmenu-manjaro \
+#         compton-tryone-git \
+#         pavucontrol
+
+install python-i3ipc \
+        qt5ct \
+        lxqt-powermanagement \
+        perl-anyevent-i3 \
+        python2-dbus \
+        python2-lxml \
+        python-lxml
+
+########################################
+# Readers, browser and file manager
+install zathura \
 	zathura-pdf-poppler \
 	zathura-cb \
 	mcomix \
 	qutebrowser \
 	ranger
 
+########################################
 # Video utilities
-trizen -S --needed mps-youtube \
+install mps-youtube \
 	mpv \
 	mpv-mpris \
 	playerctl \
 	cava \
 	youtube-dl
 
-# Files and editing utilities
-trizen -S --needed vim \
-	neovim \
+########################################
+## Music Setup
+install mpd ncmpcpp mpc mpdris2
+install spotify
+install spotifyd-dbus-mpris
+# mpd-mpris is written in Go and has >500 MB dependencies
+# install mpd-mpris
+
+########################################
+# File editing & coding utilities
+install neovim vim-plug \
         emacs \
-	vim-plug \
 	words \
-	aspell-en
+	aspell-en \
+        ctags
 
-# Misc utilities
-trizen -S --needed jq redshift
-trizen -S --needed onedrive-abraunegg \
-	acdcontrol-git \
-	debtap \
+########################################
+## Email setup
+install abook \
+       gmailieer \
+       isync \
+       notmuch \
+       msmtp \
+       notmuch-python-git \
+       pass pass-otp
 
+# Alternatively, just
+# install mutt-wizard-git 
+
+########################################
+## Networking utilities
+install networkmanager-l2tp \
+        vnstat \
+        samba \
+        teamviewer \
+        pulse-secure
+
+install manjaro-settings-samba
+
+########################################
 # Fonts
-trizen -S --needed nerd-fonts-noto-sans-mono \
-	awesome-terminal-fonts
+install awesome-terminal-fonts \
+        ttf-symbola \
+        powerline-fonts \
+        ttf-font-awesome \
+        ttf-nerd-fonts-symbols
 
-# Mail
-trizen -S --needed mutt-wizard-git \
-	abook \
-	pam-gnupg-git
+# install nerd-fonts-noto-sans-mono
+
+########################################
+## Misc utilities
+install jq redshift
+
+# Sync through onedrive
+install onedrive-abraunegg
+
+# HID monitor control
+install acdcontrol-git
 
 # For exterior programs: Matlab, vpn, etc
-trizen -S --needed libselinux \
-	pulse-secure
+install libselinux
+        # lightdm-webkit-theme-aether \
+        # imagewriter \
+        #   w2m \
+        # ttf-ancient \
+        # ttf-inconsolata \
+        # ttf-droid \
+        # imagewriter \
+        # libva-intel-driver
+        # noto-fonts-emoji \
+        # remmina-plugin-teamviewer \
+        # webkitgtk
 
-	# lightdm-webkit-theme-aether \
-          # imagewriter \
-	#   w2m
-          # ttf-ancient \
-          # ttf-inconsolata \
-          # ttf-droid \
-          # imagewriter \
-          # libva-intel-driver
-          # noto-fonts-emoji \
-	# remmina-plugin-teamviewer \
-	# st-luke-git \
-	# teamviewer \
-	# webkitgtk
+## Conditional
+# install bind-tools
+# Uncomplicated firewall
+# install ufw
 
-# New section - to sort
-######################################################################
+# ########################################
+# ## Latex and publishing
+# install texlive-most
+# install zotero
+# install words
 
-# trizen -S abook
-# trizen -S acdcontrol
-# trizen -S acdcontrol-git
-# trizen -S antiword
-# trizen -S audacity
-# trizen -S bash-completion
-# trizen -S bind-tools
-# trizen -S compton
-# trizen -S compton-tryone-blackcapcoder-git
-# trizen -S compton-tryone-git
-# trizen -S ecasound
-# trizen -S fd
-# trizen -S flow-pomodoro
-# trizen -S guvcview-qt
-# trizen -S kwave
-# trizen -S kwin-scripts-khronkite-git
-# trizen -S kwin-scripts-khronkite-tiling
-# trizen -S kwin-scripts-krohnkite-git
-# trizen -S kwin-scripts-tiling
-# trizen -S libselinux
-# trizen -S luke
-# trizen -S mpdris2
-# trizen -S mpv-mpris
-# trizen -S mutt-wizard-git
-# trizen -S networkmanager-l2tp
-# trizen -S pam-gnupg-git
-# trizen -S pavucontrol
-# trizen -S pavucontrol-qt --no-confirm
-# trizen -S pavucontrol-qt --noconfirm
-# trizen -S playerctl
-# trizen -S pomo potato 
-# trizen -S potato
-# trizen -S python-i3ipc
-# trizen -S rxvt-unicode
-# trizen -S silver-searcher-git
-# trizen -S spotify
-# trizen -S spotifyd-dbus-mpris
-# trizen -S spt omodoro-git flow-pomodoro
-# trizen -S st-luke-git
-# trizen -S st-manjaro 
-# trizen -S surf
-# trizen -S textext
-# trizen -S unzip
-# trizen -S xcape
-# trizen -S zotero
+# ########################################
+# ## Illustration
+# install inkscape
+# install textext pstoedit
 
-# sudo pacman -S aspell-en
-# sudo pacman -S awesome-terminal-fonts
-# sudo pacman -S blender
-# sudo pacman -S dmenu-manjaro
-# sudo pacman -S dunst
-# sudo pacman -S gimp
-# sudo pacman -S i3-scrot
-# sudo pacman -S inkscape
-# sudo pacman -S ktorrent 
+# ########################################
+# # Camera and recording
+# install guvcview-qt
+# install audacity
+
+# ########################################
+# ## KDE & Plasma
 # sudo pacman -S latte-dock
-# sudo pacman -S lxappearance
-# sudo pacman -S lxqt-powermanagement
-# sudo pacman -S lxqt-powermanager
-# sudo pacman -S manjaro-settings-samba
-# sudo pacman -S mpd-mpris
-# sudo pacman -S mpd ncmpcpp mpc
-# sudo pacman -S nerd-fonts-noto-sans-mono 
-# sudo pacman -S networkmanager-dmenu
-# sudo pacman -S powerline-fonts
-# sudo pacman -S pstoedit
-# sudo pacman -S pulseaudio
-# sudo pacman -S python2-dbus
-# sudo pacman -S python2-lxml
-# sudo pacman -S python-lxml
-# sudo pacman -S sc
-# sudo pacman -S texlive
-# sudo pacman -S texlive-bin
-# sudo pacman -S texlive-group
-# sudo pacman -S texlive-groupe
-# sudo pacman -S texlive-most
-# sudo pacman -S tldr
-# sudo pacman -S tmux
-# sudo pacman -S ttf-font-awesome
-# sudo pacman -S ttf-nerd-fonts-symbols
-# sudo pacman -S unrar
-# sudo pacman -S vnstat
-# sudo pacman -S words
-# sudo pacman -S xautolock
-# sudo pacman -S xclip
-# sudo pacman -S xdotool
-# sudo pacman -S xorg-xwininfo
-# sudo pacman -S xwininfo
+# sudo pacman -S ktorrent
+# install kwave
 
-######################################################################
+########################################
+# PULL IN MY DOTFILES
+########################################
+cd $HOME
+git clone https://github.com/karthink/dotfiles 
+
+if [[ $(command -v stow) ]]; then
+    
+    # TODO: Move existing dots out of the way first
+    
+    cd dotfiles
+    stow *
+fi
+
+cd $HOME
+git clone https://github.com/karthink/.emacs.d
+

@@ -50,6 +50,15 @@ bindsym $mod+backslash exec --no-startup dmenuunicode
 # Easy mount
 bindsym $mod+Insert exec --no-startup dmenumount
 bindsym $mod+Shift+Insert exec --no-startup dmenuumount
+
+# # Temp media controls for multiple mpv
+# bindsym XF86AudioPlay exec --no-startup-id  playerctl -i mpd -a play-pause
+# bindsym XF86AudioNext exec --no-startup-id  playerctl -i mpd -a position 10+
+# bindsym XF86AudioPrev exec --no-startup-id  playerctl -i mpd -a position 10-
+# bindsym XF86LaunchA exec --no-startup-id  playerctl -i mpd -a play-pause
+# bindsym XF86Explorer exec --no-startup-id  playerctl -i mpd -a position 10+
+# bindsym XF86Tools exec --no-startup-id  playerctl -i mpd -a position 10-
+
 # Media controls with mpv
 bindsym XF86AudioPlay exec --no-startup-id  playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id  playerctl position 10+
@@ -275,11 +284,13 @@ bindsym $mod+Ctrl+l move workspace to output right
 #####################################
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 3
-new_float normal
+default_border          normal 3
+default_floating_border normal 3
 
 # Make focused window easier to see
-for_window [class="^client.focused$"] border pixel 8
+for_window [class="^client.focused$"] border pixel 3
+# for_window [class="^client.focused$"] border normal 8
+# for_window [class=".*"] border normal 2
 
 # Hide borders
 hide_edge_borders none
@@ -292,7 +303,7 @@ bindsym $mod+Shift+t border toggle
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # font xft:URWGothic-Book 12
-font pango:Fira Mono, Icons 12
+font pango:Fantasque Sans Mono 13
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
@@ -301,6 +312,7 @@ font pango:Fira Mono, Icons 12
 assign [class="Skype"] $ws6
 # assign [class="MATLAB R2018b"] $ws8
 assign [class="qutebrowser"] $ws2
+
 
 # Open specific applications in floating mode
 for_window [title="Figure "] floating enable border normal
@@ -321,12 +333,15 @@ for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
 # for_window [title="About Pale Moon"] floating enable
 # for_window [class="Pamac-manager"] floating enable
+for_window [class="transmission"] floating enable border normal
 for_window [class="ark"] floating enable border normal
 for_window [class="Pavucontrol"] floating enable border normal
 for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
+
+for_window [class="Anki"] floating enable border normal
 for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
@@ -340,14 +355,14 @@ for_window [title="Bluetooth Devices"] floating enable border normal
 for_window [title="*Preferences"] floating enable border normal
 for_window [title="TexText"] floating enable border normal
 
-for_window [class="mpv"] floating enable border normal #pixel 2
+for_window [class="mpv"] floating enable border pixel #pixel 2
 no_focus [class="mpv"]
 # for_window [title="weather"] floating enable border pixel 4 resize set 1280 850
 for_window [class="Remmina"] floating enable border normal resize set 800 600
 for_window [title="nmtui"] floating enable
 
 # Bindings to make the webcam float and stick.
-for_window [title="mpvfloat"] floating enable border normal
+for_window [title="mpvfloat"] floating enable border pixel
 for_window [title="mpvfloat"] sticky enable
 # for_window [title="mpvfloat"] border pixel 0
 no_focus [title="mpvfloat"]
@@ -367,7 +382,7 @@ bindsym $mod+Shift+r restart
 ######################
 
 # General dropdown window traits. The order can matter.
-for_window [title="dropdown_*"] floating enable
+for_window [title="dropdown_*"] floating enable border pixel 3
 for_window [title="dropdown_*"] move scratchpad
 for_window [title="dropdown_*"] sticky enable
 for_window [title="dropdown_*"] scratchpad show
@@ -435,6 +450,7 @@ exec --no-startup-id dunst
 exec --no-startup-id xautolock -time 10  -locker betterlockscreen -l
 exec_always --no-startup-id fix_xcursor
 exec --no-startup-id redshift_location_aware
+exec --no-startup_id thinkpad_init
 # exec --no-startup-id systemctl start betterlockscreen@$USER
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # exec --no-startup-id nitrogen --set-auto --restore; sleep 1; compton -b
@@ -460,19 +476,22 @@ exec --no-startup-id redshift_location_aware
 # set primary gruvbox colorscheme colors
 set $bg #282828
 set $fg #689d68
-# set $red #cc241d
+
 set $red #b13f47
 set $green #98971a
-# set $yellow #d79921
+set $ygray #baba6a
 set $yellow #bbbb26
+set $yellower #efef4a
 set $blue #458588
 set $purple #d67cb8
 set $aqua #689d68
-# set $beige #cabd9a
 set $beige #f4f4c3
-set $gray #a89984
+# set $gray #49525B
+set $gray #39424B
 set $darkgray #1d1d1d
 set $darkergray #1d2021
+# set $white #ffffff
+set $black #000000
 
 bar {
 	font pango:Monospace 13
@@ -480,8 +499,9 @@ bar {
 	tray_output none
 	position top
 	# status_command i3blocks
-	status_command bumblebee-status -m spotify mpd redshift weather nic cpu bluetooth pulseaudio:pasink battery datetime -p interval=0.5 cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -e htop" nic.exclude="lo,enp0s25" nic.format="{state} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" spotify.format="{title} - {artist}" mpd.format="{title} - {artist}" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" -t gruvbox-powerline
-	# title spacer redshift spacer.text=""
+        # status_command $HOME/Downloads/bumblebee-status/bumblebee-status -m  pomodoro datetime -p -t greyish-powerline
+	status_command $HOME/Downloads/bumblebee-status/bumblebee-status -m spotify mpd weather pomodoro nic cpu bluetooth pulseaudio:pasink battery datetime -p interval=1 cpu.format="{:3.0f}%" cpu.left-click="$ALT_TERMINAL -T dropdown_htop -e htop" nic.exclude="lo,enp0s25" nic.format="{state} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" spotify.format="{title} - {artist}" mpd.format="{title} - {artist}" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" pomodoro.notify=r'notify-send "Time up!"' pomodoro.format="%mm" -t gruvbox-powerline
+	# title spacer redshift spacer.text="" -t greyish-powerline
 	# status_command i3blocks -c ~/.config/i3blocks/config
 	#separator_symbol |
 
@@ -489,8 +509,8 @@ bar {
                                    #border   background  text
 		focused_workspace  $darkgray $yellow     $darkgray
 		active_workspace   $yellow   $darkergray $yellow
-		inactive_workspace $darkgray $darkgray   $gray
-		urgent_workspace   $red      $darkgray   $yellow 
+		inactive_workspace $darkgray $darkgray   $beige
+		urgent_workspace   $red      $darkgray   $yellow
                 binding_mode       $yellow   $darkergray $yellow
 		background              $bg
 		statusline              #3C3C3C
@@ -513,13 +533,19 @@ bar {
 #	tray_output eDP1
 }
 
-# class                 border    backgr.   text      indic.  child_border
-client.focused          $blue     $beige    $darkgray $purple $beige
-# client.focused        $blue     $blue     $darkgray $purple $darkgray
-client.focused_inactive $darkgray $darkgray $yellow   $purple $darkgray
-client.unfocused        $darkgray $darkgray $yellow   $purple $darkgray
-client.urgent           $red      $red      $white    $red    $red
-client.background	$beige
+
+# class                   $border   $backgr.  $text     $indic. $child_border
+client.focused            $white $darkgray $yellower $purple $yellow
+client.focused_inactive   $gray     $gray     $beige    $purple $gray
+client.unfocused          $gray     $gray     $beige    $purple $gray
+client.urgent             $red      $red      $white    $red    $red
+client.background         $beige
+# client.unfocused        $darkgray $darkgray $yellow   $purple $darkgray
+# client.focused_inactive $darkgray $darkgray $yellow   $purple $darkgray
+# client.focused          $yellower $darkgray $yellow   $purple $yellow
+# client.urgent           $red      $red      $white    $red    $red
+# client.background       $beige
+
 
 ## Color palette used for the terminal ( ~/.Xresources file )
 ## Colors are gathered based on the documentation:

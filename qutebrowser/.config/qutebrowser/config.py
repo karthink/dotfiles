@@ -821,7 +821,8 @@ c.content.autoplay = False
 ## `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
 ## Same as `{column}`, but starting from index 0.
 ## Type: ShellCommand
-c.editor.command = ['emacsclient', '-c', '{file}']
+c.editor.command = ['st', '-T', 'dropdown_edit', '-e', '/usr/bin/nvim', '{file}']
+# c.editor.command = ['emacsclient', '-n', '{file}']
 # c.editor.command = ['gvim', '-f', '{file}', '-c', 'normal {line}G{column0}l']
 
 ## Encoding to use for the editor.
@@ -1195,7 +1196,7 @@ c.editor.command = ['emacsclient', '-c', '{file}']
 
 ## Load a restored tab as soon as it takes focus.
 ## Type: Bool
-# c.session.lazy_restore = False
+c.session.lazy_restore = True
 
 ## Languages to use for spell checking. You can check for available
 ## languages and install dictionaries using scripts/dictcli.py. Run the
@@ -1538,10 +1539,18 @@ c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}',
 ## Type: Bool
 # c.zoom.text_only = False
 
+## Userscript bindings
+config.bind('<,><f><f>', 'spawn --userscript qute-pass')
+config.bind('<,><f><u>', 'spawn --userscript qute-pass --username-only')
+config.bind('<,><f><p>', 'spawn --userscript qute-pass --password-only')
+config.bind('<,><f><o>', 'spawn --userscript qute-pass --otp-only')
+ 
 ## Bindings for normal mode
-config.bind("<Alt-Shift-M>", 'spawn umpv {url}')
+config.bind("<Ctrl-m>", 'hint links spawn mpv {hint-url}')
+config.bind("<Ctrl-Shift-M>", 'spawn mpv {url}')
 config.bind("<Alt-m>", 'hint links spawn umpv {hint-url}')
-config.bind(";M", 'hint --rapid links spawn umpv {hint-url}')
+config.bind("<Alt-Shift-M>", 'spawn umpv {url}')
+config.bind(";m", 'hint --rapid links spawn umpv {hint-url}')
 # config.bind("'", 'enter-mode jump_mark')
 # config.bind('+', 'zoom-in')
 # config.bind('-', 'zoom-out')

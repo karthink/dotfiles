@@ -15,6 +15,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-rsi'
 
 " For snippets
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -178,6 +180,6 @@ call plug#end()
 	" let g:airline_symbols.paste = 'Þ'
 	" let g:airline_symbols.paste = '∥'
 	" let g:airline_symbols.whitespace = 'Ξ'
-" Open line above, below
-	nnoremap [o O<Esc>j
-	nnoremap ]o o<Esc>k
+" " Open line above, below
+" 	nnoremap [o O<Esc>j
+" 	nnoremap ]o o<Esc>k
