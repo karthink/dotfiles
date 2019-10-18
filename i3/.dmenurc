@@ -4,7 +4,7 @@
 
 ## define the font for dmenu to be used
 # Was "Noto-11.0"
-DMENU_FN="Monospace-13.0"
+DMENU_FN="Monospace-12.0"
 
 ## background colour for unselected menu-items
 DMENU_NB="#282828"

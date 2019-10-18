@@ -310,9 +310,10 @@ font pango:Fantasque Sans Mono 13
 # assign [class="Pale moon"] $ws2
 # assign [class="Pcmanfm"] $ws3
 assign [class="Skype"] $ws6
-# assign [class="MATLAB R2018b"] $ws8
 assign [class="qutebrowser"] $ws2
 
+# assign [class="MATLAB R2018b"] $ws8
+assign [title="Figure "] $ws7
 
 # Open specific applications in floating mode
 for_window [title="Figure "] floating enable border normal
@@ -449,8 +450,8 @@ exec --no-startup-id lxqt-powermanagement
 exec --no-startup-id dunst
 exec --no-startup-id xautolock -time 10  -locker betterlockscreen -l
 exec_always --no-startup-id fix_xcursor
-exec --no-startup-id redshift_location_aware
-exec --no-startup_id thinkpad_init
+# exec --no-startup-id redshift_location_aware
+exec --no-startup_id sh -c $HOME/.local/bin/i3cmds/thinkpad_init
 # exec --no-startup-id systemctl start betterlockscreen@$USER
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # exec --no-startup-id nitrogen --set-auto --restore; sleep 1; compton -b
@@ -497,10 +498,10 @@ bar {
 	font pango:Monospace 13
 	strip_workspace_numbers yes
 	tray_output none
-	position top
+	position bottom
 	# status_command i3blocks
         # status_command $HOME/Downloads/bumblebee-status/bumblebee-status -m  pomodoro datetime -p -t greyish-powerline
-	status_command $HOME/Downloads/bumblebee-status/bumblebee-status -m spotify mpd weather pomodoro nic cpu bluetooth pulseaudio:pasink battery datetime -p interval=1 cpu.format="{:3.0f}%" cpu.left-click="$ALT_TERMINAL -T dropdown_htop -e htop" nic.exclude="lo,enp0s25" nic.format="{state} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" spotify.format="{title} - {artist}" mpd.format="{title} - {artist}" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" pomodoro.notify=r'notify-send "Time up!"' pomodoro.format="%mm" -t gruvbox-powerline
+	status_command $HOME/.local/share/git/bumblebee-status/bumblebee-status -m spotify weather pomodoro nic cpu bluetooth pulseaudio:pasink battery datetime -p interval=1 datetime.format="%b %d, %I:%M %p" cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -T dropdown_htop -e htop" nic.exclude="lo,enp0s25" nic.format="{state} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" spotify.format="{title} - {artist}" mpd.format="{title} - {artist}" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" pomodoro.notify=r'notify-send "Time up!"' pomodoro.format="%mm" -t gruvbox-powerline
 	# title spacer redshift spacer.text="" -t greyish-powerline
 	# status_command i3blocks -c ~/.config/i3blocks/config
 	#separator_symbol |
@@ -535,7 +536,7 @@ bar {
 
 
 # class                   $border   $backgr.  $text     $indic. $child_border
-client.focused            $white $darkgray $yellower $purple $yellow
+client.focused            $black $darkgray $yellower $purple $yellow
 client.focused_inactive   $gray     $gray     $beige    $purple $gray
 client.unfocused          $gray     $gray     $beige    $purple $gray
 client.urgent             $red      $red      $white    $red    $red
@@ -638,7 +639,7 @@ smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
+smart_borders no_gaps
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner

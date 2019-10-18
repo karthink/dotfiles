@@ -12,7 +12,7 @@ link=$(xclip -selection clipboard -o) || link=$(xclip -o) ;
 [ -z "$link" ] && exit;
 
 case "$link" in
-	*mkv|*webm|*mp4|*youtube.com/watch*|*youtube.com/playlist*|*youtu.be*|*hooktube.com*|*bitchute.com*)
+	*mkv|*webm|*mp4|*youtube.com/watch*|*youtube.com/playlist*|*youtu.be*|*gfycat.com/*|*hooktube.com*|*bitchute.com*)
 #		setsid mpv --input-ipc-server=/tmp/mpvsoc$(date +%s) -quiet "$link" >/dev/null 2>&1 & ;;
                 echo "Plumbing to mpv: $link" ;
                 setsid umpv "$link" & ;;

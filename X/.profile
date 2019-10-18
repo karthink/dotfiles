@@ -1,8 +1,8 @@
 export QT_QPA_PLATFORMTHEME="qt5ct"
-export TERMINAL="konsole"
-export ALT_TERMINAL="st"
-export EDITOR="$TERMINAL -e /usr/bin/nvim"
-# export EDITOR="/usr/bin/emacsclient -t"
+export TERMINAL="st"
+export TERMINAL_CMD="st"
+# export EDITOR="$TERMINAL -e /usr/bin/nvim"
+export EDITOR="/usr/bin/emacsclient -n"
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export READER="zathura"
 export IMAGEVIEWER="sxiv"
@@ -16,14 +16,16 @@ export CONFIGDIR="$HOME/.config/"
 export BROWSER=/usr/bin/qutebrowser
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude *~'
 export FZF_DEFAULT_OPTS="--layout=reverse --height=50% -1 --no-mouse --multi --inline-info"
-export DMENU_OPTIONS="-i -fn Monospace-10.0 -nb #282828 -nf #CABD9A -sf #BBBB26 -sb #1D1D1D"
-export SSH_AUTH_SOCK="/run/user/$(id -u)/gnupg/S.gpg-agent.ssh"
+export DMENU_OPTIONS="-i -fn Monospace-12.0 -nb #282828 -nf #CABD9A -sb #BBBB26 -sf #1D1D1D"
+# export SSH_AUTH_SOCK="/run/user/$(id -u)/gnupg/S.gpg-agent.ssh"
+
+systemctl --user import-environment
 # Set keyboard repeat rate and delay
-# xset r rate 235 44
+xset r rate 265 44
 # xmodmap $HOME/.Xmodmap
 
 # Change capslock to an additional control
-# setxkbmap -option ctrl:nocaps
+setxkbmap -option ctrl:nocaps
 
 ## Use Spacebar as a Modifier
 #if [ -x $(command -v xcape) ]; then
@@ -39,7 +41,7 @@ if [[ -x $(command -v /usr/bin/xcape) ]]; then
 fi
 
 # Disallow Ctrl-S to pause visible input
-stty -ixon
+# stty -ixon
 
 # Add my scripts to PATH
 export PATH="$(du $HOME/.local/bin/* | cut -f2 | tr '\n' ':')$PATH"

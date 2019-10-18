@@ -14,6 +14,8 @@ alias   ka="killall" \
 	grep="grep --color=auto" \
 	egrep="egrep --colour=auto" \
 	fgrep="fgrep --colour=auto" \
+        scu="systemctl --user" \
+        ssc="sudo systemctl" \
 	cp="cp -i" \
 	df='df -h' \
 	free='free -m' \

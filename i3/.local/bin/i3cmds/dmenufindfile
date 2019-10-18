@@ -1,24 +1,103 @@
 #!/bin/bash
-.  $HOME/.dmenurc
-choice=$(fd --type f --hidden --follow --exclude .git \
-	                               --exclude *~ \
-				       | dmenu $DMENU_OPTIONS -i -l 15 -p "Open file: ")
-echo $choice
-if ! [[ -z $(file "$choice" | grep "ASCII") ]]; then
-	setsid $TERMINAL -e "$EDITOR" "$choice" >/dev/null 2>&1 &
-	exit
+# TODO:
+
+# Find and open any file on the system. Hit Shift+Enter to cycle
+# through search commands
+
+# How?
+# 0. Maintains fd cache.
+# 1. Search in cache.
+# 2. If no results in cache then search with locate.
+# 3. If no results in locate then update cache and search again.
+# 4. Handle files by extension first and mimetype as fallback
+
+if [ -f  "$HOME/.dmenurc" ]; then
+    .  $HOME/.dmenurc
 fi
+
+cache="$HOME/.cache/dmenufindfile"
+
+# Rebuild file and folder cache
+function rebuild_cache {
+    cache="$HOME/.cache/dmenufindfile"
+    fd --hidden --follow \
+       --exclude .git \
+       --exclude *~ \
+       --exclude ^# \
+       --exclude .cache \
+        > "$cache"
+}
+
+# 0. Build a cache if it doesn't exist:
+if [[ ! -e $cache ]]; then
+    rebuild_cache
+fi
+
+# 1. First try the existing cache:
+choice=$(cat $cache | dmenu $DMENU_OPTIONS -i -l 10 -p "Open: ")
+if [[ $? != 0 ]]; then
+    # User hit Escape
+    exit 1
+fi
+
+if [[ ! -f $choice ]] && [[ ! -d $choice ]]; then
+    # 2. If not found try locatedb:
+    if [[ ! -z $choice ]]; then
+        choice_locate=$(locate --regex -i --all ${choice} | dmenu $DMENU_OPTIONS -i -l 10 -p "Open with locate: ")
+    fi
+    if [[ $? != 0 ]]; then
+        # User hit Escape
+        exit 1
+    fi
+
+    # 3. If not happy with locate, rebuild cache and:
+    if [[ ! -f $choice_locate ]] && [[ ! -d $choice_locate ]]; then
+        rebuild_cache
+        choice=$(ag -i $choice $cache | cut -d: -f2 | dmenu $DMENU_OPTIONS -i -l 10 -p "[Cache rebuilt] Open: ")
+    else
+        choice="$choice_locate"
+    fi
+fi
+
+# 4. Handle choice
+echo $choice
+
 case "$choice" in
-	*.png|*.jpg|*.svg|*.bmp) setsid "$IMAGEVIEWER" "$choice" >/dev/null 2>&1 & ;;
+    *.png|*.jpg|*.svg|*.bmp) setsid "$IMAGEVIEWER" "$choice" >/dev/null 2>&1 & ;;
 
-	*.pdf|*.ps) setsid "$READER" "$choice" >/dev/null 2>&1 & ;;
+    *.pdf|*.ps) setsid "$READER" "$choice" >/dev/null 2>&1 & ;;
 
-	*.txt|*.md) setsid $TERMINAL -e "$EDITOR" "$choice" >/dev/null 2>&1 & ;;
+    *.txt|*.md|*.org) setsid "$EDITOR" "$choice" >/dev/null 2>&1 & ;;
 
-	*.html) setsid "$BROWSER" "$choice" >/dev/null 2>&1 & ;;
+    *.html) "$BROWSER" "$choice" >/dev/null 2>&1 & ;;
 
-	*.mp4|*.avi|*.flv|*.mkv) setsid "$MEDIAPLAYER" "$choice" >/dev/null 2>&1 & ;;
+    *.mp4|*.avi|*.flv|*.mkv) setsid "$MEDIAPLAYER" "$choice" >/dev/null 2>&1 & ;;
 
-	*.tex|*.sh|*.py) setsid $TERMINAL -e "$EDITOR" "$choice" >/dev/null 2>&1 & ;;
+    *.tex|*.sh|*.py) setsid "$EDITOR" "$choice" >/dev/null 2>&1 & ;;
+
+    *) # no match, so try matching by mimetype
+        mimetype=$(file -Lb --mime-type "$choice")
+        case "$mimetype" in
+            text/html)
+                setsid "$BROWSER" "$choice" >/dev/null 2>&1 &
+                ;;
+            text/* | inode/x-empty | message/rfc822)
+                echo "General text file: $choice"
+                setsid "$EDITOR" "$choice" >/dev/null 2>&1 &
+                ;;
+            inode/directory)
+                # cd "$choice"
+                setsid $TERMINAL -e "$FILE" "$choice" >/dev/null 2>&1 &
+                # cd -
+                ;;
+            image/*)
+                setsid "$IMAGEVIEWER" "$choice" >/dev/null 2>&1 &
+                ;;
+            *)
+                echo "Could not find matching application"
+                exit 1
+                ;;
+        esac
+        ;;
 esac
 # xdg-open  "$choice"

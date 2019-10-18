@@ -1399,7 +1399,7 @@ c.session.lazy_restore = True
 ##   - bottom
 ##   - left
 ##   - right
-# c.tabs.position = 'top'
+# c.tabs.position = 'left'
 
 ## Which tab to select when the focused tab is removed.
 ## Type: SelectOnRemove
@@ -1407,7 +1407,7 @@ c.session.lazy_restore = True
 ##   - prev: Select the tab which came before the closed one (left in horizontal, above in vertical).
 ##   - next: Select the tab which came after the closed one (right in horizontal, below in vertical).
 ##   - last-used: Select the previously selected tab.
-# c.tabs.select_on_remove = 'next'
+c.tabs.select_on_remove = 'prev'
 
 ## When to show the tab bar.
 ## Type: String
@@ -1416,7 +1416,7 @@ c.session.lazy_restore = True
 ##   - never: Always hide the tab bar.
 ##   - multiple: Hide the tab bar if only one tab is open.
 ##   - switching: Show the tab bar when switching tabs.
-# c.tabs.show = 'always'
+c.tabs.show = 'multiple'
 
 ## Duration (in milliseconds) to show the tab bar before hiding it when
 ## tabs.show is set to 'switching'.

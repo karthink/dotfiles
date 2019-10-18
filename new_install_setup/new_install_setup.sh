@@ -117,6 +117,7 @@ install networkmanager-l2tp \
         vnstat \
         samba \
         teamviewer \
+        transmission-qt \
         pulse-secure
 
 install manjaro-settings-samba
@@ -126,6 +127,7 @@ install manjaro-settings-samba
 install awesome-terminal-fonts \
         ttf-symbola \
         powerline-fonts \
+        ttf-fantasque-sans-mono \
         ttf-font-awesome \
         ttf-nerd-fonts-symbols
 
@@ -133,10 +135,10 @@ install awesome-terminal-fonts \
 
 ########################################
 ## Misc utilities
-install jq redshift
+install jq redshift simple-mtpfs
 
-# Sync through onedrive
-install onedrive-abraunegg
+# Sync utilities 
+install rclone onedrive-abraunegg
 
 # HID monitor control
 install acdcontrol-git
@@ -159,6 +161,19 @@ install libselinux
 # install bind-tools
 # Uncomplicated firewall
 # install ufw
+
+# ########################################
+# ## Flash cards
+# install anki
+
+# ########################################
+# ## Blogging
+# install hugo
+# install netlify
+
+# ########################################
+# ## Encryption
+install truecrypt
 
 # ########################################
 # ## Latex and publishing
@@ -193,9 +208,16 @@ if [[ $(command -v stow) ]]; then
     # TODO: Move existing dots out of the way first
     
     cd dotfiles
-    stow *
+    stow -R *
 fi
 
 cd $HOME
 git clone https://github.com/karthink/.emacs.d
 
+# Build my fork of st
+mkdir -p /tmp/st-karthik-git
+cd /tmp/st-karthik-git
+wget https://raw.githubusercontent.com/karthink/st/extras/PKGBUILD
+makepkg
+makepkg --install
+makepkg --clean

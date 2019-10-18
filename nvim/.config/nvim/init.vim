@@ -75,11 +75,11 @@ call plug#end()
 " Open bibliography file in split
 	" map <leader>b :vsp<space>$BIB<CR>
 
-" Replace all is aliased to S
-	nnoremap S :%s//g<left><left>
+" " Replace all is aliased to S
+" 	nnoremap S :%s//g<left><left>
 
 " Compile document, whatever type it is
-	map <leader>c :w! \| !compiler <c-r>%<CR><CR>
+	map <leader>cc :w! \| !compiler <c-r>%<CR><CR>
 
 " Open corresponding pdf/html or preview
 	map <leader>p :!opout <c-r>%<CR><CR>
@@ -115,11 +115,20 @@ call plug#end()
 
 "  Leader commands for quick fuzzy access:
 	nnoremap  <leader>e :e
-	nnoremap  <leader>f :Files<CR>
+	cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+	map <leader>ew :e %%
+	map <leader>es :sp %%
+	map <leader>ev :vsp %%
+	map <leader>et :tabe %%
+
+	nnoremap  <leader>` :b#<CR>
+	nnoremap  <leader>ff :e
+	nnoremap  <leader>fz :Files<CR>
 	nnoremap  <leader>b :Buffers<CR>
 	nnoremap  <leader>bn :bn<CR>
 	nnoremap  <leader>bp :bp<CR>
 	nnoremap  <leader>bd :bd<CR>
+	nnoremap  <leader>k  :bd<CR>
 	nnoremap  <leader>/  :Lines<CR>
 
 "  Split navigation
