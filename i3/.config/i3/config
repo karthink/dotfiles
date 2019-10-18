@@ -51,6 +51,8 @@ bindsym $mod+backslash exec --no-startup dmenuunicode
 bindsym $mod+Insert exec --no-startup dmenumount
 bindsym $mod+Shift+Insert exec --no-startup dmenuumount
 
+# Network handler
+bindsym XF86WLAN exec --no-startup-id networkmanager_dmenu
 # # Temp media controls for multiple mpv
 # bindsym XF86AudioPlay exec --no-startup-id  playerctl -i mpd -a play-pause
 # bindsym XF86AudioNext exec --no-startup-id  playerctl -i mpd -a position 10+

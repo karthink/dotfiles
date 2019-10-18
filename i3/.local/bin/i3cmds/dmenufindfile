@@ -43,15 +43,15 @@ fi
 
 # PARAMETERS - REPLACE AS REQUIRED
 #--------------------------------
-PICKER_CMD="dmenu $DMENU_OPTIONS -i -l 10 -p "
-GREP_CMD='ag -i '                     #Command to search through the cache
-LOCATE_CMD='locate --regex -i --all ' #Locate command
+PICKER_CMD="dmenu $DMENU_OPTIONS -i -x 300 -w 1000 -l 10 -p "
+GREP_CMD='ag -i --silent --literal --nonumbers'  #Command to search through the cache
+LOCATE_CMD='locate --regex -i --all '            #Locate command
 FIND_CMD='fd --hidden --follow 
        --exclude .git 
        --exclude *~ 
        --exclude "#*#" 
        --exclude "*.bak" 
-       --exclude .cache '             # Command to build the cache
+       --exclude .cache '                        # Command to build the cache
 #--------------------------------
 
 # APPLICATIONS - REPLACE AS REQUIRED
@@ -103,7 +103,8 @@ function exit_if_esc { if [[ $1 != 0 ]]; then exit 1; fi }
 choice=$(cat "$cache" | $PICKER_CMD "Open: ")
 exit_if_esc $? # User hit Escape
 
-if [[ ! -f $choice ]] && [[ ! -d $choice ]]; then
+if [[ ! -f "$choice" ]] && [[ ! -d "$choice" ]]; then
+    echo Rejected: "$choice"
     # 2. Didn't find match, try locatedb:
     if [[ ! -z $choice ]]; then
         choice_locate=$($LOCATE_CMD ${choice} | $PICKER_CMD "[Locate] Open: ")
@@ -113,7 +114,7 @@ if [[ ! -f $choice ]] && [[ ! -d $choice ]]; then
     # 3. If not happy with locate, rebuild cache and:
     if [[ ! -f "$choice_locate" ]] && [[ ! -d "$choice_locate" ]]; then
         rebuild_cache "$cache"
-        choice=$($GREP_CMD $choice $cache | cut -d: -f2 | $PICKER_CMD "[Cache rebuilt] Open: ")
+        choice=$($GREP_CMD $choice "$cache" | $PICKER_CMD "[Cache rebuilt] Open: ")
     else
         choice="$choice_locate"
     fi
@@ -172,5 +173,6 @@ esac
 # function PICKER_CMD {
 #     $TERMINAL -t dropdown_fzf -e fzf +m --prompt "$1"
 # }
-
+# TODO: Add --help/-h options
+# TODO: Allow searching from $BASE_DIR when supplied as argument
 # xdg-open  "$choice"

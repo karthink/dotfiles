@@ -1,6 +1,5 @@
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export TERMINAL="st"
-export TERMINAL_CMD="st"
 # export EDITOR="$TERMINAL -e /usr/bin/nvim"
 export EDITOR="/usr/bin/emacsclient"
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
@@ -16,6 +15,8 @@ export CONFIGDIR="$HOME/.config/"
 export BROWSER=/usr/bin/qutebrowser
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude *~'
 export FZF_DEFAULT_OPTS="--layout=reverse --height=50% -1 --no-mouse --multi --inline-info"
+export FZF_ALT_C_COMMAND="command fd --type d --hidden -L -i -E .git"
+export FZF_CTRL_T_COMMAND="command fd --type f --type d --type l -L -i --hidden -E .git"
 export DMENU_OPTIONS="-i -fn Monospace-12.0 -nb #282828 -nf #CABD9A -sb #BBBB26 -sf #1D1D1D"
 # export SSH_AUTH_SOCK="/run/user/$(id -u)/gnupg/S.gpg-agent.ssh"
 
