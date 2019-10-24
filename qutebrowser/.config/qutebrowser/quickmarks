@@ -6,3 +6,10 @@ gpg/setup-including-subkey https://alexcabal.com/creating-the-perfect-gpg-keypai
 gpg/handbook https://www.gnupg.org/gph/en/manual.html
 truecrypt/wiki https://wiki.archlinux.org/index.php/TrueCrypt
 noncooperative game theory - hespanha https://www.scribd.com/book/381683569/Noncooperative-Game-Theory-An-Introduction-for-Engineers-and-Computer-Scientists
+cli/awesome-cli-apps https://github.com/agarrharr/awesome-cli-apps#entertainment
+cli/awesome-shell-list https://github.com/alebcay/awesome-shell#readme
+cli/awesome-cli-apps-2 https://github.com/herrbischoff/awesome-command-line-apps#readme
+emacs/gpg-integration https://www.masteringemacs.org/article/keeping-secrets-in-emacs-gnupg-auth-sources
+reveal.js/org-integration https://github.com/yjwen/org-reveal/blob/master/Readme.org
+reveal.js/main https://github.com/hakimel/reveal.js/
+fish/set up fzf extra https://github.com/jethrokuan/fzf

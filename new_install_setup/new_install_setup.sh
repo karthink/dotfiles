@@ -221,3 +221,9 @@ wget https://raw.githubusercontent.com/karthink/st/extras/PKGBUILD
 makepkg
 makepkg --install
 makepkg --clean
+
+# setup login shell
+# sudo echo -e '#!/bin/bash -l\nexec -l fish "$@"\n' >> /usr/local/bin/fishlogin
+# chmod +x /usr/local/bin/fishlogin
+# echo /usr/local/bin/fishlogin | sudo tee -a /etc/shells
+# sudo usermod -s /usr/local/bin/fishlogin $USER

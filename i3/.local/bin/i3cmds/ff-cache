@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# ff-cache: Build a list of all files in the user's home directory.
+# Primarily for use by other commands, like dff and zff.
+
+# USAGE: ff-cache [options]
+#        By default, ff-cache will output the entire list 
+#        OPTIONS:
+#        -r Rebuild cache and exit
+
+# COMMAND TO BUILD THE CACHE
+#---------------------------------------------------------
+FIND_CMD='fd --hidden --follow 
+       --exclude .git 
+       --exclude *~ 
+       --exclude "#*#" 
+       --exclude "*.bak" 
+       --exclude .cache '                        
+
+
+#
+# CACHE MANAGEMENT
+#---------------------------------------------------------
+# By default the cache is stored in /tmp for faster access from tmpfs
+cache="/tmp/dmenufindfile.cache"
+cache_alt="$HOME/.cache/dmenufindfile.cache"
+
+# Rebuild file and folder cache
+function rebuild_cache {
+    cache="$1"
+    $FIND_CMD > "$cache"
+}
+
+for opt in "$@"; do
+    case $opt in
+        -r|--rebuild)
+            echo "rebuilding cache"
+            rebuild_cache "$cache"
+            exit 0
+            ;;
+        *)
+            ;;
+    esac
+done
+
+# 0. Build a cache if it doesn't exist:
+# This should only happen on a fresh boot
+if [[ ! -e "$cache" ]]; then
+    if [[ -e "$cache_alt" ]]; then
+        cp "$cache_alt" "$cache"
+    else
+        rebuild_cache "$cache"
+        cp "$cache" "$cache_alt"
+    fi
+fi
+
+# OUTPUT THE CONTENTS OF THE FILE CACHE
+#---------------------------------------------------------
+cat $cache

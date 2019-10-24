@@ -17,6 +17,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec $TERMINAL
+bindsym $mod+Shift+Return exec tmuxgen
 
 # start program launcher
 # bindsym $mod+r exec --no-startup-id dmenu_run $DMENU_OPTIONS
@@ -36,11 +37,12 @@ bindsym $mod+Tab exec --no-startup-id i3-window-switcher
 bindsym XF86Back exec --no-startup-id cabl
 
 # Link handler
-bindsym $mod+Ctrl+o exec --no-startup-id linkhandler
+bindsym $mod+Shift+bar exec --no-startup-id linkhandler
 
 # Search for file
 bindsym XF86Search exec --no-startup-id dmenufindfile
-bindsym $mod+o     exec --no-startup-id dmenufindfile
+bindsym $mod+o     exec --no-startup-id dff
+bindsym $mod+Ctrl+o exec --no-startup-id zff
 # Get a cheatsheet on common linux commands
 bindsym $mod+XF86Search exec --no-startup-id cheatsheet
 # Show contents of clipboard
@@ -391,6 +393,7 @@ for_window [title="dropdown_*"] sticky enable
 for_window [title="dropdown_*"] scratchpad show
 for_window [title="dropdown_*"] resize set 1000 600
 for_window [title="dropdown_dropdowncalc"] resize set 800 300
+for_window [title="dropdown_zff"] resize set 800 256
 # for_window [title="dropdown_tmuxdd"] border pixel 1
 # for_window [title="dropdown_dropdowncalc"] border pixel 1
 for_window [title="dropdown_*"] move position center

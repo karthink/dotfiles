@@ -17,7 +17,10 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclu
 export FZF_DEFAULT_OPTS="--layout=reverse --height=50% -1 --no-mouse --multi --inline-info"
 export FZF_ALT_C_COMMAND="command fd --type d --hidden -L -i -E .git"
 export FZF_CTRL_T_COMMAND="command fd --type f --type d --type l -L -i --hidden -E .git"
-export DMENU_OPTIONS="-i -fn Monospace-12.0 -nb #282828 -nf #CABD9A -sb #BBBB26 -sf #1D1D1D"
+export FZF_CTRL_R_OPTS="--preview='echo {} | fold' --preview-window=up:35%"
+export FZF_TMUX=1
+export FZF_ALT_C_OPTS="--preview 'tree -L 1 -l -C {} | head -100'"
+export DMENU_OPTIONS="-i -h 26 -fn Monospace-12.0 -nb #282828 -nf #CABD9A -sb #BBBB26 -sf #1D1D1D"
 # export SSH_AUTH_SOCK="/run/user/$(id -u)/gnupg/S.gpg-agent.ssh"
 
 systemctl --user import-environment

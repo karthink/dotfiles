@@ -1,5 +1,7 @@
 #!/bin/bash
 # AUTHOR: Karthik Chikmagalur
+# TODO: Move cache management into a separate file
+# TODO: Ctrl-Ret to select multiple items
 
 #--------------------------------------------------------------------
 # DMENUFINDFILE: Find and open anything on the system.
@@ -43,7 +45,7 @@ fi
 
 # PARAMETERS - REPLACE AS REQUIRED
 #--------------------------------
-PICKER_CMD="dmenu $DMENU_OPTIONS -i -x 300 -w 1000 -l 10 -p "
+PICKER_CMD="dmenu $DMENU_OPTIONS -i -b -l 10 -p "
 GREP_CMD='ag -i --silent --literal --nonumbers'  #Command to search through the cache
 LOCATE_CMD='locate --regex -i --all '            #Locate command
 FIND_CMD='fd --hidden --follow 
@@ -103,8 +105,7 @@ function exit_if_esc { if [[ $1 != 0 ]]; then exit 1; fi }
 choice=$(cat "$cache" | $PICKER_CMD "Open: ")
 exit_if_esc $? # User hit Escape
 
-if [[ ! -f "$choice" ]] && [[ ! -d "$choice" ]]; then
-    echo Rejected: "$choice"
+if [[ ! -f $choice ]] && [[ ! -d $choice ]]; then
     # 2. Didn't find match, try locatedb:
     if [[ ! -z $choice ]]; then
         choice_locate=$($LOCATE_CMD ${choice} | $PICKER_CMD "[Locate] Open: ")

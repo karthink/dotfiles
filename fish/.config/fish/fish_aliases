@@ -1,0 +1,42 @@
+abbr	e "$EDITOR" 
+abbr	ec "emacsclient -c" 
+abbr	F "$FILE" 
+abbr    f "fzf-tmux -m" 
+abbr	g "git" 
+abbr	gua "git remote | xargs -L1 git push --all" 
+abbr    ka "killall" 
+abbr	p "sudo pacman" 
+abbr    scu "systemctl --user" 
+abbr    ssc "sudo systemctl" 
+abbr	yta "youtube-dl -w -c -r 1M -o '%(playlist_index)s-%(title)s.%(ext)s' --add-metadata  -f 'bestaudio[ext=m4a]'" 
+abbr	yt "youtube-dl -w -c -o '%(title)s.%(ext)s' -f 'bestvideo[height<=?1080]+bestaudio/best' --add-metadata"
+alias	cp "cp -i" 
+alias	df 'df -h' 
+alias	ffmpeg "ffmpeg -hide_banner" 
+alias	free 'free -m' 
+alias	mkdir "mkdir -pv" 
+alias	more less 
+alias	mpv "mpv --input-ipc-server=/tmp/mpvsoc"(date +%s)
+alias	ref "shortcuts >/dev/null; source ~/.config/fish/fish_shortcuts" 
+alias	x "xclip -selection clipboard" 
+
+command -v nvim >/dev/null && alias vim="nvim" && alias vimdiff="nvim -d" # Use neovim for vim if present.
+
+# alias	fgrep "fgrep --colour=auto" 
+# alias	diff "diff --color=auto" 
+# alias	egrep "egrep --colour=auto" 
+# alias	grep "grep --color=auto" 
+# alias	ll "ls -hN --group-directories-first -l"
+# alias	ls "ls -hN --group-directories-first" 
+# alias	ccat="highlight --out-format=ansi" 
+# alias	dff="dmenufindfile" 
+# alias	np='nano -w PKGBUILD' 
+# calcurse="calcurse -D ~/.config/calcurse" 
+# lsp="pacman -Qett --color=always | less" 
+# magit="nvim -c MagitOnly" 
+# sdn="sudo shutdown -h now" 
+# trem="transmission-remote" 
+# upc="sudo pacman -Syu; pkill -RTMIN+8 i3blocks" 
+# yta="yt -x -f bestaudio/best" 
+# yt="youtube-dl --add-metadata -i -o '%(upload_date)s-%(title)s.%(ext)s'" 
+# YT="youtube-viewer" 

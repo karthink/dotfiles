@@ -5,11 +5,12 @@ alias   ka="killall" \
 	mpv="mpv --input-ipc-server=/tmp/mpvsoc$(date +%s)" \
 	p="sudo pacman" \
 	SS="sudo systemctl" \
-	f="$FILE" \
+	F="$FILE" \
 	g="git" \
 	e="$EDITOR" \
 	ec="emacsclient -c" \
 	x="xclip -selection clipboard" \
+        f="fzf-tmux -m" \
 	gua="git remote | xargs -L1 git push --all" \
 	grep="grep --color=auto" \
 	egrep="egrep --colour=auto" \
@@ -29,10 +30,7 @@ alias   ka="killall" \
 	yta="youtube-dl -w -c -r 1M -o '%(playlist_index)s-%(title)s.%(ext)s' --add-metadata  -f 'bestaudio[ext=m4a]'" \
 	yt="youtube-dl -w -c -o '%(title)s.%(ext)s' -f 'bestvideo[height<=?1080]+bestaudio/best' --add-metadata"
 
-
 command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d" # Use neovim for vim if present.
-
-ff() { fzf | xargs -r -I % $EDITOR % ;}
 
 # calcurse="calcurse -D ~/.config/calcurse" \
 # magit="nvim -c MagitOnly" \

@@ -1,0 +1,91 @@
+#!/bin/bash
+
+# TODO: Handle input from STDIN and command line
+ 
+# APPLICATIONS - REPLACE AS REQUIRED
+#----------------------------------------------------------
+# Examples
+# TERMINAL="urxvt"
+# BROWSER=$(xdg-mime query default text/html)
+# EDITOR="$TERMINAL -e /usr/bin/nvim"  # Text editor
+
+TERMINAL="$TERMINAL"                   # Terminal emulator
+EDITOR="$EDITOR"                       # Text editor
+IMAGEVIEWER="$IMAGEVIEWER"             # Image viewer
+BROWSER="$BROWSER"                     # Web browser
+READER="$READER"                       # Document (PDF etc) viewer
+FILEMANAGER="$FILE"                    # FILE MANAGER
+#----------------------------------------------------------
+
+# Get input list from wherever: ARGLIST, STDIN or NAMED PIPE
+#----------------------------------------------------------
+cd $HOME
+FF_PIPE=".ffpipe"
+# set -- "${1:-$(</dev/stdin)}" "${@:2}"
+# if [[ ! -z $1 ]]; then
+#     choices="$@"
+# elif [[ -p $FF_PIPE ]]; then
+#     choices=$(cat <$FF_PIPE)
+# else
+#     echo "No files specified!"
+#     exit 1
+# fi
+
+choices=$(cat <$FF_PIPE)
+
+# 4. HANDLE CHOICE
+#----------------------------------------------------------
+
+while read choice 
+do
+    # Escape special characters
+    # choice=$(echo "$choice" | sed -e 's_\\_\\\\_g' \
+    #                               -e  's_\([({&})]\)_\\\1_g')
+    echo "$choice"
+    case "$choice" in
+        *.png|*.jpg|*.svg|*.bmp) setsid $IMAGEVIEWER "$choice" >/dev/null 2>&1 & ;;
+
+        *.pdf|*.ps) setsid $READER "$choice" >/dev/null 2>&1 & ;;
+
+        *.txt|*.md|*.org|*.conf) setsid $EDITOR "$choice" >/dev/null 2>&1 & ;;
+
+        *.html) setsid $BROWSER "$choice" >/dev/null 2>&1 & ;;
+
+        *.mp4|*.avi|*.flv|*.mkv) setsid $MEDIAPLAYER "$choice" >/dev/null 2>&1 & ;;
+
+        # TODO: Generalize
+        *.mp3|*.m4a|*.wav|*.ogg)  
+            mpc insert "$(echo "$choice" | sed -e 's_^Music/__')" && \
+                mpc next & ;;
+
+        *.tex|*.sh|*.py) setsid $EDITOR "$choice" >/dev/null 2>&1 & ;;
+
+        *) # no match, so try matching by mimetype
+            mimetype=$(file -Lb --mime-type "$choice")
+            case "$mimetype" in
+                text/html)
+                    setsid $BROWSER "$choice" >/dev/null 2>&1 &
+                    ;;
+                text/* | inode/x-empty | message/rfc822)
+                    setsid $EDITOR "$choice" >/dev/null 2>&1 &
+                    ;;
+                inode/directory)
+                    setsid $TERMINAL -e $FILEMANAGER "$choice" >/dev/null 2>&1 &
+                    ;;
+                image/*)
+                    setsid $IMAGEVIEWER "$choice" >/dev/null 2>&1 &
+                    ;;
+                *)
+                    echo "Could not find matching application"
+                    setsid xdg-open "$choice" >/dev/null 2>&1 &
+                    exit 1
+                    ;;
+            esac
+            ;;
+    esac
+done < <(printf '%s\n' "$choices") #"${1:-/dev/stdin}"
+#---------------------------------------------------------
+
+# Scratch
+# "${1:-/dev/stdin}"
+#---------------------------------------------------------
