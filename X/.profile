@@ -1,7 +1,7 @@
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export TERMINAL="st"
-# export EDITOR="$TERMINAL -e /usr/bin/nvim"
-export EDITOR="/usr/bin/emacsclient"
+export EDITOR="/usr/bin/nvim"
+export VISUAL="/usr/bin/emacsclient"
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export READER="zathura"
 export IMAGEVIEWER="sxiv"
@@ -13,12 +13,12 @@ export SUDO_ASKPASS="$HOME/.local/bin/tools/dmenupass"
 export CONFIGDIR="$HOME/.config/"
 # fix "xdg-open fork-bomb" export your preferred browser from here
 export BROWSER=/usr/bin/qutebrowser
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude *~'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude \*~'
 export FZF_DEFAULT_OPTS="--layout=reverse --height=50% -1 --no-mouse --multi --inline-info"
 export FZF_ALT_C_COMMAND="command fd --type d --hidden -L -i -E .git"
 export FZF_CTRL_T_COMMAND="command fd --type f --type d --type l -L -i --hidden -E .git"
 export FZF_CTRL_R_OPTS="--preview='echo {} | fold' --preview-window=up:35%"
-export FZF_TMUX=1
+# export FZF_TMUX=0
 export FZF_ALT_C_OPTS="--preview 'tree -L 1 -l -C {} | head -100'"
 export DMENU_OPTIONS="-i -h 26 -fn Monospace-12.0 -nb #282828 -nf #CABD9A -sb #BBBB26 -sf #1D1D1D"
 # export SSH_AUTH_SOCK="/run/user/$(id -u)/gnupg/S.gpg-agent.ssh"

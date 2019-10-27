@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #nm-online -s >/dev/null || exit;
 location="$1"; [ -z "$location" ] || { location="$location+" && rm -f "$HOME/.local/share/weatherreport" ;}
 
