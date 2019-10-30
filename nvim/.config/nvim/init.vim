@@ -121,21 +121,30 @@ call plug#end()
 	map <leader>ev :vsp %%
 	map <leader>et :tabe %%
 
-	nnoremap  <leader>` :b#<CR>
-	nnoremap  <leader>ff :e
+	nnoremap  <leader>`  :b#<CR>
+	nnoremap  <leader>ff :Files<CR>
 	nnoremap  <leader>fz :Files<CR>
-	nnoremap  <leader>b :Buffers<CR>
+	nnoremap  <leader>fr :History<CR>
+	nnoremap  <leader>fl :Locate
+	nnoremap  <leader>b  :Buffers<CR>
+	nnoremap  <leader>bb  :Buffers<CR>
 	nnoremap  <leader>bn :bn<CR>
 	nnoremap  <leader>bp :bp<CR>
 	nnoremap  <leader>bd :bd<CR>
 	nnoremap  <leader>k  :bd<CR>
-	nnoremap  <leader>/  :Lines<CR>
+	nnoremap  <leader>/  :BLines<CR>
+	nnoremap  <leader>// :BLines<CR>
+	nnoremap  <leader>/b :Lines<CR>
+	nnoremap  <leader>/a :Ag<CR>
+	nnoremap  <leader>r  :Marks<CR>
+	" nnoremap    :History:<CR>
+	" nnoremap    :History/<CR>
 
 "  Split navigation
-	nnoremap  <leader>V  :vsp<CR>:bn<CR><C-w><C-w>
-	nnoremap  <leader>v  :vsp<CR>:bn<CR>
-	nnoremap  <leader>vf :vsp<CR>:Files<CR>
-	nnoremap  <leader>vb :vsp<CR>:Buffers<CR>
+	" nnoremap  <leader>V  :vsp<CR>:bn<CR><C-w><C-w>
+	" nnoremap  <leader>v  :vsp<CR>:bn<CR>
+	" nnoremap  <leader>vf :vsp<CR>:Files<CR>
+	" nnoremap  <leader>vb :vsp<CR>:Buffers<CR>
 
 "  Leader commands for writing and quitting:
 	nnoremap <Leader>w :w<CR>

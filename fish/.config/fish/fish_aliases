@@ -1,5 +1,6 @@
 abbr	e "$EDITOR" 
 abbr	ec "emacsclient -c" 
+abbr	et "emacsclient -t" 
 abbr	F "$FILE" 
 abbr    f "fzf-tmux -m" 
 abbr	g "git" 

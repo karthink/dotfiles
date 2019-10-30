@@ -10,7 +10,7 @@
 # EDITOR="$TERMINAL -e /usr/bin/nvim"  # Text editor
 
 TERMINAL="$TERMINAL"                   # Terminal emulator
-EDITOR="$EDITOR"                       # Text editor
+EDITOR="$VISUAL"                       # Text editor
 IMAGEVIEWER="$IMAGEVIEWER"             # Image viewer
 BROWSER="$BROWSER"                     # Web browser
 READER="$READER"                       # Document (PDF etc) viewer

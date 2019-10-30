@@ -128,7 +128,7 @@ bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
-bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+bindsym Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 bindsym $mod+e exec "emacsclient -c"
 
@@ -195,7 +195,7 @@ bindsym $mod+v layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+p floating toggle
-bindsym $mod+Shift+w floating toggle
+bindsym $mod+w floating toggle
 
 # change focus between tiling / floating windows
 bindsym mod1+Tab focus mode_toggle
@@ -282,6 +282,8 @@ bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 # Move workspace between monitors
 bindsym $mod+Ctrl+h move workspace to output left
 bindsym $mod+Ctrl+l move workspace to output right
+bindsym $mod+Ctrl+k move workspace to output up
+bindsym $mod+Ctrl+j move workspace to output down
 
 #####################################
 ## WINDOW AND WORKSPACE PROPERTIES ##
@@ -338,6 +340,7 @@ for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
 # for_window [title="About Pale Moon"] floating enable
 # for_window [class="Pamac-manager"] floating enable
+for_window [class="Arandr"] floating enable border normal
 for_window [class="transmission"] floating enable border normal
 for_window [class="ark"] floating enable border normal
 for_window [class="Pavucontrol"] floating enable border normal
@@ -394,14 +397,15 @@ for_window [title="dropdown_*"] scratchpad show
 for_window [title="dropdown_*"] resize set 1000 600
 for_window [title="dropdown_dropdowncalc"] resize set 800 300
 for_window [title="dropdown_zff"] resize set 800 256
-# for_window [title="dropdown_tmuxdd"] border pixel 1
-# for_window [title="dropdown_dropdowncalc"] border pixel 1
+for_window [title="dropdown_weatherreport"] resize set 1135 750
 for_window [title="dropdown_*"] move position center
 
 
-# Dropdown terminal and dropdown calculator setup
+# Dropdown utilities setup - terminal, dropdown calculator, weather and mail
 bindsym $mod+grave exec --no-startup-id ddspawn tmuxdd
-bindsym $mod+F2 exec --no-startup-id ddspawn dropdowncalc -f mono:pixelsize=26
+bindsym $mod+c exec --no-startup-id ddspawn dropdowncalc # -f mono:pixelsize=26
+bindsym $mod+Shift+m exec --no-startup-id ddspawn notmuch-emacs
+bindsym $mod+Shift+w exec --no-startup-id ddspawn weatherreport
 
 # Hover settings
 bindsym $mod+Shift+comma floating toggle; sticky toggle; exec --no-startup-id hover left
