@@ -26,7 +26,7 @@ function fzf-cdhist-widget -d 'cd to one of the previously visited locations'
 		end
 	end
 	set dirprev $buf
-	string join \n $dirprev | tac | sed 1d | eval (__fzfcmd) +m --tiebreak=index --toggle-sort=ctrl-r $FZF_CDHIST_OPTS | read -l result
+	string join \n $dirprev | tac | sed 1d | eval (__fzfcmd) +m --tiebreak=index --toggle-sort=ctrl-r --query=\'$argv\' $FZF_CDHIST_OPTS | read -l result
 	[ "$result" ]; and cd $result
 	commandline -f repaint
 end

@@ -21,6 +21,7 @@ install 7z bash-completion \
         python-pip \
         neofetch \
         qrencode \
+        progress \
         xcape
 
 install antiword \
@@ -57,7 +58,6 @@ install i3 dmenu \
 #         pavucontrol
 
 install python-i3ipc \
-        qt5ct \
         lxqt-powermanagement \
         perl-anyevent-i3 \
         python2-dbus \
@@ -137,8 +137,9 @@ install awesome-terminal-fonts \
 ## Misc utilities
 install jq redshift simple-mtpfs
 
-# Sync utilities 
+# Sync and backup utilities 
 install rclone onedrive-abraunegg
+install restic
 
 # HID monitor control
 install acdcontrol-git
@@ -193,6 +194,7 @@ install truecrypt
 
 # ########################################
 # ## KDE & Plasma
+        # qt5ct \
 # sudo pacman -S latte-dock
 # sudo pacman -S ktorrent
 # install kwave

@@ -13,3 +13,7 @@ emacs/gpg-integration https://www.masteringemacs.org/article/keeping-secrets-in-
 reveal.js/org-integration https://github.com/yjwen/org-reveal/blob/master/Readme.org
 reveal.js/main https://github.com/hakimel/reveal.js/
 fish/set up fzf extra https://github.com/jethrokuan/fzf
+backup/what is data deduplication https://www.backblaze.com/blog/backing-linux-backblaze-b2-duplicity-restic/
+backup/restic help https://restic.readthedocs.io/en/stable/040_backup.html
+backup/restic intro https://restic.net/
+backup/syncthing https://syncthing.net/

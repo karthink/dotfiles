@@ -17,23 +17,13 @@ READER="$READER"                       # Document (PDF etc) viewer
 FILEMANAGER="$FILE"                    # FILE MANAGER
 #----------------------------------------------------------
 
-# Get input list from wherever: ARGLIST, STDIN or NAMED PIPE
+# Get input list from wherever: ARGLIST or STDIN 
 #----------------------------------------------------------
 cd $HOME
-FF_PIPE=".ffpipe"
-# set -- "${1:-$(</dev/stdin)}" "${@:2}"
-# if [[ ! -z $1 ]]; then
-#     choices="$@"
-# elif [[ -p $FF_PIPE ]]; then
-#     choices=$(cat <$FF_PIPE)
-# else
-#     echo "No files specified!"
-#     exit 1
-# fi
+[ $# -ge 1 -a -f "$1" ] && input="$(printf '%s\n' "$@")" || input="$(cat /dev/stdin)"
 
-choices=$(cat <$FF_PIPE)
-
-# 4. HANDLE CHOICE
+# printf '%s\n' ${input[@]} >>open.log
+# HANDLE CHOICE
 #----------------------------------------------------------
 
 while read choice 
@@ -76,16 +66,13 @@ do
                     setsid $IMAGEVIEWER "$choice" >/dev/null 2>&1 &
                     ;;
                 *)
-                    echo "Could not find matching application"
-                    setsid xdg-open "$choice" >/dev/null 2>&1 &
+                    if [ -n "$choice" ]; then
+                        echo "Could not find matching application"
+                        setsid xdg-open "$choice" >/dev/null 2>&1 &
+                    fi
                     exit 1
                     ;;
             esac
             ;;
     esac
-done < <(printf '%s\n' "$choices") #"${1:-/dev/stdin}"
-#---------------------------------------------------------
-
-# Scratch
-# "${1:-/dev/stdin}"
-#---------------------------------------------------------
+done <  <(printf '%s\n' "${input}")

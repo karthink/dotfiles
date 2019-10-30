@@ -115,7 +115,7 @@ export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1
 if [[ $PS1 && $(command -v fzf) && -f $HOME/.config/fzf/completion.bash ]]; then
 	. $HOME/.config/fzf/completion.bash
 	. $HOME/.config/fzf/key-bindings.bash
-        ff() { fzf | xargs -r -I % $EDITOR % ;}
+        # ff() { fzf | xargs -r -I % $EDITOR % ;}
 fi
 
 # # Use marker - templates for bash commands:

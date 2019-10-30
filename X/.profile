@@ -14,7 +14,7 @@ export CONFIGDIR="$HOME/.config/"
 # fix "xdg-open fork-bomb" export your preferred browser from here
 export BROWSER=/usr/bin/qutebrowser
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude \*~'
-export FZF_DEFAULT_OPTS="--layout=reverse --height=50% -1 --no-mouse --multi --inline-info"
+export FZF_DEFAULT_OPTS="--layout=reverse --height=50% -1 --no-mouse --multi --inline-info --bind=ctrl-v:page-down --bind=alt-v:page-up"
 export FZF_ALT_C_COMMAND="command fd --type d --hidden -L -i -E .git"
 export FZF_CTRL_T_COMMAND="command fd --type f --type d --type l -L -i --hidden -E .git"
 export FZF_CTRL_R_OPTS="--preview='echo {} | fold' --preview-window=up:35%"

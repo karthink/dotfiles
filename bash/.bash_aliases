@@ -17,6 +17,8 @@ alias   ka="killall" \
 	fgrep="fgrep --colour=auto" \
         scu="systemctl --user" \
         ssc="sudo systemctl" \
+        jcu="journalctl --user"
+        sjc="sudo journalctl"
 	cp="cp -i" \
 	df='df -h' \
 	free='free -m' \

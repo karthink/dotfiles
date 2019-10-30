@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # AUTHOR: Karthik Chikmagalur
 
 #--------------------------------------------------------------------
@@ -26,24 +26,12 @@ fi
 #--------------------------------
 PICKER_CMD="dmenu $DMENU_OPTIONS -i -l 10 -h 26 -p "
 CACHE_CMD=ff-cache
-ACT_CMD=ff-open
 GREP_CMD='ag -i --silent --nonumbers'  #Command to search through the cache
-LOCATE_CMD='locate --regex -i --all '            #Locate command
+LOCATE_CMD='locate -i --all '            #Locate command
 #--------------------------------
 
 # Exit if any of the search commands returns exit code 1
 function exit_if_esc { if [[ $1 != 0 ]]; then exit 1; fi }
-
-# FOR COMMUNICATING WITH open
-#-------------------------------------------------------
-FF_PIPE=.ffpipe
-cd $HOME
-
-if [[ ! -p $FF_PIPE ]]; then
-    echo "creating pipe"
-    mkfifo $FF_PIPE
-fi
-#---------------------------------------------------------
 
 #---------------------------------------------------------
 # MAKING A CHOICE
@@ -51,12 +39,8 @@ fi
 # choices=$($CACHE_CMD | $PICKER_CMD "Open: ")
 # exit_if_esc $? # User hit Escape
 
-# Start looking at pipe 
-$ACT_CMD &
-
 while IFS= read -r choice; do
 
-    echo $choice
     exit_if_esc $? # User hit Escape
     if [[ ! -f $choice ]] && [[ ! -d $choice ]]; then
         # 2. Didn't find match, try locatedb:
@@ -74,9 +58,10 @@ while IFS= read -r choice; do
         fi
     fi
 
-    # Write choice to pipe
-    echo "$choice" >$FF_PIPE
+    # Write choice to stdout
+    echo "$choice" 
 done < <( $CACHE_CMD | $PICKER_CMD "Open: " )
+
 # Scratch
 #----------
 # TODO: Add --help/-h options

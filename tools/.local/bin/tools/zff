@@ -1,0 +1,75 @@
+#!/bin/bash
+# AUTHOR: Karthik Chikmagalur
+
+# PARAMETERS - REPLACE AS REQUIRED
+#--------------------------------
+CACHE_CMD="ff-cache"
+LOCATE_CMD="locate -i --all "            #Locate command
+# FZF_DEFAULT_OPTS="--layout=reverse -1 --no-mouse --multi --inline-info --preview '~/.config/fzf/scope.sh {} 60 10 ~/.cache/ranger/ False' --preview-window=down:40%"
+# FZF_DEFAULT_OPTS="--layout=reverse -1 --no-mouse --multi --inline-info --preview 'if [ -d {} ]
+# tree -C -L 1 -l -a {}
+# else
+# ls -l {} | fold; echo -e \n; file -Lb {} | fmt;
+# end' --preview-window=down:60%"
+FZF_DEFAULT_OPTS="--layout=reverse -1 --no-mouse --multi --inline-info --preview 'if [ -d {} ]
+echo {}:; ls -CtA {};
+else
+ls -oh {} | fold; echo; file -Lb {} | fmt;
+end' --preview-window=down:40% --bind=ctrl-v:page-down --bind=alt-v:page-up"
+#--------------------------------
+
+function FZF_PICK {
+    CACHE_CMD="$1"
+    PROMPT="$2"
+    QUERY="$3"
+    # echo $LOCATE_CMD
+    # FF_PIPE=$2
+    mapfile -t choices < <(bash -c "$CACHE_CMD" | fzf --query="$QUERY" \
+                                                      --expect="alt-r,alt-l,alt-enter,del" \
+                                                      --prompt "$PROMPT" --print-query )
+    QUERY="${choices[0]}"
+    changesource="${choices[1]}"
+
+    case "$changesource" in
+        del)
+            # Delete candidate(s)?
+            echo "Delete the following?(y/N)"
+            printf '%s\n' "${choices[@]:2}"
+            read -r ynp
+
+            if [ $ynp = 'y' ] || [ $ynp = 'Y' ]; then
+                for file in "${choices[@]:2}"; do
+                    rm -r "$file"
+                done
+            fi
+            FZF_PICK "$CACHE_CMD" "[Files Deleted]Open: " "$QUERY"
+            ;;
+        alt-r)
+            # Refresh cache
+            $CACHE_CMD -r
+            FZF_PICK "$CACHE_CMD" "[Cache Rebuilt]Open: " "$QUERY"
+            ;;
+
+        alt-enter)
+            # Find in $HOME using locate
+            CACHE_CMD="$LOCATE_CMD $HOME $QUERY | cut -d/ -f4-"
+            FZF_PICK "$CACHE_CMD" "[Locate]Open: " "$QUERY"
+            ;;
+
+        alt-l)
+            # Switch to locate
+            # if [ -z $QUERY ]; then QUERY="."; fi
+            CACHE_CMD="$LOCATE_CMD / $QUERY"
+            FZF_PICK "$CACHE_CMD" "[Locate /]Open: " "$QUERY"
+            ;;
+        *)
+            # Start sending file names to stdout
+            printf '%s\n' "${choices[@]:2}"
+            ;;
+    esac
+}
+
+cd $HOME
+FZF_PICK "$CACHE_CMD" "Open: "
+# DONE: Hit Alt-r to rebuild cache
+# DONE: Hit Alt-l to switch to locate
