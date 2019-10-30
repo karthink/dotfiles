@@ -109,7 +109,7 @@ install abook \
        pass pass-otp
 
 # Alternatively, just
-# install mutt-wizard-git 
+# install mutt-wizard-git
 
 ########################################
 ## Networking utilities
@@ -203,12 +203,12 @@ install truecrypt
 # PULL IN MY DOTFILES
 ########################################
 cd $HOME
-git clone https://github.com/karthink/dotfiles 
+git clone https://github.com/karthink/dotfiles
 
 if [[ $(command -v stow) ]]; then
-    
+
     # TODO: Move existing dots out of the way first
-    
+
     cd dotfiles
     stow -R *
 fi
@@ -225,7 +225,7 @@ makepkg --install
 makepkg --clean
 
 # setup login shell
-# sudo echo -e '#!/bin/bash -l\nexec -l fish "$@"\n' >> /usr/local/bin/fishlogin
-# chmod +x /usr/local/bin/fishlogin
+# echo -e '#!/bin/bash -l\nexec -l fish "$@"\n' | sudo tee /usr/local/bin/fishlogin
+# sudo chmod +x /usr/local/bin/fishlogin
 # echo /usr/local/bin/fishlogin | sudo tee -a /etc/shells
 # sudo usermod -s /usr/local/bin/fishlogin $USER
