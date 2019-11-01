@@ -1,0 +1,15 @@
+# Exclude latex temp files
+*.aux
+*.bbl
+*.out
+*.log
+*.toc
+*.synctex.gz
+*.fmt
+_region_.prv
+*.synctex.gz
+_region_.tex
+
+# Exclude emacs/vim backup files
+*~
+\#*\#
