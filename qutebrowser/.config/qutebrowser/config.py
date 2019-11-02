@@ -11,7 +11,8 @@
 ## aliases, while the values are the commands they map to.
 ## Type: Dict
 # c.aliases = {'w': 'session-save', 'q': 'close', 'qa': 'quit', 'wq': 'quit --save', 'wqa': 'quit --save'}
-
+c.aliases.update({ 'insta': 'jseval function iprl5(){var d=document,z=d.createElement("scr"+"ipt"),b=d.body,l=d.location;try{if(!b)throw(0);d.title="(Saving...) "+d.title;z.setAttribute("src",l.protocol+"//www.instapaper.com/j/ZlZzYryg0nJ4?a=read-later&u="+encodeURIComponent(l.href)+"&t="+(new Date().getTime()));b.appendChild(z);}catch(e){alert("Please wait until the page has loaded.");}}iprl5();void(0)' })
+c.aliases.update({ 'read': 'jseval javascript:function iptxt(){var d=document;try{if(!d.body)throw(0);window.location="http://www.instapaper.com/text?u="+encodeURIComponent(d.location.href);}catch(e){alert("Please wait until the page has loaded.");}}iptxt();void(0)' })
 ## Time interval (in milliseconds) between auto-saves of
 ## config/cookies/etc.
 ## Type: Int
@@ -1407,7 +1408,7 @@ c.session.lazy_restore = True
 ##   - prev: Select the tab which came before the closed one (left in horizontal, above in vertical).
 ##   - next: Select the tab which came after the closed one (right in horizontal, below in vertical).
 ##   - last-used: Select the previously selected tab.
-c.tabs.select_on_remove = 'prev'
+c.tabs.select_on_remove = 'next'
 
 ## When to show the tab bar.
 ## Type: String
