@@ -74,3 +74,4 @@ function fish_user_key_bindings
   bind '$' bind_dollar
   bind \eC fzf-cd-home-widget
 end
+[ -f ~/.fzf.colors ] && source ~/.fzf.colors

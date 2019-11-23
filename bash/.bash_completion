@@ -1,0 +1,7 @@
+ALIAS_COMPLETION_FILE="~/.local/share/git/complete-alias/bash_completion.sh"
+if [ -f $ALIAS_COMPLETION_FILE]
+then . $ALIAS_COMPLETION_FILE
+     complete -F _complete_alias scu
+else
+    echo "Alias completion file not found at $ALIAS_COMPLETION_FILE"
+fi

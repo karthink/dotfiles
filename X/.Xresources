@@ -1,0 +1,35 @@
+Xft.dpi:       96
+Xft.antialias: true
+Xft.hinting:   true
+Xft.rgba:      rgb
+Xft.autohint:  false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+st.alpha: 0.95
+
+! ! special
+! st.foreground:   #cabd9a
+! st.background:   #1d1f21
+! st.cursorColor:  #c5c8c6
+
+! !! gruvbox:
+! st.color0: #1d2021
+! st.color1: #c96559
+! st.color2: #b8bb26
+! st.color3: #d79921
+! st.color4: #aebebf
+! st.color5: #b16286
+! st.color6: #689d6a
+! st.color7: #a89984
+! st.color8: #928374
+! st.color9: #fb4934
+! st.color10: #b8bb26
+! st.color11: #fabd2f
+! st.color12: #83a598
+! st.color13: #d3869b
+! st.color14: #8ec07c
+! st.color15: #ebdbb2
+
+Xcursor.theme: xcursor-breeze-snow
+Xcursor.size: 0
+#include ".Xresources.d/colors"

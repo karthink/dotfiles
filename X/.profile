@@ -20,7 +20,10 @@ export FZF_CTRL_T_COMMAND="command fd --type f --type d --type l -L -i --hidden 
 export FZF_CTRL_R_OPTS="--preview='echo {} | fold' --preview-window=up:35%"
 # export FZF_TMUX=0
 export FZF_ALT_C_OPTS="--preview 'tree -L 1 -l -C {} | head -100'"
-export DMENU_OPTIONS="-i -h 26 -fn Monospace-12.0 -nb #282828 -nf #CABD9A -sb #BBBB26 -sf #1D1D1D"
+if [ -f '$HOME/.dmenurc' ]; then
+source '$HOME/.dmenurc'
+fi
+# export DMENU_OPTIONS="-i -h 26 -fn Monospace-12.0 -nb #282828 -nf #CABD9A -sb #BBBB26 -sf #1D1D1D"
 # export SSH_AUTH_SOCK="/run/user/$(id -u)/gnupg/S.gpg-agent.ssh"
 
 systemctl --user import-environment

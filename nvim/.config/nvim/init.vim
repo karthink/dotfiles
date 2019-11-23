@@ -11,18 +11,27 @@ let maplocalleader =","
 call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/goyo.vim'
 Plug 'lervag/vimtex'
+Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-rsi'
 
+" Theme
+Plug 'chriskempson/base16-vim'
+
 " For snippets
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
-Plug 'honza/vim-snippets'
+Plug 'sirver/ultisnips'
+    let g:UltiSnipsSnippetDirectories=["/home/karthik/.config/nvim/"]
+    let g:UltiSnipsExpandTrigger = '<tab>'
+    let g:UltiSnipsJumpForwardTrigger = '<tab>'
+    let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+" Plug 'MarcWeber/vim-addon-mw-utils'
+" Plug 'tomtom/tlib_vim'
+" Plug 'garbas/vim-snipmate'
+" Plug 'honza/vim-snippets'
 
 " Fuzzy-find integration
 " Plug 'junegunn/fzf', { 'dir': '~/.config/fzf'}
@@ -201,3 +210,8 @@ call plug#end()
 " " Open line above, below
 " 	nnoremap [o O<Esc>j
 " 	nnoremap ]o o<Esc>k
+	let g:tex_flavor = 'latex'
+	let g:vimtex_view_method='zathura'
+	let g:vimtex_quickfix_mode=0
+	set conceallevel=1
+	let g:tex_conceal='abdmg'

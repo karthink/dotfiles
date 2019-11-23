@@ -290,8 +290,10 @@ bindsym $mod+Ctrl+j move workspace to output down
 #####################################
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border          normal 3
-default_floating_border normal 3
+# default_border          normal 3
+# default_floating_border normal 3
+default_border          pixel 0
+default_floating_border pixel 0
 
 # Make focused window easier to see
 # for_window [class="^client.focused$"] border pixel 3
@@ -304,7 +306,7 @@ hide_edge_borders none
 # change borders
 # bindsym $mod+u border none
 # bindsym $mod+y border pixel 1
-bindsym $mod+Shift+t border toggle 3
+bindsym $mod+Shift+t border toggle 4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -393,7 +395,7 @@ bindsym $mod+Shift+r restart
 ######################
 
 # General dropdown window traits. The order can matter.
-for_window [title="dropdown_*"] floating enable border pixel 3
+for_window [title="dropdown_*"] floating enable border pixel 0
 for_window [title="dropdown_*"] move scratchpad
 for_window [title="dropdown_*"] sticky enable
 for_window [title="dropdown_*"] scratchpad show
@@ -485,110 +487,95 @@ exec --no-startup_id sh -c $HOME/.local/bin/i3cmds/thinkpad_init
 ##   THEME    ##
 ################
 
-# set primary gruvbox colorscheme colors
-set $bg #282828
-set $fg #689d68
+# Color palette used for the terminal ( ~/.Xresources file )
+# Colors are gathered based on the documentation:
+# https://i3wm.org/docs/userguide.html#xresources
+# Change the variable name at the place you want to match the color
+# of your terminal like this:
+# [example]
+# If you want your bar to have the same background color as your
+# terminal background change the line 362 from:
+# background #14191D
+# to:
+# background $term_background
+# Same logic applied to everything else.
 
-set $red #b13f47
-set $green #98971a
-set $ygray #baba6a
-set $yellow #bbbb26
-set $yellower #efef4a
-set $blue #458588
-set $purple #d67cb8
-set $aqua #689d68
-set $beige #f4f4c3
-# set $gray #49525B
-set $gray #39424B
-set $darkgray #1d1d1d
-set $darkergray #1d2021
-# set $white #ffffff
-set $black #000000
+# Fallback theme is gruvbox
+set_from_resource $bg               background #282828
+set_from_resource $fg               foreground #689d68
+set_from_resource $base_bg          color0     #49525B
+set_from_resource $alert_intense    color1
+set_from_resource $focused_bg_brdr  color2     #bbbb26
+set_from_resource $focused_intense  color3     #efef4a
+set_from_resource $term_color4      color4
+set_from_resource $indicator        color5     #d67cb8
+set_from_resource $term_color6      color6
+set_from_resource $term_color7      color7
+set_from_resource $term_color8      color8
+set_from_resource $term_color9      color9
+set_from_resource $nofocus_bg_brdr  color10    #1d1d1d
+set_from_resource $term_color11     color11
+set_from_resource $term_color12     color12
+set_from_resource $term_color13     color13
+set_from_resource $alert            color14    #b13f47
+set_from_resource $unfocused_text   color15    #f4f4c3
+set $white #ffffff
+set $black $000000
+# set $aqua #689d68
+
+# set $alert #b13f47
+# set $focused_bg_brdr #bbbb26
+# set $focused_intense #efef4a
+# set $indicator #d67cb8
+# set $unfocused_text #f4f4c3
+# set $base_bg #49525B
+# set $nofocus_bg_brdr #1d1d1d
+# set $darkergray #1d2021
+
+# # BLUE THEME:
+# # set $bg #262c35
+# # set $gray #39424B
+# # set $darkgray #262c35
+# # set $darkergray #1f2226
+# set $blue #458588
+# set $bluer #458588
 
 bar {
 	font pango:Monospace 13
 	strip_workspace_numbers yes
 	tray_output none
 	position top
-	# status_command i3blocks
-        # status_command $HOME/Downloads/bumblebee-status/bumblebee-status -m  pomodoro datetime -p -t greyish-powerline
-	status_command $HOME/.local/share/git/bumblebee-status/bumblebee-status -m spotify mpd weather pomodoro nic cpu bluetooth pulseaudio:pasink battery datetime -p interval=1 datetime.format="%b %d, %I:%M %p" cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -T dropdown_htop -e htop" nic.exclude="lo,enp0s25" nic.format="{state} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" spotify.format="{title} - {artist}" mpd.format="{title} - {artist}" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" pomodoro.notify=r'notify-send "Time up!"' pomodoro.format="%mm" -t gruvbox-powerline
-	# title spacer redshift spacer.text="" -t greyish-powerline
-	# status_command i3blocks -c ~/.config/i3blocks/config
-	#separator_symbol |
+	status_command $HOME/.local/share/git/bumblebee-status/bumblebee-status -m spotify mpd weather pomodoro nic cpu bluetooth pulseaudio:pasink battery datetime -p interval=1 datetime.format="%b %d, %I:%M %p" cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -T dropdown_htop -e htop" progress.placeholder="" nic.exclude="lo,enp0s25" nic.format="{state} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" spotify.format="{title} - {artist}" mpd.format="{title} - {artist}" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" pomodoro.notify=r'notify-send "Time up!"' pomodoro.format="%mm" -t iceberg-dark-powerline
+        # Other themes:
+        # gruvbox: gruvbox-powerline gruvbox-powerline-light
+        # Blue: iceberg-dark-powerline
+        # Grey: greyish-powerline
+	# Unused modules: title spacer redshift spacer.text="" -t greyish-powerline
 
         colors {
-                                   #border   background  text
-		focused_workspace  $darkgray $yellow     $darkgray
-		active_workspace   $yellow   $darkergray $yellow
-		inactive_workspace $darkgray $darkgray   $beige
-		urgent_workspace   $red      $darkgray   $yellow
-                binding_mode       $yellow   $darkergray $yellow
-		background              $bg
+                                   #$border          $background      $text
+		focused_workspace   $focused_bg_brdr $focused_bg_brdr $bg
+		active_workspace    $nofocus_bg_brdr $bg              $focused_bg_brdr
+		inactive_workspace  $nofocus_bg_brdr $bg              $unfocused_text
+		urgent_workspace    $alert           $bg              $focused_bg_brdr
+                binding_mode        $focused_bg_brdr $bg      $focused_bg_brdr
+		background          $bg
 		statusline              #3C3C3C
 		separator               #3C3C3C
 	}
-    #colors {
-		## bar background color
-		#background                     $bg
-		## text color used for blocks that do not have a color specified.
-		#statusline                     $yellow
-		## workspaces section
-		##				border		backgr		text
-		#focused_workspace		$blue		$blue		$darkgray
-		#inactive_workspace		$darkgray	$darkgray	$yellow
-		#active_workspace		$darkgray	$darkgray	$yellow
-		#urgent_workspace		$red		$red		$bg
-    #}
+
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 	# tray_output primary
 #	tray_output eDP1
 }
 
 
-# class                   $border   $backgr.  $text     $indic. $child_border
-client.focused            $black $darkgray $yellower $purple $yellow
-client.focused_inactive   $gray     $gray     $beige    $purple $gray
-client.unfocused          $gray     $gray     $beige    $purple $gray
-client.urgent             $red      $red      $white    $red    $red
-client.background         $beige
-# client.unfocused        $darkgray $darkgray $yellow   $purple $darkgray
-# client.focused_inactive $darkgray $darkgray $yellow   $purple $darkgray
-# client.focused          $yellower $darkgray $yellow   $purple $yellow
-# client.urgent           $red      $red      $white    $red    $red
-# client.background       $beige
-
-
-## Color palette used for the terminal ( ~/.Xresources file )
-## Colors are gathered based on the documentation:
-## https://i3wm.org/docs/userguide.html#xresources
-## Change the variable name at the place you want to match the color
-## of your terminal like this:
-## [example]
-## If you want your bar to have the same background color as your
-## terminal background change the line 362 from:
-## background #14191D
-## to:
-## background $term_background
-## Same logic applied to everything else.
-#set_from_resource $term_background background
-#set_from_resource $term_foreground foreground
-#set_from_resource $term_color0     color0
-#set_from_resource $term_color1     color1
-#set_from_resource $term_color2     color2
-#set_from_resource $term_color3     color3
-#set_from_resource $term_color4     color4
-#set_from_resource $term_color5     color5
-#set_from_resource $term_color6     color6
-#set_from_resource $term_color7     color7
-#set_from_resource $term_color8     color8
-#set_from_resource $term_color9     color9
-#set_from_resource $term_color10    color10
-#set_from_resource $term_color11    color11
-#set_from_resource $term_color12    color12
-#set_from_resource $term_color13    color13
-#set_from_resource $term_color14    color14
-#set_from_resource $term_color15    color15
+# class                   $border          $backgr.         $text            $indic.    $child_border
+client.focused            $base_bg           $base_bg        $focused_intense $indicator $focused_bg_brdr
+client.focused_inactive   $nofocus_bg_brdr $nofocus_bg_brdr $unfocused_text  $indicator $nofocus_bg_brdr
+client.unfocused          $nofocus_bg_brdr $nofocus_bg_brdr $unfocused_text  $indicator $nofocus_bg_brdr
+client.urgent             $alert           $alert           $white           $alert     $alert
+client.background         $unfocused_text
 
 ## Start i3bar to display a workspace bar (plus the system information i3status if available)
 #bar {
@@ -632,12 +619,15 @@ client.background         $beige
 ## Originally client.focused border was 556064 and child_border was null
 #client.background       #2B2C2B
 
-#############################
-### SETTINGS FOR I3-GAPS: ###
-#############################
+#####################################
+### SETTINGS FOR I3-GAPS-ROUNDED: ###
+#####################################
+
+# Set border radius
+border_radius 11
 
 # Set inner/outer gaps
-gaps outer 10
+gaps outer 0
 gaps inner 20
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.

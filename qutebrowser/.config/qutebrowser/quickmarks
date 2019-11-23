@@ -17,3 +17,7 @@ backup/what is data deduplication https://www.backblaze.com/blog/backing-linux-b
 backup/restic help https://restic.readthedocs.io/en/stable/040_backup.html
 backup/restic intro https://restic.net/
 backup/syncthing https://syncthing.net/
+fish/fish-to-bash equivalents https://en.wikipedia.org/wiki/Friendly_interactive_shell
+emacs/custom-abbrev-expansions http://ergoemacs.org/emacs/elisp_abbrev.html
+cli/illustrated-guide-to-some-cli-tools https://www.wezm.net/technical/2019/10/useful-command-line-tools/
+emacs/regex syntax https://www.emacswiki.org/emacs/RegularExpression

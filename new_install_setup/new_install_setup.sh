@@ -34,7 +34,7 @@ install antiword \
 
 ########################################
 ## i3 setup
-install i3 dmenu \
+install i3-gaps dmenu \
         networkmanager-dmenu \
         xorg-xwininfo \
         rxvt-unicode \
@@ -51,6 +51,9 @@ install i3 dmenu \
         dunst \
         xdotool \
         lxappearance
+
+# Alternative i3
+# install i3-gaps-rounded-git
 
 # install st-manjaro \
 #         dmenu-manjaro \
@@ -136,6 +139,10 @@ install awesome-terminal-fonts \
 ########################################
 ## Misc utilities
 install jq redshift simple-mtpfs
+
+########################################
+#$ Theming utilities
+install grabc base16-manager
 
 # Sync and backup utilities 
 install rclone onedrive-abraunegg
