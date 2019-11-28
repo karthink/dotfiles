@@ -5,7 +5,7 @@ Xft.rgba:      rgb
 Xft.autohint:  false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
-st.alpha: 0.95
+st.alpha: 0.82
 
 ! ! special
 ! st.foreground:   #cabd9a

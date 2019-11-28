@@ -527,39 +527,39 @@ c.editor.command = ['st', '-T', 'dropdown_edit', '-e', '/usr/bin/nvim', '{file}'
 
 ## Font used in the completion categories.
 ## Type: Font
-# c.fonts.completion.category = 'bold 10pt monospace'
+c.fonts.completion.category = 'bold 11pt monospace'
 
 ## Font used in the completion widget.
 ## Type: Font
-# c.fonts.completion.entry = '10pt monospace'
+c.fonts.completion.entry = '11pt monospace'
 
 ## Font used for the debugging console.
 ## Type: QtFont
-# c.fonts.debug_console = '10pt monospace'
+c.fonts.debug_console = '11pt monospace'
 
 ## Font used for the downloadbar.
 ## Type: Font
-# c.fonts.downloads = '10pt monospace'
+c.fonts.downloads = '11pt monospace'
 
 ## Font used for the hints.
 ## Type: Font
-# c.fonts.hints = 'bold 10pt monospace'
+# c.fonts.hints = 'bold 11pt monospace'
 
 ## Font used in the keyhint widget.
 ## Type: Font
-# c.fonts.keyhint = '10pt monospace'
+c.fonts.keyhint = '11pt monospace'
 
 ## Font used for error messages.
 ## Type: Font
-# c.fonts.messages.error = '10pt monospace'
+c.fonts.messages.error = '11pt monospace'
 
 ## Font used for info messages.
 ## Type: Font
-# c.fonts.messages.info = '10pt monospace'
+c.fonts.messages.info = '11pt monospace'
 
 ## Font used for warning messages.
 ## Type: Font
-# c.fonts.messages.warning = '10pt monospace'
+c.fonts.messages.warning = '11pt monospace'
 
 ## Default monospace fonts. Whenever "monospace" is used in a font
 ## setting, it's replaced with the fonts listed here.
@@ -568,15 +568,15 @@ c.editor.command = ['st', '-T', 'dropdown_edit', '-e', '/usr/bin/nvim', '{file}'
 
 ## Font used for prompts.
 ## Type: Font
-# c.fonts.prompts = '10pt sans-serif'
+c.fonts.prompts = '11pt sans-serif'
 
 ## Font used in the statusbar.
 ## Type: Font
-# c.fonts.statusbar = '10pt monospace'
+c.fonts.statusbar = '11pt monospace'
 
 ## Font used in the tab bar.
 ## Type: QtFont
-# c.fonts.tabs = '10pt monospace'
+c.fonts.tabs = '11pt monospace'
 
 ## Font family for cursive fonts.
 ## Type: FontFamily
@@ -740,7 +740,7 @@ c.editor.command = ['st', '-T', 'dropdown_edit', '-e', '/usr/bin/nvim', '{file}'
 ## current input forms only partial matches, the keystring will be
 ## cleared after this time.
 ## Type: Int
-# c.input.partial_timeout = 5000
+c.input.partial_timeout = 12000
 
 ## Enable Opera-like mouse rocker gestures. This disables the context
 ## menu.
@@ -1132,18 +1132,19 @@ c.tabs.show = 'multiple'
 # c.tabs.title.alignment = 'left'
 
 ## Format to use for the tab title. The following placeholders are
-## defined:  * `{perc}`: Percentage as a string like `[10%]`. *
-## `{perc_raw}`: Raw percentage, e.g. `10`. * `{title}`: Title of the
-## current web page. * `{title_sep}`: The string ` - ` if a title is set,
-## empty otherwise. * `{index}`: Index of this tab. * `{id}`: Internal
-## tab ID of this tab. * `{scroll_pos}`: Page scroll position. *
-## `{host}`: Host of the current web page. * `{backend}`: Either
-## ''webkit'' or ''webengine'' * `{private}`: Indicates when private mode
-## is enabled. * `{current_url}`: URL of the current web page. *
-## `{protocol}`: Protocol (http/https/...) of the current web page. *
-## `{audio}`: Indicator for audio/mute status.
-## Type: FormatString
-# c.tabs.title.format = '{audio}{index}: {title}'
+## defined: * `{perc}`: Percentage as a string like `[10%]`. *
+## `{perc_raw}`: Raw percentage, e.g. `10`. * `{current_title}`: Title
+## of the current web page. * `{title_sep}`: The string ` - ` if a
+## title is set, empty otherwise. * `{index}`: Index of this tab. *
+## `{id}`: Internal tab ID of this tab. * `{scroll_pos}`: Page scroll
+## position. * `{host}`: Host of the current web page. * `{backend}`:
+## Either ''webkit'' or ''webengine'' * `{private}`: Indicates when
+## private mode is enabled. * `{current_url}`: URL of the current web
+## page. * `{protocol}`: Protocol (http/https/...) of the current web
+## page. * `{audio}`: Indicator for audio/mute status. Type:
+## FormatString
+# c.tabs.title.format = '{audio}{index}: {current_title}'
+c.tabs.title.format = '{audio} {current_title}'
 
 ## Format to use for the tab title for pinned tabs. The same placeholders
 ## like for `tabs.title.format` are defined.
@@ -1534,3 +1535,6 @@ config.bind(";m", 'hint --rapid links spawn umpv {hint-url}')
 # config.bind('<Return>', 'prompt-accept', mode='yesno')
 # config.bind('n', 'prompt-accept no', mode='yesno')
 # config.bind('y', 'prompt-accept yes', mode='yesno')
+
+# config.source('theme-nord.py')
+config.source("qute_colors.py")

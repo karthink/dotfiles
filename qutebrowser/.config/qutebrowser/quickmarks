@@ -21,3 +21,9 @@ fish/fish-to-bash equivalents https://en.wikipedia.org/wiki/Friendly_interactive
 emacs/custom-abbrev-expansions http://ergoemacs.org/emacs/elisp_abbrev.html
 cli/illustrated-guide-to-some-cli-tools https://www.wezm.net/technical/2019/10/useful-command-line-tools/
 emacs/regex syntax https://www.emacswiki.org/emacs/RegularExpression
+org/babel-async-execution https://emacs.stackexchange.com/questions/21301/async-execution-in-org-babel
+ml/julia-library-flux https://github.com/FluxML/Flux.jl
+emacs/pyenv https://github.com/pythonic-emacs/pyenv-mode
+emacs/yasnippet docs http://joaotavora.github.io/yasnippet/index.html
+emacs/lsp matlab stackoverflow question https://emacs.stackexchange.com/questions/54034/getting-emacs-lsp-mode-to-work-with-this-matlab-langserver
+git/ work-tree vs index vs HEAD https://stackoverflow.com/questions/3689838/whats-the-difference-between-head-working-tree-and-index-in-git

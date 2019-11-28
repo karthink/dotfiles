@@ -4,7 +4,8 @@
 
 ## define the font for dmenu to be used
 # Was "Noto-11.0"
-DMENU_FN="Monospace-12.0"
+# DMENU_FN="Monospace-13.0"
+DMENU_FN="FantasqueSansMono-13.5"
 
 ## Blue theme:
 ## background colour for unselected menu-items
@@ -24,19 +25,29 @@ DMENU_FN="Monospace-12.0"
 # # textcolour for unselected menu-items
 # DMENU_NF="#F7F7FB"
 
-# Nord theme:
-# background colour for unselected menu-items
-DMENU_NB="#2E3440"
-# background colour for selected menu-items
-DMENU_SB="#BF616A"
-# textcolour for selected menu-items
-DMENU_SF="#2E3440"
-# textcolour for unselected menu-items
-DMENU_NF="#E5E9F0"
+# # Nord theme:
+# # background colour for unselected menu-items
+# DMENU_NB="#2E3440"
+# # background colour for selected menu-items
+# DMENU_SB="#BF616A"
+# # textcolour for selected menu-items
+# DMENU_SF="#2E3440"
+# # textcolour for unselected menu-items
+# DMENU_NF="#E5E9F0"
 
-# ## Gruvbox theme
+## Gruvbox theme
+## background colour for unselected menu-items
+DMENU_NB="#282828"
+## textcolour for unselected menu-items
+DMENU_NF="#CABD9A"
+## background colour for selected menu-items
+DMENU_SB="#BBBB26"
+## textcolour for selected menu-items
+DMENU_SF="#262C35"
+
+# ## Gruvbox Hard theme
 # ## background colour for unselected menu-items
-# DMENU_NB="#282828"
+# DMENU_NB="#1D2021"
 # ## textcolour for unselected menu-items
 # DMENU_NF="#CABD9A"
 # ## background colour for selected menu-items
@@ -48,6 +59,6 @@ DMENU_NF="#E5E9F0"
 TERMINAL_CMD="st -T dropdown -e"
 
 ## export our variables
-DMENU_OPTIONS="-h 26 -fn $DMENU_FN -nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB "
+DMENU_OPTIONS="-h 26 -fn $DMENU_FN -nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB -b "
 
 export DMENU_OPTIONS
