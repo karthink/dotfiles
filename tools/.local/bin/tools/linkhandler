@@ -8,7 +8,7 @@
 
 # If no url given. Opens browser. For using script as $BROWSER.
 #[ -z "$1" ] && { "$BROWSER"; exit; }
-link=$(xclip -selection clipboard -o) || link=$(xclip -o) ;
+link=$(xclip -o) || link=$(xclip -selection clipboard -o) ;
 [ -z "$link" ] && exit;
 
 case "$link" in

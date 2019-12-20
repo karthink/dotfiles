@@ -27,3 +27,12 @@ emacs/pyenv https://github.com/pythonic-emacs/pyenv-mode
 emacs/yasnippet docs http://joaotavora.github.io/yasnippet/index.html
 emacs/lsp matlab stackoverflow question https://emacs.stackexchange.com/questions/54034/getting-emacs-lsp-mode-to-work-with-this-matlab-langserver
 git/ work-tree vs index vs HEAD https://stackoverflow.com/questions/3689838/whats-the-difference-between-head-working-tree-and-index-in-git
+emacs/config/jamiecollinson https://jamiecollinson.com/blog/my-emacs-config/
+emacs/config/FredeEB https://github.com/FredeEB/.emacs.d/blob/master/config.org#lsp
+latex/inkspace macros for fast drawing https://github.com/karthink/inkscape-shortcut-manager
+entertainment/community-episodes https://www.the123movies.gdn/series/community/
+unicode/replacement-for-common-icons https://tutorialzine.com/2014/12/you-dont-need-icons-here-are-100-unicode-symbols-that-you-can-use
+unicode/character-lists https://www.compart.com/en/unicode/category/So
+emacs/projectile-mode-docs https://projectile.readthedocs.io/en/latest/configuration/#mode-line-indicator
+emacs/counsel-projectile-docs https://github.com/ericdanan/counsel-projectile
+emacs/config/pure-emacs-and-exwm https://github.com/farlado/dotemacs/blob/master/config.org

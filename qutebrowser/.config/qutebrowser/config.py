@@ -382,7 +382,7 @@ c.content.autoplay = False
 ##   - true
 ##   - false
 ##   - ask
-# c.content.notifications = 'ask'
+c.content.notifications = False
 
 ## Allow pdf.js to view PDF files in the browser. Note that the files can
 ## still be downloaded by clicking the download button in the pdf.js
@@ -1199,7 +1199,7 @@ c.tabs.title.format = '{audio} {current_title}'
 ## `:open google qutebrowser`.
 ## Type: Dict
 c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}',
-                       'r': 'https://reddit.com/r/{}',
+                       'r': 'https://old.reddit.com/r/{}',
                        'gs!': 'https://scholar.google.com/scholar?q={}'}
 
 ## Page(s) to open at the start.
@@ -1536,5 +1536,5 @@ config.bind(";m", 'hint --rapid links spawn umpv {hint-url}')
 # config.bind('n', 'prompt-accept no', mode='yesno')
 # config.bind('y', 'prompt-accept yes', mode='yesno')
 
-# config.source('theme-nord.py')
-config.source("qute_colors.py")
+config.source('theme-nord.py')
+# config.source("qute_colors.py")

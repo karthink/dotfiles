@@ -6,6 +6,8 @@
 *.toc
 *.synctex.gz
 *.fmt
+*.nav
+*.snm
 _region_.prv
 *.synctex.gz
 _region_.tex

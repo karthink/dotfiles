@@ -38,6 +38,7 @@ bindsym XF86Back exec --no-startup-id cabl
 
 # Link handler
 bindsym $mod+Shift+bar exec --no-startup-id linkhandler
+bindsym $mod+backslash exec --no-startup-id cabl
 
 # Search for file
 bindsym XF86Search exec --no-startup-id dmenufindfile
@@ -48,7 +49,7 @@ bindsym $mod+XF86Search exec --no-startup-id cheatsheet
 # Show contents of clipboard
 bindsym $mod+Ctrl+c exec --no-startup-id showclip
 # Unicode symbols to clipboard
-bindsym $mod+backslash exec --no-startup dmenuunicode
+# bindsym $mod+backslash exec --no-startup dmenuunicode
 # Easy mount
 bindsym $mod+Insert exec --no-startup dmenumount
 bindsym $mod+Shift+Insert exec --no-startup dmenuumount
@@ -401,6 +402,7 @@ for_window [title="dropdown_*"] move scratchpad
 for_window [title="dropdown_*"] sticky enable
 for_window [title="dropdown_*"] scratchpad show
 for_window [title="dropdown_*"] resize set 1000 600
+for_window [title="dropdown_quicklatex"] resize set 900 300
 for_window [title="dropdown_calcdd"] resize set 900 300
 for_window [title="dropdown_zffdd"] resize set 800 400
 for_window [title="dropdown_weatherreport"] resize set 1135 750
@@ -410,6 +412,7 @@ for_window [title="dropdown_*"] move position center
 bindsym $mod+grave exec --no-startup-id ddspawn tmuxdd
 bindsym $mod+c exec --no-startup-id ddspawn calcdd # -f mono:pixelsize=26
 bindsym $mod+Shift+m exec --no-startup-id ddspawn notmuch-emacs
+bindsym $mod+m exec --no-startup-id ddspawn notmuch-emacs
 bindsym $mod+Shift+w exec --no-startup-id ddspawn weatherreport
 
 # Hover settings
@@ -545,8 +548,8 @@ bar {
 	font pango:Monospace 13.5
 	strip_workspace_numbers yes
 	tray_output none
-	position bottom
-	status_command $HOME/.local/share/git/bumblebee-status/bumblebee-status -m spotify mpd weather pomodoro nic cpu bluetooth pulseaudio:pasink battery datetime -p interval=1 datetime.format="%b %d, %I:%M %p" cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -T dropdown_htop -e htop" progress.placeholder="" nic.exclude="lo,enp0s25" nic.format="{state} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" spotify.format="{title} - {artist}" mpd.format="{title} - {artist}" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" pomodoro.notify=r'notify-send "Time up!"' pomodoro.format="%mm" -t gruvbox-powerline
+	position top
+	status_command $HOME/.local/share/git/bumblebee-status/bumblebee-status -m spotify mpd redshift weather pomodoro nic cpu bluetooth pulseaudio:pasink battery datetime -p interval=1 datetime.format="%b %d, %I:%M %p" cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -T dropdown_htop -e htop" progress.placeholder="" nic.exclude="lo,enp0s25" nic.format="{state} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" spotify.format="{title} - {artist}" mpd.format="{title} - {artist}" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" pomodoro.notify=r'notify-send "Time up!"' pomodoro.format="%mm" -t iceberg-dark-powerline
         # Other themes:
         # gruvbox: gruvbox-powerline gruvbox-powerline-light
         # Blue: iceberg-dark-powerline
@@ -559,7 +562,7 @@ bar {
 		active_workspace    $nofocus_bg_brdr $bg              $focused_bg_brdr
 		inactive_workspace  $nofocus_bg_brdr $bg              $unfocused_text
 		urgent_workspace    $alert           $bg              $indicator
-                binding_mode        $white           $bg              $focused_bg_brdr
+                binding_mode        $nofocus_bg_brdr $bg              $focused_bg_brdr
 		background          $bg
 		statusline              #3C3C3C
 		separator               #3C3C3C
