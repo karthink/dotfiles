@@ -171,3 +171,4 @@ colors() {
 	done
 }
 
+[ -f ~/.fzf.colors ] && source ~/.fzf.colors

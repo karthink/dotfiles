@@ -81,6 +81,7 @@ bindsym Shift+XF86Explorer exec --no-startup-id  playerctl next
 bindsym Shift+XF86Tools exec --no-startup-id  playerctl previous
 bindsym Shift+XF86LaunchA exec --no-startup-id  playerctl stop
 bindsym $mod+XF86LaunchA exec --no-startup-id  mpvcontrol quit
+bindsym $mod+Shift+XF86LaunchA exec --no-startup-id umpv_last
 
 # Volume control
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks
@@ -141,7 +142,7 @@ bindsym $mod+e exec "emacsclient -c"
 #######################
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 bindsym --release button2 kill
 bindsym --whole-window mod+button2 kill
 
@@ -160,10 +161,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left 24 px
+bindsym $mod+Shift+j move down 24 px
+bindsym $mod+Shift+k move up 24 px
+bindsym $mod+Shift+l move right 24 px
 # bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
@@ -186,14 +187,15 @@ bindsym $mod+Shift+Escape move container to workspace back_and_forth; workspace 
 # split orientation
 # bindsym $mod+h split h;exec notify-send 'tile horizontally'
 # bindsym $mod+v split v;exec notify-send 'tile vertically'
-bindsym $mod+q split toggle
+bindsym $mod+t split toggle
+bindsym $mod+v split toggle
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout toggle stacking tabbed split
-bindsym $mod+v layout toggle split
+# bindsym $mod+v layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+p floating toggle
@@ -351,6 +353,7 @@ for_window [class="Arandr"] floating enable border normal
 for_window [class="transmission"] floating enable border normal
 for_window [class="ark"] floating enable border normal
 for_window [class="Pavucontrol"] floating enable border normal
+for_window [class="pavucontrol-qt"] floating enable border normal
 for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Simple-scan"] floating enable border normal
@@ -545,11 +548,12 @@ set $black #000000
 # set $bluer #458588
 
 bar {
-	font pango:Monospace 13.5
+	font pango:Monospace 12.5
 	strip_workspace_numbers yes
 	tray_output none
 	position top
-	status_command $HOME/.local/share/git/bumblebee-status/bumblebee-status -m spotify mpd redshift weather pomodoro nic cpu bluetooth pulseaudio:pasink battery datetime -p interval=1 datetime.format="%b %d, %I:%M %p" cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -T dropdown_htop -e htop" progress.placeholder="" nic.exclude="lo,enp0s25" nic.format="{state} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" spotify.format="{title} - {artist}" mpd.format="{title} - {artist}" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" pomodoro.notify=r'notify-send "Time up!"' pomodoro.format="%mm" -t iceberg-dark-powerline
+        status_command /usr/bin/i3status-rs $HOME/.config/i3status-rust/config.toml
+	# status_command $HOME/.local/share/git/bumblebee-status/bumblebee-status -m spotify mpd redshift weather pomodoro nic cpu bluetooth pulseaudio:pasink battery datetime -p interval=1 datetime.format="%b %d, %I:%M %p" cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -T dropdown_htop -e htop" progress.placeholder="" nic.exclude="lo,enp0s25" nic.format="{state} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" spotify.format="{title} - {artist}" mpd.format="{title} - {artist}" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" pomodoro.notify=r'notify-send "Time up!"' pomodoro.format="%mm" -t iceberg-dark-powerline
         # Other themes:
         # gruvbox: gruvbox-powerline gruvbox-powerline-light
         # Blue: iceberg-dark-powerline
