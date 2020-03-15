@@ -68,8 +68,8 @@ bindsym XF86WLAN exec --no-startup-id networkmanager_dmenu
 bindsym XF86AudioPlay exec --no-startup-id  playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id  playerctl position 10+
 bindsym XF86AudioPrev exec --no-startup-id  playerctl position 10-
-bindsym Shift+XF86AudioNext exec --no-startup-id  playerctl next
-bindsym Shift+XF86AudioPrev exec --no-startup-id  playerctl previous
+bindsym $mod+XF86AudioNext exec --no-startup-id  playerctl next
+bindsym $mod+XF86AudioPrev exec --no-startup-id  playerctl previous
 bindsym Shift+XF86AudioPlay exec --no-startup-id  playerctl stop
 bindsym $mod+XF86AudioPlay exec --no-startup-id  mpvcontrol quit
 bindsym $mod+Shift+f exec --no-startup-id  mpvcontrol full
@@ -77,8 +77,10 @@ bindsym $mod+Shift+f exec --no-startup-id  mpvcontrol full
 bindsym XF86LaunchA exec --no-startup-id  playerctl play-pause
 bindsym XF86Explorer exec --no-startup-id  playerctl position 10+
 bindsym XF86Tools exec --no-startup-id  playerctl position 10-
-bindsym Shift+XF86Explorer exec --no-startup-id  playerctl next
-bindsym Shift+XF86Tools exec --no-startup-id  playerctl previous
+bindsym Shift+XF86Explorer exec --no-startup-id  playerctl position 60+
+bindsym Shift+XF86Tools exec --no-startup-id  playerctl position 60-
+bindsym $mod+XF86Explorer exec --no-startup-id  playerctl next
+bindsym $mod+XF86Tools exec --no-startup-id  playerctl previous
 bindsym Shift+XF86LaunchA exec --no-startup-id  playerctl stop
 bindsym $mod+XF86LaunchA exec --no-startup-id  mpvcontrol quit
 bindsym $mod+Shift+XF86LaunchA exec --no-startup-id umpv_last
@@ -187,6 +189,7 @@ bindsym $mod+Shift+Escape move container to workspace back_and_forth; workspace 
 # split orientation
 # bindsym $mod+h split h;exec notify-send 'tile horizontally'
 # bindsym $mod+v split v;exec notify-send 'tile vertically'
+bindsym $mod+Shift+q split toggle
 bindsym $mod+t split toggle
 bindsym $mod+v split toggle
 
@@ -300,7 +303,7 @@ default_border          pixel 4
 default_floating_border pixel 4
 
 # Make focused window easier to see
-# for_window [class="^client.focused$"] border pixel 3
+for_window [class=".*"] title_format "<b>%title</b>"
 # for_window [class="^client.focused$"] border normal 8
 # for_window [class=".*"] border normal 2
 
@@ -328,10 +331,14 @@ assign [class="Skype"] $ws6
 assign [class="qutebrowser"] $ws2
 
 # assign [class="MATLAB R2018b"] $ws8
-assign [title="Figure "] $ws7
+# assign [title="Figure "] $ws7
 
 # Open specific applications in floating mode
 for_window [title="Figure "] floating enable border normal
+for_window [class="Gnuplot"] floating enable border normal
+for_window [class="XDvi"] floating enable border normal
+for_window [class="SchemeGraphics"] floating enable border normal
+for_window [class="SchemeGraphics"] move position center
 # for_window [title="alsamixer"] floating enable border pixel 1
 # for_window [class="calamares"] floating enable border normal
 # for_window [class="Clipgrab"] floating enable
@@ -516,7 +523,7 @@ set_from_resource $focused_bg_brdr  color2     #bbbb26
 set_from_resource $focused_intense  color3     #efef4a
 set_from_resource $term_color4      color4
 set_from_resource $indicator        color5     #d67cb8
-set_from_resource $term_color6      color6
+set_from_resource $focused_text     color6
 set_from_resource $term_color7      color7
 set_from_resource $term_color8      color8
 set_from_resource $term_color9      color9
@@ -578,11 +585,11 @@ bar {
 }
 
 
-# class                 $border          $backgr.         $text            $indic.    $child_border
-client.focused          $black           $base_bg         $focused_intense $indicator $focused_bg_brdr
-client.focused_inactive $nofocus_bg_brdr $nofocus_bg_brdr $unfocused_text  $indicator $nofocus_bg_brdr
-client.unfocused        $nofocus_bg_brdr $nofocus_bg_brdr $unfocused_text  $indicator $nofocus_bg_brdr
-client.urgent           $alert           $alert           $white           $alert     $alert
+# class                 $border          $backgr.         $text           $indic.    $child_border
+client.focused          $black           $base_bg         $focused_text   $indicator $focused_bg_brdr
+client.focused_inactive $nofocus_bg_brdr $nofocus_bg_brdr $unfocused_text $indicator $nofocus_bg_brdr
+client.unfocused        $nofocus_bg_brdr $nofocus_bg_brdr $unfocused_text $indicator $nofocus_bg_brdr
+client.urgent           $alert           $alert           $white          $alert     $alert
 client.background       $unfocused_text
 
 ## Start i3bar to display a workspace bar (plus the system information i3status if available)
@@ -632,7 +639,7 @@ client.background       $unfocused_text
 #####################################
 
 # Set border radius
-border_radius 11
+# border_radius 11
 
 # Set inner/outer gaps
 gaps outer 0

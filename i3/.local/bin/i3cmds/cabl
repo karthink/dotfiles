@@ -3,9 +3,10 @@
 # qrencode required for qrcode generation.
 # groff/zathura required for man pages.
 
-if [ -f ~/.dmenurc]; then
+if [ -f ~/.dmenurc ]; then
  . ~/.dmenurc
 fi
+echo $DMENU_OPTIONS
 
 prim="$(xclip -o)"; [ -z "$prim" ] && exit
 
@@ -20,8 +21,8 @@ wikipedia() { "$BROWSER" "https://en.wikipedia.org/wiki/$@" ;}
 # wiktionary() { "$BROWSER" "https://en.wiktionary.org/wiki/$@" ;}
 # maps() { "$BROWSER" "https://www.openstreetmap.org/search?query=$@" ;}
 # ebay() { "$BROWSER" "https://www.ebay.com/sch/$@" ;}
-play() { mpv "$@" ;}
-list() { umpv "$@" ;}
+playonly() { mpv "$@" ;}
+playlist() { umpv "$@" ;}
 
 echo "$prim" | grep "^.*\.[A-Za-z]\+.*" >/dev/null && gotourl() { "$BROWSER" "$@" ;}
 echo "$prim" | grep "^.*@.*\.[A-Za-z]\+$" >/dev/null && email() { xdg-email "$@" ;}
@@ -29,6 +30,6 @@ command -v qrencode >/dev/null && qrcode() { qrencode "$@" -s 10 -o /tmp/qr.png 
 man -k "^$prim$" >/dev/null && manual() { man -Tpdf "$prim" | zathura - ;}
 
 func="$(declare -F | awk '{print $3}' | dmenu $DMENU_OPTIONS -p "Plumb \"$(echo "$prim" | cut -c -30)\" to?" -i -l 15)"
-notify-send "func is $func"
+# notify-send "func is $func"
 
 [ -z "$func" ] || "$func" "$prim"

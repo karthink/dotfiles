@@ -7,4 +7,5 @@
 # open <.ffpipe &
 # zff > .ffpipe
 
-open < <(zff)
+# open < <(zff)
+zff | open
