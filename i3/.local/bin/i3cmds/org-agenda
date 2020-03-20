@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+emacsclient -c -F "((name . \"dropdown_org-agenda\"))" -e '(progn (org-agenda-list) (delete-other-windows) (setq-local mode-line-format `(" " . ,mode-line-buffer-identification)))'
+# emacsclient -t -e '(progn (org-agenda-list) (delete-other-windows) (setq-local mode-line-format `(" " . ,mode-line-buffer-identification)))'
+

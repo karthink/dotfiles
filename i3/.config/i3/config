@@ -42,8 +42,8 @@ bindsym $mod+backslash exec --no-startup-id cabl
 
 # Search for file
 bindsym XF86Search exec --no-startup-id dmenufindfile
-bindsym $mod+Ctrl+o exec --no-startup-id bash -c "open < <(dff)"
-bindsym $mod+o exec --no-startup-id ddspawn zffdd
+bindsym $mod+o exec --no-startup-id bash -c "open < <(dff)"
+bindsym $mod+Ctrl+o exec --no-startup-id ddspawn zffdd
 # Get a cheatsheet on common linux commands
 bindsym $mod+XF86Search exec --no-startup-id cheatsheet
 # Show contents of clipboard
@@ -73,6 +73,7 @@ bindsym $mod+XF86AudioPrev exec --no-startup-id  playerctl previous
 bindsym Shift+XF86AudioPlay exec --no-startup-id  playerctl stop
 bindsym $mod+XF86AudioPlay exec --no-startup-id  mpvcontrol quit
 bindsym $mod+Shift+f exec --no-startup-id  mpvcontrol full
+bindsym $mod+Shift+XF86AudioPlay exec --no-startup-id umpv_last
 
 bindsym XF86LaunchA exec --no-startup-id  playerctl play-pause
 bindsym XF86Explorer exec --no-startup-id  playerctl position 10+
@@ -122,18 +123,16 @@ bindsym Shift+XF86MonBrightnessDown exec --no-startup-id brightness_HID down
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+Menu exec terminal -e 'bmenu'
 bindsym $mod+XF86HomePage exec $BROWSER
-# bindsym $mod+F3 exec pcmanfm
 bindsym $mod+F3 exec terminal -e $FILE
 bindsym XF86HomePage exec terminal -e $FILE
 bindsym $mod+Shift+F3 exec gksu pcmanfm
-bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+F12 exec --no-startup-id compositor_toggle
-#bindsym $mod+t exec --no-startup-id pkill compton
-#bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym Shift+Print --release exec --no-startup-id i3-scrot -s
+
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 bindsym $mod+e exec "emacsclient -c"
 
@@ -215,6 +214,7 @@ bindsym $mod+a focus parent
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+grave move scratchpad
+bindsym $mod+Shift+underscore move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
@@ -411,18 +411,23 @@ for_window [title="dropdown_*"] floating enable border pixel 0
 for_window [title="dropdown_*"] move scratchpad
 for_window [title="dropdown_*"] sticky enable
 for_window [title="dropdown_*"] scratchpad show
-for_window [title="dropdown_*"] resize set 1000 600
+for_window [title="dropdown_tmuxdd"] resize set 900 450
+for_window [title="dropdown_notmuch-emacs"] resize set 1000 600
 for_window [title="dropdown_quicklatex"] resize set 900 300
-for_window [title="dropdown_calcdd"] resize set 900 300
+for_window [title="dropdown_calc"] resize set 900 300
 for_window [title="dropdown_zffdd"] resize set 800 400
 for_window [title="dropdown_weatherreport"] resize set 1135 750
+for_window [title="dropdown_edit"] resize set 600 400
+for_window [title="dropdown_org-agenda"] resize set 960 360
 for_window [title="dropdown_*"] move position center
 
-# Dropdown utilities setup - terminal, dropdown calculator, weather and mail
-bindsym $mod+grave exec --no-startup-id ddspawn tmuxdd
+# Dropdown utilities setup - terminal, dropdown calculator, weather, mail etc
+bindsym $mod+grave exec --no-startup-id ddspawn -t tmuxdd
 bindsym $mod+c exec --no-startup-id ddspawn calcdd # -f mono:pixelsize=26
-bindsym $mod+Shift+m exec --no-startup-id ddspawn notmuch-emacs
+bindsym XF86Calcuator exec --no-startup-id ddspawn calcdd # -f mono:pixelsize=26
 bindsym $mod+m exec --no-startup-id ddspawn notmuch-emacs
+bindsym $mod+F5 exec --no-startup-id ddspawn org-capture
+bindsym $mod+F6 exec --no-startup-id ddspawn org-agenda
 bindsym $mod+Shift+w exec --no-startup-id ddspawn weatherreport
 
 # Hover settings
@@ -555,10 +560,10 @@ set $black #000000
 # set $bluer #458588
 
 bar {
-	font pango:Monospace 12.5
+	font pango:Monospace 13
 	strip_workspace_numbers yes
 	tray_output none
-	position top
+	position bottom
         status_command /usr/bin/i3status-rs $HOME/.config/i3status-rust/config.toml
 	# status_command $HOME/.local/share/git/bumblebee-status/bumblebee-status -m spotify mpd redshift weather pomodoro nic cpu bluetooth pulseaudio:pasink battery datetime -p interval=1 datetime.format="%b %d, %I:%M %p" cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -T dropdown_htop -e htop" progress.placeholder="" nic.exclude="lo,enp0s25" nic.format="{state} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" spotify.format="{title} - {artist}" mpd.format="{title} - {artist}" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" pomodoro.notify=r'notify-send "Time up!"' pomodoro.format="%mm" -t iceberg-dark-powerline
         # Other themes:
@@ -639,7 +644,7 @@ client.background       $unfocused_text
 #####################################
 
 # Set border radius
-# border_radius 11
+border_radius 11
 
 # Set inner/outer gaps
 gaps outer 0

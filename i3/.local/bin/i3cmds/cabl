@@ -21,8 +21,8 @@ wikipedia() { "$BROWSER" "https://en.wikipedia.org/wiki/$@" ;}
 # wiktionary() { "$BROWSER" "https://en.wiktionary.org/wiki/$@" ;}
 # maps() { "$BROWSER" "https://www.openstreetmap.org/search?query=$@" ;}
 # ebay() { "$BROWSER" "https://www.ebay.com/sch/$@" ;}
-playonly() { mpv "$@" ;}
-playlist() { umpv "$@" ;}
+play() { mpv "$@" ;}
+list() { umpv "$@" ;}
 
 echo "$prim" | grep "^.*\.[A-Za-z]\+.*" >/dev/null && gotourl() { "$BROWSER" "$@" ;}
 echo "$prim" | grep "^.*@.*\.[A-Za-z]\+$" >/dev/null && email() { xdg-email "$@" ;}

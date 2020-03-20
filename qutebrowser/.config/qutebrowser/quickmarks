@@ -36,3 +36,6 @@ unicode/character-lists https://www.compart.com/en/unicode/category/So
 emacs/projectile-mode-docs https://projectile.readthedocs.io/en/latest/configuration/#mode-line-indicator
 emacs/counsel-projectile-docs https://github.com/ericdanan/counsel-projectile
 emacs/config/pure-emacs-and-exwm https://github.com/farlado/dotemacs/blob/master/config.org
+dotfiles/bare-git-method-tutorial https://www.atlassian.com/git/tutorials/dotfiles
+emacs/writing-emacs-packages https://old.reddit.com/r/emacs/comments/fj5qth/my_first_experience_with_writing_emacs_packages/
+emacs/anki-setup https://yiufung.net/post/anki-org/

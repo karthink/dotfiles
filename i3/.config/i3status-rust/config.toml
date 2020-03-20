@@ -1,0 +1,111 @@
+icons = "awesome"
+
+# [[block]]
+# block = "xrandr"
+# icons = true
+# resolution = true
+# interval = 2
+
+# [[block]]
+# block = "pomodoro"
+# length = 25
+# break_length = 5
+# message = "Take a break!"
+# break_message = "Back to work!"
+# # enable_i3nagbar = false
+
+# [[block]]
+# block = "disk_space"
+# path = "/"
+# alias = "/"
+# info_type = "available"
+# unit = "GB"
+# interval = 20
+# warning = 20.0
+# alert = 10.0
+
+[[block]]
+block = "focused_window"
+max_width = 35
+
+[[block]]
+block = "music"
+max_width = 10
+buttons = ["prev", "play", "next"]
+
+[[block]]
+block = "weather"
+format = "{weather} {temp}°"
+# format = "{weather} ({location}) {temp}°, {wind} m/s {direction}"
+service = { name = "openweathermap", api_key = "ff919dde6e7244856542b3931b367a66", city_id = "5392952", units = "metric" }
+
+# [[block]]
+# block = "memory"
+# display_type = "memory"
+# format_mem = "{Mup}%"
+# format_swap = "{SUp}%"
+
+[[block]]
+block = "net"
+device = "wlp3s0"
+ssid = true
+# signal_strength = true
+ip = false
+speed_up = false
+speed_down = false
+# graph_up = true
+# interval = 5
+# use_bits = false
+
+[[block]]
+block = "cpu"
+# on_click = "htop"
+interval = 2
+
+# [[block]]
+# block = "load"
+# interval = 1
+# format = "{1m}"
+
+[[block]]
+block = "bluetooth"
+mac = "00:02:5B:02:A5:9C"
+# mac = "34:02:86:56:9B:8F"
+
+[[block]]
+block = "sound"
+on_click = "pavucontrol-qt"
+
+[[block]]
+block = "backlight"
+
+[[block]]
+block = "battery"
+driver = "upower"
+device = "DisplayDevice"
+# interval = 10
+format = "{percentage}% {time}"
+# format = "{percentage}% {power}W"
+
+[[block]]
+block = "time"
+interval = 60
+format = "%a %d/%m %R"
+
+[[theme]]
+# name = "slick"
+name = "solarized-dark"
+[theme.overrides]
+idle_bg = "#2e3440"
+idle_fg = "#98cff0"
+info_bg = "#d08770"
+info_fg = "#2e3440"
+good_bg = "#a3be8c"
+# good_fg
+critical_bg = "#bf616a"
+# critical_fg
+# separator
+# separator_bg
+# separator_fg
+warning_bg = "#b48ead"
+# warning_fg
