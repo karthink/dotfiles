@@ -25,6 +25,7 @@ alias	more less
 alias	mpv "mpv --input-ipc-server=/tmp/mpvsoc"(date +%s)
 alias	ref "shortcuts >/dev/null; source ~/.config/fish/fish_shortcuts" 
 alias	x "xclip -selection clipboard" 
+# alias   wp "find ~/Pictures/wallpapers/ -name .git -prune -o -type f | shuf | sxiv -o -"
 
 command -v nvim >/dev/null && alias vim="nvim" && alias vimdiff="nvim -d" # Use neovim for vim if present.
 

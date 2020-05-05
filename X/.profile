@@ -1,4 +1,3 @@
-export QT_QPA_PLATFORMTHEME="qt5ct"
 export TERMINAL="st"
 export EDITOR="/usr/bin/nvim"
 export VISUAL="/usr/bin/emacsclient"
@@ -26,6 +25,7 @@ fi
 # export DMENU_OPTIONS="-i -h 26 -fn Monospace-12.0 -nb #282828 -nf #CABD9A -sb #BBBB26 -sf #1D1D1D"
 # export SSH_AUTH_SOCK="/run/user/$(id -u)/gnupg/S.gpg-agent.ssh"
 
+# export QT_QPA_PLATFORMTHEME="qt5ct"
 systemctl --user import-environment
 # Set keyboard repeat rate and delay
 xset r rate 265 44
@@ -51,7 +51,8 @@ fi
 # stty -ixon
 
 # Add my scripts to PATH
-export PATH="$(du $HOME/.local/bin/* | cut -f2 | tr '\n' ':')$PATH"
+# export PATH="$(du $HOME/.local/bin/* | cut -f2 | tr '\n' ':')$PATH"
+export PATH=$HOME/.local/bin/i3cmds:$HOME/.local/bin/tools:$PATH
 
 # less/man colors
 export LESS=-R

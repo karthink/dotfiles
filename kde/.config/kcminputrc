@@ -1,0 +1,9 @@
+[Keyboard]
+KeyboardRepeating=0
+NumLock=2
+RepeatDelay=226
+RepeatRate=40.22
+
+[Mouse]
+XLbInptAccelProfileFlat=true
+XLbInptPointerAcceleration=0.6

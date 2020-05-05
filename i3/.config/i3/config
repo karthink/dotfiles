@@ -9,7 +9,8 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # Use Mouse+$mod to drag floating windows, $mod + Right_mouse to resize
-floating_modifier $mod
+# floating_modifier $mod
+floating_modifier Mod1
 
 ###############
 ## UTILITIES ##
@@ -20,12 +21,12 @@ bindsym $mod+Return exec $TERMINAL
 bindsym $mod+Shift+Return exec tmuxgen
 
 # start program launcher
-# bindsym $mod+r exec --no-startup-id dmenu_run $DMENU_OPTIONS
 bindsym $mod+space exec --no-startup-id dmenu_recency
 
 # launch categorized menu
 # bindsym $mod+z exec --no-startup-id morc_menu
-# bindsym $mod+F1 exec --no-startup-id morc_menu
+bindsym $mod+F1 exec --no-startup-id morc_menu
+bindsym $mod+r exec --no-startup-id morc_menu
 
 # launch window switcher
 # bind to mod key itself, and to R_Alt
@@ -42,8 +43,8 @@ bindsym $mod+backslash exec --no-startup-id cabl
 
 # Search for file
 bindsym XF86Search exec --no-startup-id dmenufindfile
-bindsym $mod+o exec --no-startup-id bash -c "open < <(dff)"
-bindsym $mod+Ctrl+o exec --no-startup-id ddspawn zffdd
+bindsym $mod+Ctrl+o exec --no-startup-id bash -c "open < <(dff)"
+bindsym $mod+o exec --no-startup-id ddspawn -t zffdd
 # Get a cheatsheet on common linux commands
 bindsym $mod+XF86Search exec --no-startup-id cheatsheet
 # Show contents of clipboard
@@ -68,6 +69,8 @@ bindsym XF86WLAN exec --no-startup-id networkmanager_dmenu
 bindsym XF86AudioPlay exec --no-startup-id  playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id  playerctl position 10+
 bindsym XF86AudioPrev exec --no-startup-id  playerctl position 10-
+bindsym Shift+XF86AudioNext exec --no-startup-id  playerctl position 60+
+bindsym Shift+XF86AudioPrev exec --no-startup-id  playerctl position 60-
 bindsym $mod+XF86AudioNext exec --no-startup-id  playerctl next
 bindsym $mod+XF86AudioPrev exec --no-startup-id  playerctl previous
 bindsym Shift+XF86AudioPlay exec --no-startup-id  playerctl stop
@@ -115,6 +118,11 @@ bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up
 bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 bindsym Shift+XF86MonBrightnessUp exec --no-startup-id brightness_HID up
 bindsym Shift+XF86MonBrightnessDown exec --no-startup-id brightness_HID down
+
+bindsym $mod+F10 exec "xbacklight -inc 10; notify-send 'brightness up'"
+bindsym $mod+F9 exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym $mod+Shift+F10 exec --no-startup-id brightness_HID up
+bindsym $mod+Shift+F9 exec --no-startup-id brightness_HID down
 # bindsym $mod+Shift+equal exec --no-startup-id brightness_HID up
 # Bindsym $mod+Shift+minus exec --no-startup-id brightness_HID down
 
@@ -126,7 +134,7 @@ bindsym $mod+XF86HomePage exec $BROWSER
 bindsym $mod+F3 exec terminal -e $FILE
 bindsym XF86HomePage exec terminal -e $FILE
 bindsym $mod+Shift+F3 exec gksu pcmanfm
-bindsym $mod+F12 exec --no-startup-id compositor_toggle
+bindsym $mod+Shift+F12 exec --no-startup-id compositor_toggle
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 
 bindsym Print exec --no-startup-id i3-scrot
@@ -143,7 +151,7 @@ bindsym $mod+e exec "emacsclient -c"
 #######################
 
 # kill focused window
-bindsym $mod+q kill
+bindsym $mod+Shift+q kill
 bindsym --release button2 kill
 bindsym --whole-window mod+button2 kill
 
@@ -188,9 +196,7 @@ bindsym $mod+Shift+Escape move container to workspace back_and_forth; workspace 
 # split orientation
 # bindsym $mod+h split h;exec notify-send 'tile horizontally'
 # bindsym $mod+v split v;exec notify-send 'tile vertically'
-bindsym $mod+Shift+q split toggle
-bindsym $mod+t split toggle
-bindsym $mod+v split toggle
+bindsym $mod+q split toggle
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -218,7 +224,7 @@ bindsym $mod+Shift+underscore move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
+bindsym $mod+minus scratchpad show move position center
 
 ##########################
 ## WORKSPACE NAVIGATION ##
@@ -327,18 +333,37 @@ title_align center
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws2
 # assign [class="Pcmanfm"] $ws3
-assign [class="Skype"] $ws6
+# assign [class="Skype"] $ws6
 assign [class="qutebrowser"] $ws2
 
 # assign [class="MATLAB R2018b"] $ws8
 # assign [title="Figure "] $ws7
 
+# Applications for Plasma-desktop
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
+for_window [class="plasmashell"] floating enable;
+for_window [class="Plasma"] floating enable; border none
+for_window [title="plasma-desktop"] floating enable; border none
+for_window [title="win7"] floating enable; border none
+for_window [class="krunner"] floating enable; border none
+for_window [class="Kmix"] floating enable; border none
+for_window [class="Klipper"] floating enable; border none
+for_window [class="Plasmoidviewer"] floating enable; border none
+for_window [class="(?i)*nextcloud*"] floating disable
+for_window [class="plasmashell" window_type="notification"] floating enable, border none, move position 1450px 20px
+# for_window [class="plasmashell" window_type="notification"] floating enable, border none, move right 700px, move down 450px
+no_focus [class="plasmashell" window_type="notification"] 
+
 # Open specific applications in floating mode
 for_window [title="Figure "] floating enable border normal
+for_window [class="sun-awt-X11-*"] floating enable border normal
 for_window [class="Gnuplot"] floating enable border normal
 for_window [class="XDvi"] floating enable border normal
 for_window [class="SchemeGraphics"] floating enable border normal
 for_window [class="SchemeGraphics"] move position center
+for_window [class="Inkscape"] floating enable border normal
+for_window [class="Inkscape"] resize set 1200 700
+for_window [class="Inkscape"] move position center
 # for_window [title="alsamixer"] floating enable border pixel 1
 # for_window [class="calamares"] floating enable border normal
 # for_window [class="Clipgrab"] floating enable
@@ -354,6 +379,7 @@ for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
+for_window [title="xev"] floating enable border normal
 # for_window [title="About Pale Moon"] floating enable
 # for_window [class="Pamac-manager"] floating enable
 for_window [class="Arandr"] floating enable border normal
@@ -368,6 +394,7 @@ for_window [class="(?i)System-config-printer.py"] floating enable border normal
 
 for_window [class="Anki"] floating enable border normal
 for_window [class="Skype"] floating enable border normal
+for_window [class="zoom"] floating enable border normal
 # for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 # for_window [class="Xfburn"] floating enable
@@ -379,8 +406,7 @@ for_window [title="Default - Wine desktop"] floating enable
 for_window [title="Bluetooth Devices"] floating enable border normal
 for_window [title="*Preferences"] floating enable border normal
 for_window [title="TexText"] floating enable border normal
-
-for_window [class="mpv"] floating enable border pixel #pixel 2
+for_window [class="mpv"] floating enable border pixel
 no_focus [class="mpv"]
 # for_window [title="weather"] floating enable border pixel 4 resize set 1280 850
 for_window [class="Remmina"] floating enable border normal resize set 800 600
@@ -391,7 +417,7 @@ for_window [title="mpvfloat"] floating enable border pixel
 for_window [title="mpvfloat"] sticky enable
 # for_window [title="mpvfloat"] border pixel 0
 no_focus [title="mpvfloat"]
-bindsym $mod+F10 exec --no-startup-id camtoggle
+# bindsym $mod+F10 exec --no-startup-id camtoggle
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -419,6 +445,7 @@ for_window [title="dropdown_zffdd"] resize set 800 400
 for_window [title="dropdown_weatherreport"] resize set 1135 750
 for_window [title="dropdown_edit"] resize set 600 400
 for_window [title="dropdown_org-agenda"] resize set 960 360
+for_window [title="dropdown_org-capture"] resize set 900 400
 for_window [title="dropdown_*"] move position center
 
 # Dropdown utilities setup - terminal, dropdown calculator, weather, mail etc
@@ -468,19 +495,20 @@ bindsym $mod+Shift+y		exec --no-startup-id i3resize left
 bindsym $mod+Shift+u		exec --no-startup-id i3resize down
 bindsym $mod+Shift+i		exec --no-startup-id i3resize up
 bindsym $mod+Shift+o		exec --no-startup-id i3resize right
-
+bindsym $mod+bracketright       exec --no-startup-id i3resize double
+bindsym $mod+bracketleft        exec --no-startup-id i3resize half
 # Lock screen
-# bindsym $mod+0 exec --no-startup-id betterlockscreen -l
 # bindsym $mod+BackSpace exec --no-startup-id dm-tool lock
 
 ###############
 ## AUTOSTART ##
 ###############
 
+exec --no-startup-id systemctl --user start redshift.service
 exec --no-startup-id $HOME/.fehbg
 exec --no-startup-id lxqt-powermanagement
 exec --no-startup-id dunst
-exec --no-startup-id xautolock -time 10  -locker betterlockscreen -l
+exec --no-startup-id xautolock -time 10  -locker multilockscreen -l
 exec_always --no-startup-id fix_xcursor
 # exec --no-startup-id redshift_location_aware
 exec --no-startup_id sh -c $HOME/.local/bin/i3cmds/thinkpad_init
@@ -559,11 +587,11 @@ set $black #000000
 # set $blue #458588
 # set $bluer #458588
 
-bar {
+bar  {
 	font pango:Monospace 13
 	strip_workspace_numbers yes
 	tray_output none
-	position bottom
+	position top
         status_command /usr/bin/i3status-rs $HOME/.config/i3status-rust/config.toml
 	# status_command $HOME/.local/share/git/bumblebee-status/bumblebee-status -m spotify mpd redshift weather pomodoro nic cpu bluetooth pulseaudio:pasink battery datetime -p interval=1 datetime.format="%b %d, %I:%M %p" cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -T dropdown_htop -e htop" progress.placeholder="" nic.exclude="lo,enp0s25" nic.format="{state} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" spotify.format="{title} - {artist}" mpd.format="{title} - {artist}" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" pomodoro.notify=r'notify-send "Time up!"' pomodoro.format="%mm" -t iceberg-dark-powerline
         # Other themes:
@@ -597,48 +625,6 @@ client.unfocused        $nofocus_bg_brdr $nofocus_bg_brdr $unfocused_text $indic
 client.urgent           $alert           $alert           $white          $alert     $alert
 client.background       $unfocused_text
 
-## Start i3bar to display a workspace bar (plus the system information i3status if available)
-#bar {
-#i3bar_command i3bar
-#status_command i3blocks
-#position top
-
-### please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-##	tray_output eDP1
-
-#bindsym button4 nop
-#bindsym button5 nop
-##   font xft:URWGothic-Book 11
-#strip_workspace_numbers yes
-
-#colors {
-#background #222D31
-#statusline #F9FAF9
-#separator  #454947
-
-##                      border  backgr. text
-#focused_workspace  #F9FAF9 #16a085 #292F34
-#active_workspace   #595B5B #353836 #FDF6E3
-#inactive_workspace #595B5B #222D31 #EEE8D5
-#binding_mode       #16a085 #2C2C2C #F9FAF9
-#urgent_workspace   #16a085 #FDF6E3 #E5201D
-#}
-#}
-
-## hide/unhide i3status bar
-## bindsym $mod+m bar mode toggle
-
-## Theme colors
-## class                   border  backgr. text    indic.   child_border
-#client.focused          #EFF4F7 #556064 #80FFF9 #FDC93A    #EFF4F7
-#client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-#client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-#client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-#client.placeholder      #000000 #0c0c0c #ffffff #000000
-## Originally client.focused border was 556064 and child_border was null
-#client.background       #2B2C2B
-
 #####################################
 ### SETTINGS FOR I3-GAPS-ROUNDED: ###
 #####################################
@@ -647,8 +633,8 @@ client.background       $unfocused_text
 border_radius 11
 
 # Set inner/outer gaps
-gaps outer 0
-gaps inner 20
+gaps outer 4
+gaps inner 16
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>

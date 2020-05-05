@@ -32,8 +32,8 @@ then
 	i3 "[title=\"dropdown_$script\"] scratchpad show; [title=\"dropdown_$script\"] move position center"
 else
 	echo "Window not detected... spawning."
-        if [ -n $run_in_term ]; then
-            i3 "exec --no-startup-id $TERMINAL -t dropdown_$script $@ -e $script"
+        if [[ -n $run_in_term ]]; then
+            i3 "exec --no-startup-id $TERMINAL -t dropdown_$script -e $script $@"
         else
             i3 "exec --no-startup-id $script $@"
         fi
