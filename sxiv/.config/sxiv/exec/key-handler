@@ -1,9 +1,14 @@
 #!/bin/bash
+setbg() {
+    cp "$1" "$HOME/.config/wall$2" && sh "$HOME/.fehbg" &
+}
+
 while read file
 do
         case "$1" in
-        "w") feh --bg-fill $file ;;
-		#nitrogen --set-auto $1 & ;;
+        "w") setbg $file 1 && setbg $file 2 ;;
+        "1") setbg $file 1;;
+        "2") setbg $file 2;;
         "c")
 		[ -z "$destdir" ] && destdir="$(sed "s/\s.*#.*$//;/^\s*$/d" ~/.config/bmdirs | awk '{print $2}' | dmenu $DMENU_OPTIONS -l 20 -i -p "Copy file(s) to where?" | sed "s|~|$HOME|g")"
 		[ -z "$destdir" ] && exit
@@ -19,6 +24,8 @@ do
 	"R")
 		convert -rotate -90 "$file" "$file" ;;
 	"f")
+		convert -flop "$file" "$file" ;;
+	"|")
 		convert -flop "$file" "$file" ;;
 	"y")
 		echo -n "$file" | xclip -selection clipboard &&

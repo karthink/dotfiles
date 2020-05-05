@@ -1241,13 +1241,23 @@ config.bind('<,><f><f>', 'spawn --userscript qute-pass')
 config.bind('<,><f><u>', 'spawn --userscript qute-pass --username-only')
 config.bind('<,><f><p>', 'spawn --userscript qute-pass --password-only')
 config.bind('<,><f><o>', 'spawn --userscript qute-pass --otp-only')
- 
+
 ## Bindings for normal mode
 config.bind("<Ctrl-m>", 'hint links spawn mpv {hint-url}')
 config.bind("<Ctrl-Shift-M>", 'spawn mpv {url}')
 config.bind("<Alt-m>", 'hint links spawn umpv {hint-url}')
 config.bind("<Alt-Shift-M>", 'spawn umpv {url}')
-config.bind(";m", 'hint --rapid links spawn umpv {hint-url}')
+# config.bind("<;><m><m>", 'hint --rapid links spawn umpv {hint-url}')
+config.bind(";mm", 'spawn umpv {url}')
+config.bind(";mo", 'hint links spawn umpv {hint-url}')
+config.bind(";mh", 'hint links spawn umpv --profile=protocol-hd-video {hint-url}')
+config.bind(";ma", 'hint links spawn umpv --video=no {hint-url}')
+
+config.bind(";MM", 'spawn mpv {url}')
+config.bind(";MO", 'hint links spawn mpv {hint-url}')
+config.bind(";MH", 'hint links spawn mpv --profile=protocol-hd-video {hint-url}')
+config.bind(";MA", 'hint links spawn mpv --video=no --force-window=yes {hint-url}')
+
 # config.bind("'", 'enter-mode jump_mark')
 # config.bind('+', 'zoom-in')
 # config.bind('-', 'zoom-out')
@@ -1536,5 +1546,5 @@ config.bind(";m", 'hint --rapid links spawn umpv {hint-url}')
 # config.bind('n', 'prompt-accept no', mode='yesno')
 # config.bind('y', 'prompt-accept yes', mode='yesno')
 
-config.source('theme-nord.py')
-# config.source("qute_colors.py")
+# config.source('theme-nord.py')
+config.source("qute_colors.py")

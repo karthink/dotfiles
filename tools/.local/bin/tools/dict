@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Retrieve definition of word or phrase from dict.org. Uses the dict protocol. 
+
+while getopts ":hf" opt; do
+    case ${opt} in
+        f )
+            force_refresh=1
+            ;;
+        h )
+            echo "Obtain definition of word or phrase from dict.org. Uses the dict protocol.
+                  -h: This help info
+                  -f: Force refresh if definition is cached"
+            ;;
+        \? ) echo "Usage: dict [-f] phrase"
+             ;;
+    esac
+done
+
+shift $((OPTIND -1))
+
+[ -z "$1" ] && exit
+phrase=$@
+cachefile="$HOME/.cache/dict/$@"
+
+if [ -f "$cachefile" ] && [ -z $force_refresh ]
+then
+   less -F "$cachefile"
+else
+    curl -s "dict://dict.org/define:$phrase:english" | sed -e '1,/retrieved/ d' | head -n -3 | tr -d '' | tee "$cachefile" | less -F
+fi

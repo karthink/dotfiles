@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
-emacsclient -c -F "((name . \"dropdown_org-capture\"))" -e '(progn (org-capture) (delete-other-windows) (setq-local mode-line-format `(" " . ,mode-line-buffer-identification)))'
-# emacsclient -c -e '(progn (setq frame-title-format "dropdown_notmuch-emacs") (notmuch) (notmuch-jump-search))'
+emacsclient -c -F "((name . \"dropdown_org-capture\"))" -e '(with-temp-buffer 
+(org-capture)
+(delete-other-windows)
+(setq-local mode-line-format `(" " . ,mode-line-buffer-identification)))'
 

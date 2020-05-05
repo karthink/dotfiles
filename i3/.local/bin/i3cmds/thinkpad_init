@@ -1,5 +1,7 @@
 #!/bin/bash
 setxkbmap -option ctrl:nocaps
-xmodmap ~/.Xmodmap_i3
-xset r rate 260 45
+xmodmap -e "remove mod1 = Alt_R"
+xmodmap -e "add mod4 = Alt_R"
+xset r rate 280 45
 xcape
+

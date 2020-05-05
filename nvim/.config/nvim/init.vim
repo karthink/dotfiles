@@ -12,7 +12,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/goyo.vim'
 Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim'
-Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -162,8 +162,9 @@ call plug#end()
 
 "  Diff current file
 	nmap <leader>d :w !diff % -<CR>
-" Write as root:
-	" command W w !sudo tee % >/dev/null
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
 
 " This is a <..> template
 " How the <..> does this work?
@@ -183,12 +184,12 @@ call plug#end()
 	imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " Jump out of insert mode with jj or jk
-	inoremap jj <Esc>
-	inoremap kj <Esc>
+	" inoremap jj <Esc>
+	" inoremap kj <Esc>
 
 	" Airline font
-	set guifont=Liberation\ Mono\ for\ Powerline\ 10
-	let g:airline_powerline_fonts = 1
+	" set guifont=Liberation\ Mono\ for\ Powerline\ 10
+	" let g:airline_powerline_fonts = 1
 
 	" if !exists('g:airline_symbols')
 	" 	let g:airline_symbols = {}

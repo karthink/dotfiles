@@ -38,8 +38,20 @@ import fcntl
 import stat
 import string
 from datetime import datetime
+import argparse
 
-files = sys.argv[1:]
+# parser = argparse.ArgumentParser(description="Enqueue items in mpv")
+# parser.add_argument('--no-video', type=str, dest='novideo', help='play without video')
+# args = parser.parse_args()
+# print(args.novideo)
+
+# files = sys.argv[1:]
+arguments = sys.argv[1:]
+
+# Parse arguments
+def is_option(argument):
+    if argument[0] in ['-','+']:
+        return True
 
 # this is the same method mpv uses to decide this
 def is_url(filename):
@@ -56,7 +68,9 @@ def make_abs(filename):
     if not is_url(filename):
         return os.path.abspath(filename)
     return filename
-files = [make_abs(f) for f in files]
+
+files = [make_abs(f) for f in arguments if not is_option(f)]
+options = [op for op in arguments if is_option(op)]
 
 FIFO = os.path.join(os.getenv("HOME"), ".umpv_fifo")
 HISTORY = os.path.join(os.getenv("HOME"), ".cache/umpv_history")
@@ -102,8 +116,9 @@ else:
 
     opts = (os.getenv("MPV") or "mpv").split()
     # opts.extend(["--loop-playlist", "--no-terminal", "--force-window", "--input-file=" + FIFO,
-    opts.extend(["--keep-open", "--no-terminal", "--force-window", "--input-file=" + FIFO,
-                 "--"])
+    opts.extend(["--keep-open", "--no-terminal", "--force-window", "--input-file=" + FIFO])
+    opts.extend(options)
+    opts.extend(["--"])
     opts.extend(files)
 
     subprocess.check_call(opts)
