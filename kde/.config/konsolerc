@@ -1,3 +1,6 @@
+[Desktop Entry]
+DefaultProfile=
+
 [DownloadDialog Settings]
 Height 1200=477
 Height 900=412
@@ -5,16 +8,16 @@ Width 1600=700
 Width 1920=700
 
 [Favorite Profiles]
-Favorites=Light.profile,Shell.profile
+Favorites=Light.profile
 
 [KonsoleWindow]
 ShowMenuBarByDefault=false
 ShowWindowTitleOnTitleBar=true
 
 [MainWindow]
-Height 1200=746
-Height 900=746
+Height 1200=1168
+Height 900=339
 MenuBar=Disabled
 State=AAAA/wAAAAD9AAAAAAAAAv8AAAMsAAAABAAAAAQAAAAIAAAACPwAAAAA
-Width 1600=1272
-Width 1920=1272
+Width 1600=839
+Width 1920=1920
