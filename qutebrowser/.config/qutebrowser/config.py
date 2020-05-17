@@ -1253,10 +1253,10 @@ config.bind(";mo", 'hint links spawn umpv {hint-url}')
 config.bind(";mh", 'hint links spawn umpv --profile=protocol-hd-video {hint-url}')
 config.bind(";ma", 'hint links spawn umpv --video=no {hint-url}')
 
-config.bind(";MM", 'spawn mpv {url}')
-config.bind(";MO", 'hint links spawn mpv {hint-url}')
-config.bind(";MH", 'hint links spawn mpv --profile=protocol-hd-video {hint-url}')
-config.bind(";MA", 'hint links spawn mpv --video=no --force-window=yes {hint-url}')
+config.bind(";mM", 'spawn mpv {url}')
+config.bind(";mO", 'hint links spawn mpv {hint-url}')
+config.bind(";mH", 'hint links spawn mpv --profile=protocol-hd-video {hint-url}')
+config.bind(";mA", 'hint links spawn mpv --video=no --force-window=yes {hint-url}')
 
 # config.bind("'", 'enter-mode jump_mark')
 # config.bind('+', 'zoom-in')
@@ -1546,5 +1546,5 @@ config.bind(";MA", 'hint links spawn mpv --video=no --force-window=yes {hint-url
 # config.bind('n', 'prompt-accept no', mode='yesno')
 # config.bind('y', 'prompt-accept yes', mode='yesno')
 
-# config.source('theme-nord.py')
-config.source("qute_colors.py")
+config.source('theme-nord.py')
+# config.source("qute_colors.py")

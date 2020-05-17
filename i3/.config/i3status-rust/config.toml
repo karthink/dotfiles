@@ -97,19 +97,19 @@ format = "%a %d/%m %R"
 name = "solarized-dark"
 [theme.overrides]
 
-## Onedark theme
-idle_bg = "#282c34"
-idle_fg = "#c8ccd4"
-info_bg = "#abb2bf"
-info_fg = "#353b45"
-good_bg = "#98c379"
-# good_fg
-critical_bg = "#be5046"
-# critical_fg
-# separator
-# separator_bg
-# separator_fg
-warning_bg = "#c678dd"
+# ## Onedark theme
+# idle_bg = "#282c34"
+# idle_fg = "#c8ccd4"
+# info_bg = "#abb2bf"
+# info_fg = "#353b45"
+# good_bg = "#98c379"
+# # good_fg
+# critical_bg = "#be5046"
+# # critical_fg
+# # separator
+# # separator_bg
+# # separator_fg
+# warning_bg = "#c678dd"
 
 # warning_fg
 ### Gruvbox dark hard
@@ -128,17 +128,20 @@ warning_bg = "#c678dd"
 ## warning_fg
 
 
-## Nord theme:
-#idle_bg = "#2e3440"
-#idle_fg = "#98cff0"
-#info_bg = "#d08770"
-#info_fg = "#2e3440"
-#good_bg = "#a3be8c"
-## good_fg
-#critical_bg = "#bf616a"
-## critical_fg
-## separator
-## separator_bg
-## separator_fg
-#warning_bg = "#b48ead"
-## warning_fg
+# Nord theme:
+idle_bg = "#2e3440"
+# idle_fg = "#98cff0"
+idle_fg = "#e5e9f0"
+info_bg = "#8fbcbb"
+# info_bg = "#d8dee9"
+info_fg = "#3b4252"
+good_bg = "#8fbcbb"
+# good_bg = "#a3be8c"
+# good_fg
+critical_bg = "#bf616a"
+# critical_fg
+# separator
+# separator_bg
+# separator_fg
+warning_bg = "#b48ead"
+# warning_fg

@@ -11,6 +11,12 @@
 _region_.prv
 *.synctex.gz
 _region_.tex
+_region_.prv
+ltximg
+
+# Exclude byte-compiled files
+*.elc
+*.pyc
 
 # Exclude emacs/vim backup files
 *~

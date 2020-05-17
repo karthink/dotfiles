@@ -58,3 +58,10 @@ emacs/config set 1 https://github.com/raxod502/radian
 emacs/doom startup optimizations https://github.com/hlissner/doom-emacs/blob/develop/docs/faq.org#how-does-doom-start-up-so-quickly
 emacs/config set 2 https://github.com/michaeltd/.emacs.d
 awk/quick tutorial https://ferd.ca/awk-in-20-minutes.html
+syncthing/GUI http://127.0.0.1:8384/#
+restic/how to restore data https://restic.readthedocs.io/en/stable/050_restore.html
+ffmpeg/h265 guide https://trac.ffmpeg.org/wiki/Encode/H.265
+ffmpeg/h264 guide https://trac.ffmpeg.org/wiki/Encode/H.264#crf
+ffmpeg/recording the screen https://trac.ffmpeg.org/wiki/Capture/Desktop
+emacs/elfeed tips https://nullprogram.com/blog/2013/11/26/
+awesomewm/fancy materia setup https://github.com/HikariKnight/material-awesome

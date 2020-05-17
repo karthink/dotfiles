@@ -8,6 +8,7 @@
 # `record kill`: Kill existing recording
 #
 # If there is already a running instance, user will be prompted to end it.
+[ -f $HOME/.dmenurc ] && . $HOME/.dmenurc
 
 updateicon() { \
 	echo "$1" > /tmp/recordingicon
@@ -19,27 +20,48 @@ killrecording() {
 	# kill with SIGTERM, allowing finishing touches.
 	kill -15 "$recpid"
 	rm -f /tmp/recordingpid
-	updateicon ""
-	pkill -RTMIN+9 i3blocks
+	# # updateicon ""
+	# pkill -RTMIN+9 i3blocks
 	# even after SIGTERM, ffmpeg may still run, so SIGKILL it.
 	sleep 3
 	kill -9 "$recpid"
 	exit
 	}
 
-screencast() { \
+screencast_cpu() { \
 	ffmpeg -y \
 	-f x11grab \
 	-framerate 60 \
 	-s $(xdpyinfo | grep dimensions | awk '{print $2;}') \
 	-i $DISPLAY \
 	-f alsa -i default \
-	-r 30 \
- 	-c:v libx264rgb -crf 0 -preset ultrafast -c:a flac \
+ 	-c:v libx264rgb -crf 18 -preset ultrafast -tune zerolatency \
+        -c:a flac \
 	"$HOME/screencast-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
-	updateicon "⏺️🎙️"
+	# updateicon "⏺️🎙️"
        	}
+
+screencast_kms() {
+    ffmpeg -device /dev/dri/card0 \
+           -f kmsgrab \
+           -i - \
+           -vf 'hwmap=derive_device=vaapi,scale_vaapi=w=1920:h=1080:format=nv12' -c:v h264_vaapi -qp 24\
+           output.mp4
+}
+
+screencast_vaapi() {
+    ffmpeg -vaapi_device /dev/dri/renderD128 \
+           -f alsa -i default -c:a flac \
+           -f x11grab \
+           -framerate 30 \
+           -video_size 1920x1200 \
+           -i $DISPLAY+1599,0 \
+           -vf 'hwupload,scale_vaapi=format=nv12' -c:v h264_vaapi -qp 24 \
+           "$HOME/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
+    echo $! > /tmp/recordingpid
+           # -video_size $(xdpyinfo | grep dimensions | awk '{print $2;}') \
+}
 
 video() { ffmpeg \
 	-f x11grab \
@@ -48,7 +70,7 @@ video() { ffmpeg \
  	-c:v libx264 -qp 0 -r 30 \
 	"$HOME/video-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
-	updateicon "⏺️"
+	# updateicon "⏺️"
 	}
 
 webcamhidef() { ffmpeg \
@@ -57,7 +79,7 @@ webcamhidef() { ffmpeg \
 	-video_size 1920x1080 \
 	"$HOME/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
-	updateicon "🎥"
+	# updateicon "🎥"
 	}
 
 webcam() { ffmpeg \
@@ -66,7 +88,7 @@ webcam() { ffmpeg \
 	-video_size 640x480 \
 	"$HOME/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
-	updateicon "🎥"
+	# updateicon "🎥"
 	}
 
 
@@ -76,13 +98,23 @@ audio() { \
 	-c:a flac \
 	"$HOME/audio-$(date '+%y%m%d-%H%M-%S').flac" &
 	echo $! > /tmp/recordingpid
-	updateicon "🎙️"
+	# updateicon "🎙️"
 	}
 
+ask_screencast_type() { \
+    choice=$(printf "vaapi\\ncpu\\nkms" | dmenu $DMENU_OPTIONS -i -p "Screencast encoder:")
+    case "$choice" in
+        vaapi) screencast_vaapi;;
+        cpu)   screencast_cpu;;
+        kms)   screencast_kms;;
+        *)     askrecording;;
+    esac
+}
+
 askrecording() { \
-	choice=$(printf "screencast\\nvideo\\naudio\\nwebcam\\nwebcam (hi-def)\\nkill" | dmenu -i -p "Select recording style:")
+	choice=$(printf "screencast\\nvideo\\naudio\\nwebcam\\nwebcam (hi-def)\\nkill" | dmenu $DMENU_OPTIONS -i -p "Select recording style:")
 	case "$choice" in
-		screencast) screencast;;
+		screencast) ask_screencast_type;;
 		audio) audio;;
 		video) video;;
 		webcam) webcam;;
@@ -90,18 +122,20 @@ askrecording() { \
                 kill) killrecording;;
                 
 	esac
-	}
+}
 
 asktoend() { \
-	response=$(printf "No\\nYes" | dmenu -i -p "Recording still active. End recording?") &&
+	response=$(printf "No\\nYes" | dmenu $DMENU_OPTIONS -i -p "Recording still active. End recording?") &&
 	[ "$response" = "Yes" ] &&  killrecording
+
 	}
 
 
 case "$1" in
-	screencast) screencast;;
+	screencast) screencast_cpu;;
 	audio) audio;;
 	video) video;;
 	kill) killrecording;;
-	*) ([ -f /tmp/recordingpid ] && asktoend && exit) || askrecording;;
+	*) ([ -f /tmp/recordingpid ] && killrecording && exit 0) || askrecording;;
+	# *) ([ -f /tmp/recordingpid ] && asktoend && exit) || askrecording;;
 esac

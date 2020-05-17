@@ -25,7 +25,6 @@ install 7z bash-completion \
         xcape
 
 install antiword \
-       eless \
        silver-searcher-git \
        fzf \
        fd \

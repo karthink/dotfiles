@@ -433,7 +433,7 @@ bindsym $mod+Shift+r restart
 ######################
 
 # General dropdown window traits. The order can matter.
-for_window [title="dropdown_*"] floating enable border pixel 0
+for_window [title="dropdown_*"] floating enable # border pixel 0
 for_window [title="dropdown_*"] move scratchpad
 for_window [title="dropdown_*"] sticky enable
 for_window [title="dropdown_*"] scratchpad show
@@ -505,10 +505,11 @@ bindsym $mod+bracketleft        exec --no-startup-id i3resize half
 ###############
 
 exec --no-startup-id systemctl --user start redshift.service
+exec --no-startup-id sudo systemctl start multilockscreen@karthik.service
 exec --no-startup-id $HOME/.fehbg
 exec --no-startup-id lxqt-powermanagement
 exec --no-startup-id dunst
-exec --no-startup-id xautolock -time 10  -locker multilockscreen -l
+# exec --no-startup-id xautolock -time 10  -locker multilockscreen -l
 exec_always --no-startup-id fix_xcursor
 # exec --no-startup-id redshift_location_aware
 exec --no-startup_id sh -c $HOME/.local/bin/i3cmds/thinkpad_init
