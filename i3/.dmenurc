@@ -1,3 +1,4 @@
+#!/bin/sh
 #
 # ~/.dmenurc
 #
@@ -5,7 +6,8 @@
 ## define the font for dmenu to be used
 # Was "Noto-11.0"
 # DMENU_FN="Monospace-13.0"
-DMENU_FN="FantasqueSansMono-13.5"
+# DMENU_FN="FantasqueSansMono-13.5"
+DMENU_FN="IosevkaNerdFont-13.0"
 
 ## Blue theme:
 ## background colour for unselected menu-items

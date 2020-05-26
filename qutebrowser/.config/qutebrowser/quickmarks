@@ -65,3 +65,11 @@ ffmpeg/h264 guide https://trac.ffmpeg.org/wiki/Encode/H.264#crf
 ffmpeg/recording the screen https://trac.ffmpeg.org/wiki/Capture/Desktop
 emacs/elfeed tips https://nullprogram.com/blog/2013/11/26/
 awesomewm/fancy materia setup https://github.com/HikariKnight/material-awesome
+ffmpeg/convert to gif https://superuser.com/questions/556029/how-do-i-convert-a-video-to-gif-using-ffmpeg-with-reasonable-quality
+ffmpeg/use with ffcast for easy window selection https://unix.stackexchange.com/questions/113695/gif-screencasting-the-unix-way
+git/working tree vs index vs HEAD https://stackoverflow.com/questions/3689838/whats-the-difference-between-head-working-tree-and-index-in-git
+org/babel save result to file https://emacs.stackexchange.com/questions/54695/no-graphic-output-for-matlab-src-block-in-org-mode
+org/link to (things inside source blocks) https://emacs.stackexchange.com/questions/57429/org-mode-link-to-tag-target-inside-a-source-code-block
+matlab/save figure without plotting it https://www.mathworks.com/matlabcentral/answers/43326-create-figure-without-displaying-it
+emacs/easy-kill https://github.com/leoliu/easy-kill
+org/hugo export docs https://ox-hugo.scripter.co/doc/org-meta-data-to-hugo-front-matter/

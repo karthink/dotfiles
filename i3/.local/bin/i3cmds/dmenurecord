@@ -51,12 +51,12 @@ screencast_kms() {
 }
 
 screencast_vaapi() {
-    ffmpeg -vaapi_device /dev/dri/renderD128 \
+ffcast -w % ffmpeg -vaapi_device /dev/dri/renderD128 \
            -f alsa -i default -c:a flac \
            -f x11grab \
            -framerate 30 \
            -video_size 1920x1200 \
-           -i $DISPLAY+1599,0 \
+           -i $DISPLAY+0,0 \
            -vf 'hwupload,scale_vaapi=format=nv12' -c:v h264_vaapi -qp 24 \
            "$HOME/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
     echo $! > /tmp/recordingpid
