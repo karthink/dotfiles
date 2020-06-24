@@ -131,7 +131,7 @@ AnimationDurationFactor=0.5
 LookAndFeelPackage=Materia-Manjaro-Dark
 SingleClick=false
 contrast=4
-widgetStyle=breeze
+widgetStyle=Breeze
 
 [KFileDialog Settings]
 Allow Expansion=false

@@ -63,6 +63,31 @@ screencast_vaapi() {
            # -video_size $(xdpyinfo | grep dimensions | awk '{print $2;}') \
 }
 
+screencast_nvenc() {
+
+    ffmpeg -f alsa -i default -c:a flac \
+           -f x11grab -framerate 60 \
+           -video_size 1920x1200 \
+           -i $DISPLAY \
+           -c:v hevc_nvenc \
+           -pixel_format yuv444p \
+           -preset default \
+           "$HOME/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
+    echo $! > /tmp/recordingpid
+
+    # ffmpeg -f alsa -i default -c:a flac \
+    #        -f x11grab -framerate 60 \
+    #        -video_size 1920x1200 \
+    #        -i $DISPLAY \
+    #        -c:v h264_nvenc \
+    #        -pixel_format yuv444p \
+    #        -preset default \
+    #        -profile high444p \
+    #        "$HOME/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
+    # echo $! > /tmp/recordingpid
+
+}
+
 video() { ffmpeg \
 	-f x11grab \
 	-s $(xdpyinfo | grep dimensions | awk '{print $2;}') \
@@ -102,11 +127,12 @@ audio() { \
 	}
 
 ask_screencast_type() { \
-    choice=$(printf "vaapi\\ncpu\\nkms" | dmenu $DMENU_OPTIONS -i -p "Screencast encoder:")
+    choice=$(printf "vaapi\\ncpu\\nkms\\nnvenc" | dmenu $DMENU_OPTIONS -i -p "Screencast encoder:")
     case "$choice" in
         vaapi) screencast_vaapi;;
         cpu)   screencast_cpu;;
         kms)   screencast_kms;;
+        nvenc) screencast_nvenc;;
         *)     askrecording;;
     esac
 }

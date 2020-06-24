@@ -26,7 +26,7 @@ fi
 # export SSH_AUTH_SOCK="/run/user/$(id -u)/gnupg/S.gpg-agent.ssh"
 
 # export QT_QPA_PLATFORMTHEME="qt5ct"
-systemctl --user import-environment
+# systemctl --user import-environment
 # Set keyboard repeat rate and delay
 xset r rate 265 44
 # xmodmap $HOME/.Xmodmap

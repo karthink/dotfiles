@@ -1,5 +1,6 @@
 [ActivityManager]
 _k_friendly_name=Activity Manager
+switch-to-activity-5a153794-39f4-43ba-9883-5d3efca1b808=none,none,Switch to activity "Default"
 switch-to-activity-b55a0e76-65b8-4bf7-b4af-f31b2251a09f=none,none,Switch to activity "Windows"
 switch-to-activity-bbede58d-ee16-45e8-8f1b-f440d998c3a6=none,none,Switch to activity "Default"
 
@@ -33,6 +34,7 @@ _k_friendly_name=KDE Daemon
 {0d9c8575-5556-4119-a216-f10196b29a40}=Meta+\\\\,none,cabl
 {164965aa-1333-41dc-9476-920f6730d099}=Meta+Shift+F,none,mpv fullscreen
 {1a9cbfd8-9164-4758-b25a-d189e9fb6f7b}=Meta+Media Play,none,mpv close (alt)
+{316c7efb-303b-4e35-81a7-24364c9ed14d}=none,none,Search
 {38ac8b20-309c-4f80-8545-ff7932e3036f}=Shift+Media Pause,none,mpv stop
 {46de8010-e938-4f38-a031-ccb7021eb325}=Shift+Tools,none,mpv prev
 {4bddd435-7bbb-40d1-8433-6c708cb8edd1}=Shift+Media Previous,none,mpv seek backward 60
@@ -41,18 +43,23 @@ _k_friendly_name=KDE Daemon
 {775d4b62-c9e4-4fda-876d-31ead0e175af}=Meta+M,none,notmuch-emacs
 {83c97da7-dff4-44f4-b0cb-5736476a7a06}=Shift+Browser,none,mpv next
 {8697ac62-4c74-4af8-babb-481b6d4a4a5b}=Shift+Monitor Brightness Down,none,HID brightness down
+{86a8e008-42e0-42fe-9245-1277d42f2bf7}=Meta+Return,none,Launch Konsole
 {8e565b3f-26a5-44a2-b36e-a2de499ff402}=Meta+O,none,DmenuFindFile
 {94045700-0dec-4262-a9f0-9dd745dff946}=Meta+Space,none,Dmenu
 {a6e83350-c701-467d-a9d1-5d792ce6e3fe}=Meta+F5,none,org-capture
-{b7b9bb72-7dc1-4021-9bd0-f3a1ce37e1c8}=Tools\tMedia Previous,none,mpv seek back
+{ac036947-03d4-494e-9aa2-bfcadffee3e8}=none,none,Launch Konsole
+{b7b9bb72-7dc1-4021-9bd0-f3a1ce37e1c8}=,none,mpv seek back
 {bc611d5a-a81f-4358-b578-f03c0bbc28dc}=Meta+Shift+F9,none,HID birghtness down
 {bc84a525-7ee3-4305-8bc3-9ed627b3d04d}=Meta+Launch (C),none,mpv close
+{c9c0a5fb-687b-4186-b851-0d598a9ad601}=none,none,Search
 {cc7fc277-c5cc-4995-b6ca-c0fa16ae960f}=Meta+Shift+F10,none,HID brightness up
-{d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Search
+{d03619b6-9b3c-48cc-9d9c-a2aadb485550}=none,none,Search
 {d9188f24-4cd7-444b-8c70-59d629d5b572}=Shift+Media Next,none,mpv seek forward 60
-{dfe8d1e5-af9c-421c-82b6-75671379c044}=Browser\tMedia Next,none,mpv seek forward
-{e1703a72-471d-4148-b8d4-91d5f4d489e4}=,none,mpv play/pause
+{de20eaf0-7416-4c6b-b405-d09e671a1888}=none,none,Search
+{dfe8d1e5-af9c-421c-82b6-75671379c044}=,none,mpv seek forward
+{e1703a72-471d-4148-b8d4-91d5f4d489e4}=none,none,mpv play/pause
 {f766628d-8422-46c2-94af-bcb72eb91c22}=Meta+E,none,Emacsclient
+{fef100d6-f0e0-447e-8c1d-cfc7536dec3f}=none,none,Launch Konsole
 
 [kmix]
 _k_friendly_name=Audio Volume
@@ -69,11 +76,11 @@ _k_friendly_name=KRunner
 _launch=Meta+R\t\tSearch,Alt+Space\tAlt+F2\tMeta+Space\tSearch,KRunner
 
 [ksmserver]
-Halt Without Confirmation=Ctrl+Alt+Shift+PgDown,none,Halt Without Confirmation
+Halt Without Confirmation=none,none,Halt Without Confirmation
 Lock Session=Meta+Shift+E,Meta+L\tCtrl+Alt+L\tScreensaver,Lock Session
 Log Out=Meta+X,none,Log Out
-Log Out Without Confirmation=Ctrl+Alt+Shift+Del,none,Log Out Without Confirmation
-Reboot Without Confirmation=Ctrl+Alt+Shift+PgUp,none,Reboot Without Confirmation
+Log Out Without Confirmation=none,none,Log Out Without Confirmation
+Reboot Without Confirmation=none,none,Reboot Without Confirmation
 _k_friendly_name=ksmserver
 
 [kwin]
@@ -330,7 +337,7 @@ _launch=,Meta+E,Dolphin
 NewTab=,none,Open a New Tab
 NewWindow=none,none,Open a New Window
 _k_friendly_name=Launch Konsole
-_launch=Meta+Return,none,Launch Konsole
+_launch=,none,Launch Konsole
 
 [org.kde.plasma.emojier.desktop]
 _k_friendly_name=Emoji Selector
@@ -370,6 +377,7 @@ activate task manager entry 8=none,Meta+8,Activate Task Manager Entry 8
 activate task manager entry 9=none,Meta+9,Activate Task Manager Entry 9
 activate widget 129=Alt+F1,none,Activate Application Launcher Widget
 activate widget 160=none,none,Activate Weather Report Widget
+activate widget 22=none,none,Activate Active Window Control Widget
 activate widget 231=none,none,Activate Icons-only Task Manager Widget
 activate widget 235=none,none,Activate Active Window Control Widget
 activate widget 244=Meta+A,none,Activate Icons-only Task Manager Widget

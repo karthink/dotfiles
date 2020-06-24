@@ -4,7 +4,7 @@ update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-
 [Compositing]
 Backend=OpenGL
 Enabled=false
-GLCore=false
+GLCore=true
 GLPreferBufferSwap=a
 GLTextureFilter=1
 HiddenPreviews=5
@@ -49,7 +49,7 @@ TabBoxAlternative=false
 Color=128,128,255
 
 [Effect-PresentWindows]
-Accuracy=4
+Accuracy=5
 BorderActivate=9
 BorderActivateAll=7
 BorderActivateClass=9
@@ -99,6 +99,11 @@ CommandWindow2=Activate and pass click
 CommandWindow3=Activate and pass click
 CommandWindowWheel=Scroll
 
+[NightColor]
+Active=true
+LatitudeAuto=34.445
+LongitudeAuto=-119.8046
+
 [Plugins]
 blurEnabled=true
 diminactiveEnabled=true
@@ -116,7 +121,7 @@ minimizeallEnabled=false
 quicktile-enhancementsEnabled=false
 resizeEnabled=true
 screenedgeEnabled=false
-slideEnabled=false
+slidebackEnabled=true
 synchronizeskipswitcherEnabled=false
 videowallEnabled=false
 windowgeometryEnabled=false
@@ -125,15 +130,14 @@ windowgeometryEnabled=false
 PopupHideDelay=400
 
 [Script-krohnkite]
-adjustLayoutLive=false
 directionalKeyDwm=false
 directionalKeyFocus=true
 enableFloatingLayout=true
 enableStairLayout=false
 enableThreeColumnLayout=false
-floatingClass=mpv,sun-awt-X11-XFramePeer
+floatingClass=mpv,sun-awt-X11-XFramePeer,systemsettings
 floatingTitle=dropdown_notmuch-emacs,dropdown_calc,dropdown_weatherreport,dropdown_quicklatex,dropdown_org-capture
-ignoreClass=krunner,yakuake,spectacle,kded5,latte,
+ignoreClass=krunner,yakuake,spectacle,kded5,latte,nvidia-settings
 layoutPerActivity=true
 layoutPerDesktop=true
 screenGapBottom=12
@@ -221,5 +225,5 @@ ButtonsOnLeft=XAI
 ButtonsOnRight=FS
 CloseOnDoubleClickOnMenu=false
 ShowToolTips=true
-library=org.kde.kwin.aurorae
-theme=__aurorae__svg__Materia-Manjaro-Dark-Solid
+library=org.kde.breeze
+theme=Breeze

@@ -1,6 +1,6 @@
 [1]
 Description=MPV no focus
-above=false
+above=true
 aboverule=4
 blockcompositing=false
 blockcompositingrule=2
