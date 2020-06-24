@@ -685,6 +685,7 @@ c.fonts.tabs = '11pt monospace'
 ## hints.
 ## Type: Dict
 # c.hints.selectors = {'all': ['a', 'area', 'textarea', 'select', 'input:not([type="hidden"])', 'button', 'frame', 'iframe', 'img', 'link', 'summary', '[onclick]', '[onmousedown]', '[role="link"]', '[role="option"]', '[role="button"]', '[ng-click]', '[ngClick]', '[data-ng-click]', '[x-ng-click]', '[tabindex]'], 'links': ['a[href]', 'area[href]', 'link[href]', '[role="link"][href]'], 'images': ['img'], 'media': ['audio', 'img', 'video'], 'url': ['[src]', '[href]'], 'inputs': ['input[type="text"]', 'input[type="date"]', 'input[type="datetime-local"]', 'input[type="email"]', 'input[type="month"]', 'input[type="number"]', 'input[type="password"]', 'input[type="search"]', 'input[type="tel"]', 'input[type="time"]', 'input[type="url"]', 'input[type="week"]', 'input:not([type])', 'textarea']}
+c.hints.selectors['mpv_type'] = [ 'a[href]', 'area[href]', 'link[href]', '[role="link"][href]', 'audio',  'video' ] 
 
 ## Make characters in hint strings uppercase.
 ## Type: Bool
@@ -1243,20 +1244,20 @@ config.bind('<,><f><p>', 'spawn --userscript qute-pass --password-only')
 config.bind('<,><f><o>', 'spawn --userscript qute-pass --otp-only')
 
 ## Bindings for normal mode
-config.bind("<Ctrl-m>", 'hint links spawn mpv {hint-url}')
+config.bind("<Ctrl-m>", 'hint mpv_type spawn mpv {hint-url}')
 config.bind("<Ctrl-Shift-M>", 'spawn mpv {url}')
-config.bind("<Alt-m>", 'hint links spawn umpv {hint-url}')
+config.bind("<Alt-m>", 'hint mpv_type spawn umpv {hint-url}')
 config.bind("<Alt-Shift-M>", 'spawn umpv {url}')
-# config.bind("<;><m><m>", 'hint --rapid links spawn umpv {hint-url}')
+# config.bind("<;><m><m>", 'hint --rapid mpv_type spawn umpv {hint-url}')
 config.bind(";mm", 'spawn umpv {url}')
-config.bind(";mo", 'hint links spawn umpv {hint-url}')
-config.bind(";mh", 'hint links spawn umpv --profile=protocol-hd-video {hint-url}')
-config.bind(";ma", 'hint links spawn umpv --video=no {hint-url}')
+config.bind(";mo", 'hint mpv_type spawn umpv {hint-url}')
+config.bind(";mh", 'hint mpv_type spawn umpv --profile=protocol-hd-video {hint-url}')
+config.bind(";ma", 'hint mpv_type spawn umpv --video=no {hint-url}')
 
 config.bind(";mM", 'spawn mpv {url}')
-config.bind(";mO", 'hint links spawn mpv {hint-url}')
-config.bind(";mH", 'hint links spawn mpv --profile=protocol-hd-video {hint-url}')
-config.bind(";mA", 'hint links spawn mpv --video=no --force-window=yes {hint-url}')
+config.bind(";mO", 'hint mpv_type spawn mpv {hint-url}')
+config.bind(";mH", 'hint mpv_type spawn mpv --profile=protocol-hd-video {hint-url}')
+config.bind(";mA", 'hint mpv_type spawn mpv --video=no --force-window=yes {hint-url}')
 
 # config.bind("'", 'enter-mode jump_mark')
 # config.bind('+', 'zoom-in')
@@ -1546,5 +1547,5 @@ config.bind(";mA", 'hint links spawn mpv --video=no --force-window=yes {hint-url
 # config.bind('n', 'prompt-accept no', mode='yesno')
 # config.bind('y', 'prompt-accept yes', mode='yesno')
 
-config.source('theme-nord.py')
-# config.source("qute_colors.py")
+# config.source('theme-nord.py')
+config.source("qute_colors.py")

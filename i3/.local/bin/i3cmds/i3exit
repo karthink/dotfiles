@@ -9,8 +9,7 @@ case "$1" in
         multilockscreen -l 
         ;;
     logout)
-        systemctl --user stop redshift
-        systemctl stop multilockscreen@karthik
+        systemctl --user stop redshift.service
         i3-msg exit
         ;;
     switch_user)
