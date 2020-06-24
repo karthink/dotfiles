@@ -527,39 +527,39 @@ c.editor.command = ['st', '-T', 'dropdown_edit', '-e', '/usr/bin/nvim', '{file}'
 
 ## Font used in the completion categories.
 ## Type: Font
-c.fonts.completion.category = 'bold 11pt monospace'
+c.fonts.completion.category = 'bold 12pt monospace'
 
 ## Font used in the completion widget.
 ## Type: Font
-c.fonts.completion.entry = '11pt monospace'
+c.fonts.completion.entry = '12pt monospace'
 
 ## Font used for the debugging console.
 ## Type: QtFont
-c.fonts.debug_console = '11pt monospace'
+c.fonts.debug_console = '12pt monospace'
 
 ## Font used for the downloadbar.
 ## Type: Font
-c.fonts.downloads = '11pt monospace'
+c.fonts.downloads = '12pt monospace'
 
 ## Font used for the hints.
 ## Type: Font
-# c.fonts.hints = 'bold 11pt monospace'
+# c.fonts.hints = 'bold 12pt monospace'
 
 ## Font used in the keyhint widget.
 ## Type: Font
-c.fonts.keyhint = '11pt monospace'
+c.fonts.keyhint = '12pt monospace'
 
 ## Font used for error messages.
 ## Type: Font
-c.fonts.messages.error = '11pt monospace'
+c.fonts.messages.error = '12pt monospace'
 
 ## Font used for info messages.
 ## Type: Font
-c.fonts.messages.info = '11pt monospace'
+c.fonts.messages.info = '12pt monospace'
 
 ## Font used for warning messages.
 ## Type: Font
-c.fonts.messages.warning = '11pt monospace'
+c.fonts.messages.warning = '12pt monospace'
 
 ## Default monospace fonts. Whenever "monospace" is used in a font
 ## setting, it's replaced with the fonts listed here.
@@ -568,7 +568,7 @@ c.fonts.messages.warning = '11pt monospace'
 
 ## Font used for prompts.
 ## Type: Font
-c.fonts.prompts = '11pt sans-serif'
+c.fonts.prompts = '12pt sans-serif'
 
 ## Font used in the statusbar.
 ## Type: Font
@@ -576,7 +576,7 @@ c.fonts.statusbar = '11pt monospace'
 
 ## Font used in the tab bar.
 ## Type: QtFont
-c.fonts.tabs = '11pt monospace'
+c.fonts.tabs = '12pt monospace'
 
 ## Font family for cursive fonts.
 ## Type: FontFamily
@@ -814,6 +814,7 @@ c.input.partial_timeout = 12000
 ## list) will work.
 ## Type: List of String
 # c.qt.args = []
+c.colors.webpage.prefers_color_scheme_dark=True
 
 ## Force a Qt platform to use. This sets the `QT_QPA_PLATFORM`
 ## environment variable and is useful to force using the XCB plugin when
@@ -1199,9 +1200,11 @@ c.tabs.title.format = '{audio} {current_title}'
 ## used by prepending the search engine name to the search term, e.g.
 ## `:open google qutebrowser`.
 ## Type: Dict
-c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}',
+c.url.searchengines = {'DEFAULT': 'https://searx.karthinks.com/?q={}',
+                       'g' : 'https://google.com/search?q={}',
+                       'ddg': 'https://duckduckgo.com/?q={}',
                        'r': 'https://old.reddit.com/r/{}',
-                       'gs!': 'https://scholar.google.com/scholar?q={}'}
+                       'gs': 'https://scholar.google.com/scholar?q={}'}
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl
@@ -1237,18 +1240,45 @@ c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}',
 ## Type: Bool
 # c.zoom.text_only = False
 
+## Custom CSS for sites
+# c.content.user_stylesheets = ["~/.config/qutebrowser/css/apprentice-all-sites.css"] 
+config.bind('<Ctrl-R>', 'config-cycle content.user_stylesheets "~/.config/qutebrowser/css/solarized-dark-all-sites.css" "~/.config/qutebrowser/css/darculized-all-sites.css" ""')
+
+## Readline bindings in insert mode
+# config.bind('<Ctrl-h>', 'fake-key <Backspace>', 'insert')
+config.bind('<Ctrl-a>', 'fake-key <Home>', 'insert')
+config.bind('<Ctrl-e>', 'fake-key <End>', 'insert')
+config.bind('<Ctrl-b>', 'fake-key <Left>', 'insert')
+config.bind('<Mod1-b>', 'fake-key <Ctrl-Left>', 'insert')
+config.bind('<Ctrl-f>', 'fake-key <Right>', 'insert')
+config.bind('<Mod1-f>', 'fake-key <Ctrl-Right>', 'insert')
+config.bind('<Ctrl-p>', 'fake-key <Up>', 'insert')
+config.bind('<Ctrl-n>', 'fake-key <Down>', 'insert')
+config.bind('<Mod1-d>', 'fake-key <Ctrl-Delete>', 'insert')
+config.bind('<Ctrl-d>', 'fake-key <Delete>', 'insert')
+config.bind('<Ctrl-w>', 'fake-key <Ctrl-Backspace>', 'insert')
+config.bind('<Ctrl-u>', 'fake-key <Shift-Home><Delete>', 'insert')
+config.bind('<Ctrl-k>', 'fake-key <Shift-End><Delete>', 'insert')
+config.bind('<Ctrl-x><Ctrl-e>', 'open-editor', 'insert')
+
 ## Userscript bindings
+# Password filling
 config.bind('<,><f><f>', 'spawn --userscript qute-pass')
 config.bind('<,><f><u>', 'spawn --userscript qute-pass --username-only')
 config.bind('<,><f><p>', 'spawn --userscript qute-pass --password-only')
 config.bind('<,><f><o>', 'spawn --userscript qute-pass --otp-only')
+
+# Read later via wallabag
+config.bind('<,><r><l>', 'spawn --userscript qute-readlater')
+c.aliases.update({'readlater': 'spawn --userscript qute-readlater'})
 
 ## Bindings for normal mode
 config.bind("<Ctrl-m>", 'hint mpv_type spawn mpv {hint-url}')
 config.bind("<Ctrl-Shift-M>", 'spawn mpv {url}')
 config.bind("<Alt-m>", 'hint mpv_type spawn umpv {hint-url}')
 config.bind("<Alt-Shift-M>", 'spawn umpv {url}')
-# config.bind("<;><m><m>", 'hint --rapid mpv_type spawn umpv {hint-url}')
+
+config.bind(";mr", 'hint --rapid mpv_type spawn umpv {hint-url}')
 config.bind(";mm", 'spawn umpv {url}')
 config.bind(";mo", 'hint mpv_type spawn umpv {hint-url}')
 config.bind(";mh", 'hint mpv_type spawn umpv --profile=protocol-hd-video {hint-url}')

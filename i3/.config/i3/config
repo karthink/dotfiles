@@ -43,8 +43,8 @@ bindsym $mod+backslash exec --no-startup-id cabl
 
 # Search for file
 bindsym XF86Search exec --no-startup-id dmenufindfile
-bindsym $mod+Ctrl+o exec --no-startup-id bash -c "open < <(dff)"
-bindsym $mod+o exec --no-startup-id ddspawn -t zffdd
+bindsym $mod+o exec --no-startup-id bash -c "open < <(dff)"
+bindsym $mod+Ctrl+o exec --no-startup-id ddspawn -t zffdd
 # Get a cheatsheet on common linux commands
 bindsym $mod+XF86Search exec --no-startup-id cheatsheet
 # Show contents of clipboard
@@ -160,6 +160,8 @@ bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
+bindsym $mod+comma focus output left
+bindsym $mod+period focus output right
 # bindsym $mod+semicolon focus right
 # bindsym XF86Back [con_mark=_last] focus
 
@@ -183,8 +185,8 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # Rotate window configuration
-bindsym $mod+period exec --no-startup-id rotate_layout.py --no-multimonitor 1
-bindsym $mod+comma exec --no-startup-id rotate_layout.py --no-multimonitor 0
+# bindsym $mod+period exec --no-startup-id rotate_layout.py --no-multimonitor 1
+# bindsym $mod+comma exec --no-startup-id rotate_layout.py --no-multimonitor 0
 
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
@@ -293,10 +295,16 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 
 # Move workspace between monitors
-bindsym $mod+Ctrl+h move workspace to output left
-bindsym $mod+Ctrl+l move workspace to output right
-bindsym $mod+Ctrl+k move workspace to output up
-bindsym $mod+Ctrl+j move workspace to output down
+bindsym $mod+Ctrl+h move container to output left; focus output left
+bindsym $mod+Ctrl+l move container to output right; focus output right
+bindsym $mod+Ctrl+k move container to output up; focus output up
+bindsym $mod+Ctrl+j move container to output down; focus output down
+
+# Move workspace between monitors
+bindsym $mod+Ctrl+Shift+h move workspace to output left
+bindsym $mod+Ctrl+Shift+l move workspace to output right
+bindsym $mod+Ctrl+Shift+k move workspace to output up
+bindsym $mod+Ctrl+Shift+j move workspace to output down
 
 #####################################
 ## WINDOW AND WORKSPACE PROPERTIES ##
@@ -305,8 +313,8 @@ bindsym $mod+Ctrl+j move workspace to output down
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 # default_border          normal 3
 # default_floating_border normal 3
-default_border          pixel 4
-default_floating_border pixel 4
+default_border          pixel 3
+default_floating_border pixel 3
 
 # Make focused window easier to see
 for_window [class=".*"] title_format "<b>%title</b>"
@@ -324,7 +332,9 @@ bindsym $mod+Shift+t border toggle 4
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # font xft:URWGothic-Book 12
-font pango:Fantasque Sans Mono 13
+# font pango:Fantasque Sans Mono 13
+# font pango:Iosevka Nerd Font 13
+font pango:monospace 12.5
 
 # Window title alignment
 title_align center
@@ -352,7 +362,7 @@ for_window [class="Plasmoidviewer"] floating enable; border none
 for_window [class="(?i)*nextcloud*"] floating disable
 for_window [class="plasmashell" window_type="notification"] floating enable, border none, move position 1450px 20px
 # for_window [class="plasmashell" window_type="notification"] floating enable, border none, move right 700px, move down 450px
-no_focus [class="plasmashell" window_type="notification"] 
+no_focus [class="plasmashell" window_type="notification"]
 
 # Open specific applications in floating mode
 for_window [title="Figure "] floating enable border normal
@@ -437,14 +447,14 @@ for_window [title="dropdown_*"] floating enable # border pixel 0
 for_window [title="dropdown_*"] move scratchpad
 for_window [title="dropdown_*"] sticky enable
 for_window [title="dropdown_*"] scratchpad show
-for_window [title="dropdown_tmuxdd"] resize set 900 450
+for_window [title="dropdown_tmuxdd"] resize set 900 550
 for_window [title="dropdown_notmuch-emacs"] resize set 1000 600
 for_window [title="dropdown_quicklatex"] resize set 900 300
 for_window [title="dropdown_calc"] resize set 900 300
 for_window [title="dropdown_zffdd"] resize set 800 400
 for_window [title="dropdown_weatherreport"] resize set 1135 750
-for_window [title="dropdown_edit"] resize set 600 400
-for_window [title="dropdown_org-agenda"] resize set 960 360
+for_window [title="dropdown_edit"] resize set 800 400
+for_window [title="dropdown_org-agenda"] resize set 960 600
 for_window [title="dropdown_org-capture"] resize set 900 400
 for_window [title="dropdown_*"] move position center
 
@@ -455,7 +465,7 @@ bindsym XF86Calcuator exec --no-startup-id ddspawn calcdd # -f mono:pixelsize=26
 bindsym $mod+m exec --no-startup-id ddspawn notmuch-emacs
 bindsym $mod+F5 exec --no-startup-id ddspawn org-capture
 bindsym $mod+F6 exec --no-startup-id ddspawn org-agenda
-bindsym $mod+Shift+w exec --no-startup-id ddspawn weatherreport
+bindsym $mod+Shift+w exec --no-startup-id ddspawn -t weatherreport
 
 # Hover settings
 bindsym $mod+Shift+comma floating toggle; sticky toggle; exec --no-startup-id hover left
@@ -587,17 +597,20 @@ set $black #000000
 # set $bluer #458588
 
 bar  {
-	font pango:Monospace 13
+	font pango:Monospace, Bold 13.0
+	# font pango:FantasqueSansMono Nerd Font 13.5
+        # font pango:DejaVu Serif, Bold 12.5
+        # font pango:Iosevka, Bold 13.0
 	strip_workspace_numbers yes
 	tray_output none
 	position top
         status_command /usr/bin/i3status-rs $HOME/.config/i3status-rust/config.toml
-	# status_command $HOME/.local/share/git/bumblebee-status/bumblebee-status -m spotify mpd redshift weather pomodoro nic cpu bluetooth pulseaudio:pasink battery datetime -p interval=1 datetime.format="%b %d, %I:%M %p" cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -T dropdown_htop -e htop" progress.placeholder="" nic.exclude="lo,enp0s25" nic.format="{state} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" spotify.format="{title} - {artist}" mpd.format="{title} - {artist}" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager" weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false" pomodoro.notify=r'notify-send "Time up!"' pomodoro.format="%mm" -t iceberg-dark-powerline
+	# status_command bumblebee-status -m title mpd weather pomodoro nic cpu bluetooth brightness pulseaudio:pasink battery-upower datetime -p interval=1 datetime.format="%b %d, %I:%M %p" cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -T dropdown_htop -e htop" nic.exclude="lo,enp0s25" nic.format="{state} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" spotify.format="{title} - {artist}" mpd.format="" mpd.layout="mpd.main mpd.next" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager"  weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false"  pomodoro.format="%mm" title.max="30" pomodoro.notify=r'notify-send "Time up!"' -t dracula-powerline
         # Other themes:
         # gruvbox: gruvbox-powerline gruvbox-powerline-light
         # Blue: iceberg-dark-powerline
         # Grey: greyish-powerline
-	# Unused modules: title spacer redshift spacer.text="" -t greyish-powerline
+	# Unused modules: title spacer redshift spacer.text="" -t greyish-powerline mpd spotify pomodoro.notify=r'notify-send "Time up!"' notmuch_count notmuch_count.query="tag:unread AND tag:inbox AND from:bassam AND date:2d.." progress.placeholder="∫" progress 
 
         colors {
                                    #$border          $background      $text
@@ -629,7 +642,7 @@ client.background       $unfocused_text
 #####################################
 
 # Set border radius
-border_radius 11
+# border_radius 11
 
 # Set inner/outer gaps
 gaps outer 4

@@ -12,7 +12,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/goyo.vim'
 Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim'
-" Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -189,6 +189,7 @@ cmap w!! w !sudo tee > /dev/null %
 
 	" Airline font
 	" set guifont=Liberation\ Mono\ for\ Powerline\ 10
+	set guifont=Iosevka\ 10
 	" let g:airline_powerline_fonts = 1
 
 	" if !exists('g:airline_symbols')

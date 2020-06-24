@@ -170,5 +170,3 @@ colors() {
 		echo; echo
 	done
 }
-
-[ -f ~/.fzf.colors ] && source ~/.fzf.colors

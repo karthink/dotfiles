@@ -51,7 +51,7 @@ screencast_kms() {
 }
 
 screencast_vaapi() {
-ffcast -w % ffmpeg -vaapi_device /dev/dri/renderD128 \
+ffmpeg -vaapi_device /dev/dri/renderD128 \
            -f alsa -i default -c:a flac \
            -f x11grab \
            -framerate 30 \

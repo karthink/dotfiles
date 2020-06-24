@@ -27,7 +27,7 @@ fi
 PICKER_CMD="dmenu $DMENU_OPTIONS -i -l 10 -h 26 -p "
 CACHE_CMD=ff-cache
 GREP_CMD='ag -i --silent --nonumbers'  #Command to search through the cache
-LOCATE_CMD='locate -i --all '            #Locate command
+LOCATE_CMD='locate -i --all --existing'            #Locate command
 #--------------------------------
 
 # Exit if any of the search commands returns exit code 1
@@ -45,7 +45,7 @@ while IFS= read -r choice; do
     if [[ ! -f $choice ]] && [[ ! -d $choice ]]; then
         # 2. Didn't find match, try locatedb:
         if [[ ! -z $choice ]]; then
-            choice_locate=$($LOCATE_CMD ${choice} | $PICKER_CMD "[Locate] Open: ")
+            choice_locate=$($LOCATE_CMD -- ${choice} | $PICKER_CMD "[Locate] Open: ")
         fi
         exit_if_esc $? # User hit Escape
 

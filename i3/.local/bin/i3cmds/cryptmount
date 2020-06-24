@@ -43,8 +43,10 @@ if [ ! -z "$usbdrives" ]; then
            fi
        fi
    else
+       notify-send "truecrypt not found. Please install."
        echo "truecrypt not found. Please install."
    fi
 else
+    notify-send "No USB drive(s) detected."
     echo "No USB drive(s) detected."
 fi

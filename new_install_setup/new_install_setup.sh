@@ -225,7 +225,7 @@ git clone https://github.com/karthink/.emacs.d
 # Build my fork of st
 mkdir -p /tmp/st-karthik-git
 cd /tmp/st-karthik-git
-wget https://raw.githubusercontent.com/karthink/st/extras/PKGBUILD
+wget -c https://raw.githubusercontent.com/karthink/st/extras/PKGBUILD
 makepkg
 makepkg --install
 makepkg --clean

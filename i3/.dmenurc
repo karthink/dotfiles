@@ -3,11 +3,14 @@
 # ~/.dmenurc
 #
 
+TERMINAL_CMD="alacritty -e"
 ## define the font for dmenu to be used
 # Was "Noto-11.0"
 # DMENU_FN="Monospace-13.0"
-# DMENU_FN="FantasqueSansMono-13.5"
-DMENU_FN="IosevkaNerdFont-13.0"
+# DMENU_FN="FantasqueSansMonoNerdFont-13.5"
+DMENU_FN="Iosevka-13.0:bold"
+# DMENU_FN="IosevkaNerdFontMono-13.5"
+# DMENU_FN="DejaVuSerif-12.5"
 
 ## Blue theme:
 ## background colour for unselected menu-items
@@ -57,20 +60,32 @@ DMENU_FN="IosevkaNerdFont-13.0"
 # ## textcolour for selected menu-items
 # DMENU_SF="#262C35"
 
-## Onedark theme
+# ## Onedark theme
+# ## background colour for unselected menu-items
+# DMENU_NB="#282c34"
+# ## textcolour for unselected menu-items
+# DMENU_NF="#c8ccd4"
+# ## background colour for selected menu-items
+# DMENU_SB="#98c379"
+# ## textcolour for selected menu-items
+# DMENU_SF="#353b45"
+
+## Dracula theme
 ## background colour for unselected menu-items
-DMENU_NB="#282c34"
+DMENU_NB="#282936"
 ## textcolour for unselected menu-items
-DMENU_NF="#c8ccd4"
+DMENU_NF="#f7f7fb"
 ## background colour for selected menu-items
-DMENU_SB="#98c379"
+# DMENU_SB="#6272a4"
+DMENU_SB="#ebff87"
 ## textcolour for selected menu-items
-DMENU_SF="#353b45"
+# DMENU_SF="#f8f8f2"
+DMENU_SF="#282936"
 
 ## command for the terminal application to be used:
 TERMINAL_CMD="st -T dropdown -e"
 
 ## export our variables
-DMENU_OPTIONS="-h 26 -fn $DMENU_FN -nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB "
+DMENU_OPTIONS="-h 28 -fn $DMENU_FN -nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB "
 
 export DMENU_OPTIONS
