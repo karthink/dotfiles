@@ -1200,9 +1200,8 @@ c.tabs.title.format = '{audio} {current_title}'
 ## used by prepending the search engine name to the search term, e.g.
 ## `:open google qutebrowser`.
 ## Type: Dict
-c.url.searchengines = {'DEFAULT': 'https://searx.karthinks.com/?q={}',
-                       'g' : 'https://google.com/search?q={}',
-                       'ddg': 'https://duckduckgo.com/?q={}',
+c.url.searchengines = {'s': 'https://searx.karthinks.com/?q={}',
+                       'DEFAULT': 'https://duckduckgo.com/?q={}',
                        'r': 'https://old.reddit.com/r/{}',
                        'gs': 'https://scholar.google.com/scholar?q={}'}
 
@@ -1533,7 +1532,7 @@ config.bind(";mA", 'hint mpv_type spawn mpv --video=no --force-window=yes {hint-
 # config.bind('<Return>', 'follow-hint', mode='hint')
 
 ## Bindings for insert mode
-# config.bind('<Ctrl-E>', 'open-editor', mode='insert')
+config.bind('<Alt-E>', 'open-editor', mode='insert')
 # config.bind('<Escape>', 'leave-mode', mode='insert')
 # config.bind('<Shift-Ins>', 'insert-text {primary}', mode='insert')
 
@@ -1579,3 +1578,5 @@ config.bind(";mA", 'hint mpv_type spawn mpv --video=no --force-window=yes {hint-
 
 # config.source('theme-nord.py')
 config.source("qute_colors.py")
+c.colors.hints.bg =  "#EBCB8B"
+

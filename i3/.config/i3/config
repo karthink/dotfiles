@@ -313,7 +313,7 @@ bindsym $mod+Ctrl+Shift+j move workspace to output down
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 # default_border          normal 3
 # default_floating_border normal 3
-default_border          pixel 3
+default_border          pixel 4
 default_floating_border pixel 3
 
 # Make focused window easier to see
@@ -602,7 +602,7 @@ bar  {
         # font pango:DejaVu Serif, Bold 12.5
         # font pango:Iosevka, Bold 13.0
 	strip_workspace_numbers yes
-	tray_output none
+	tray_output DP1
 	position top
         status_command /usr/bin/i3status-rs $HOME/.config/i3status-rust/config.toml
 	# status_command bumblebee-status -m title mpd weather pomodoro nic cpu bluetooth brightness pulseaudio:pasink battery-upower datetime -p interval=1 datetime.format="%b %d, %I:%M %p" cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -T dropdown_htop -e htop" nic.exclude="lo,enp0s25" nic.format="{state} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" spotify.format="{title} - {artist}" mpd.format="" mpd.layout="mpd.main mpd.next" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager"  weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false"  pomodoro.format="%mm" title.max="30" pomodoro.notify=r'notify-send "Time up!"' -t dracula-powerline
@@ -642,7 +642,7 @@ client.background       $unfocused_text
 #####################################
 
 # Set border radius
-# border_radius 11
+border_radius 11
 
 # Set inner/outer gaps
 gaps outer 4

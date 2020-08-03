@@ -91,6 +91,11 @@ mac = "00:02:5B:02:A5:9C"
 # mac = "34:02:86:56:9B:8F"
 
 [[block]]
+block = "bluetooth"
+mac = "AC:19:06:00:31:DA"
+# mac = "34:02:86:56:9B:8F"
+
+[[block]]
 block = "sound"
 on_click = "pavucontrol-qt"
 
@@ -121,7 +126,8 @@ format = "%a %d/%m %R"
 on_click = "notify-send \"$(cal -3)\""
 
 [theme]
-file = "dracula.toml"
+file = "nord.toml"
+# file = "dracula.toml"
 # name = "gruvbox-dark"
 
 # [theme.overrides]
@@ -171,23 +177,4 @@ file = "dracula.toml"
 # # separator_bg
 # # separator_fg
 # warning_bg = "#d3869b"
-# # warning_fg
-
-
-# # Nord theme:
-# idle_bg = "#2e3440"
-# # idle_fg = "#98cff0"
-# idle_fg = "#e5e9f0"
-# info_bg = "#8fbcbb"
-# # info_bg = "#d8dee9"
-# info_fg = "#3b4252"
-# good_bg = "#8fbcbb"
-# # good_bg = "#a3be8c"
-# # good_fg
-# critical_bg = "#bf616a"
-# # critical_fg
-# # separator
-# # separator_bg
-# # separator_fg
-# warning_bg = "#b48ead"
 # # warning_fg

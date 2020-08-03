@@ -16,13 +16,24 @@ cryptmount() {
     fi
 
     truecrypt -t "$1" "$HOME/crypt/" -p "$(pass files/ansatz-backup)" -k "" --protect-hidden=no
-    echo "Truecrypt volume $1 mounted at $HOME/crypt"
-    notify-send "Truecrypt volume $1"  " mounted at $HOME/crypt"
+    if [[ $? == 0 ]]; then
+        echo "Truecrypt volume $1 mounted at $HOME/crypt"
+        notify-send "Truecrypt volume $1"  " mounted at $HOME/crypt"
+    else
+        echo "ERROR: Could not mount $1 at $HOME/crypt"
+        notify-send "ERROR: Could not mount $1 at $HOME/crypt"
+    fi
 }
 
 cryptumount() {
     truecrypt -t -d "$HOME/crypt"
-    notify-send "Truecrypt volume unmounted"  "from $HOME/crypt"
+    if [[ $? == 0 ]]; then
+        echo "Truecrypt volume unmounted from $HOME/crypt"
+        notify-send "Truecrypt volume unmounted"  "from $HOME/crypt"
+    else
+        echo "ERROR: Could not unmount Truecrypt volume from $HOME/crypt. Device busy?"
+        notify-send "ERROR: Could not unmount Truecrypt" "volume from $HOME/crypt. Device busy?"
+    fi
 }
 
 usbdrives="$(lsblk -rpo "name,type,size,mountpoint" | awk '$2=="part"&&$4==""{printf "%s (%s)\n",$1,$3}')"

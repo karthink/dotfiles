@@ -19,9 +19,12 @@ FILEMANAGER="$FILE"                    # FILE MANAGER
 
 # Get input list from wherever: ARGLIST or STDIN 
 #----------------------------------------------------------
-cd $HOME
-[ $# -ge 1 -a -f "$1" ] && input="$(printf '%s\n' "$@")" || input="$(cat /dev/stdin)"
-
+if [ $# -ge 1 -a -f "$1" ]; then
+    input="$(printf '%s\n' "$@")"
+else
+    cd $HOME
+    input="$(cat /dev/stdin)"
+fi
 # printf '%s\n' ${input[@]} >>open.log
 # HANDLE CHOICE
 #----------------------------------------------------------

@@ -30,15 +30,15 @@ DMENU_FN="Iosevka-13.0:bold"
 # # textcolour for unselected menu-items
 # DMENU_NF="#F7F7FB"
 
-# # Nord theme:
-# # background colour for unselected menu-items
-# DMENU_NB="#2E3440"
-# # background colour for selected menu-items
-# DMENU_SB="#BF616A"
-# # textcolour for selected menu-items
-# DMENU_SF="#2E3440"
-# # textcolour for unselected menu-items
-# DMENU_NF="#E5E9F0"
+# Nord theme:
+# background colour for unselected menu-items
+DMENU_NB="#2E3440"
+# background colour for selected menu-items
+DMENU_SB="#BF616A"
+# textcolour for selected menu-items
+DMENU_SF="#2E3440"
+# textcolour for unselected menu-items
+DMENU_NF="#E5E9F0"
 
 # ## Gruvbox theme
 # ## background colour for unselected menu-items
@@ -70,17 +70,17 @@ DMENU_FN="Iosevka-13.0:bold"
 # ## textcolour for selected menu-items
 # DMENU_SF="#353b45"
 
-## Dracula theme
-## background colour for unselected menu-items
-DMENU_NB="#282936"
-## textcolour for unselected menu-items
-DMENU_NF="#f7f7fb"
-## background colour for selected menu-items
-# DMENU_SB="#6272a4"
-DMENU_SB="#ebff87"
-## textcolour for selected menu-items
-# DMENU_SF="#f8f8f2"
-DMENU_SF="#282936"
+# ## Dracula theme
+# ## background colour for unselected menu-items
+# DMENU_NB="#282936"
+# ## textcolour for unselected menu-items
+# DMENU_NF="#f7f7fb"
+# ## background colour for selected menu-items
+# # DMENU_SB="#6272a4"
+# DMENU_SB="#ebff87"
+# ## textcolour for selected menu-items
+# # DMENU_SF="#f8f8f2"
+# DMENU_SF="#282936"
 
 ## command for the terminal application to be used:
 TERMINAL_CMD="st -T dropdown -e"

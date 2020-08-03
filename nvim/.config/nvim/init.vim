@@ -141,9 +141,10 @@ call plug#end()
 	nnoremap  <leader>bp :bp<CR>
 	nnoremap  <leader>bd :bd<CR>
 	nnoremap  <leader>k  :bd<CR>
-	nnoremap  <leader>/  :BLines<CR>
-	nnoremap  <leader>// :BLines<CR>
+	nnoremap  <leader>/s :BLines<CR>
+	nnoremap  <leader>ss :BLines<CR>
 	nnoremap  <leader>/b :Lines<CR>
+	nnoremap  <leader>sa :Ag<CR>
 	nnoremap  <leader>/a :Ag<CR>
 	nnoremap  <leader>r  :Marks<CR>
 	" nnoremap    :History:<CR>
@@ -156,9 +157,10 @@ call plug#end()
 	" nnoremap  <leader>vb :vsp<CR>:Buffers<CR>
 
 "  Leader commands for writing and quitting:
-	nnoremap <Leader>w :w<CR>
-	nnoremap <leader>wq :wq<CR>
-	nnoremap <leader>q :q<CR>
+	nnoremap  <leader>fs :w<CR>
+	" nnoremap <Leader>w :w<CR>
+	" nnoremap <leader>wq :wq<CR>
+	nnoremap <leader>qq :q<CR>
 
 "  Diff current file
 	nmap <leader>d :w !diff % -<CR>

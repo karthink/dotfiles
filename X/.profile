@@ -1,5 +1,5 @@
-export TERMINAL="alacritty"
-export TERMINAL_CMD="alacritty"
+export TERMINAL="st"
+export TERMINAL_CMD="st"
 export EDITOR="/usr/bin/emacsclient"
 export VISUAL="/usr/bin/emacsclient"
 export ALTERNATE_EDITOR="/usr/bin/nvim"
