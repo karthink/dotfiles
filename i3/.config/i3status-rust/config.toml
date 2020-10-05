@@ -47,7 +47,8 @@ buttons = ["prev", "play", "next"]
 block = "weather"
 format = "{weather} {temp}°"
 # format = "{weather} ({location}) {temp}°, {wind} m/s {direction}"
-service = { name = "openweathermap", api_key = "ff919dde6e7244856542b3931b367a66", city_id = "5392952", units = "metric" }
+service = { name = "openweathermap", api_key = "ff919dde6e7244856542b3931b367a66", city_id = "4846834", units = "metric" }
+# service = { name = "openweathermap", api_key = "ff919dde6e7244856542b3931b367a66", city_id = "5392952", units = "metric" }
 
 # [[block]]
 # block = "memory"
@@ -130,22 +131,22 @@ file = "nord.toml"
 # file = "dracula.toml"
 # name = "gruvbox-dark"
 
-# [theme.overrides]
+[theme.overrides]
 
-# ## Onedark theme
-# idle_bg = "#282c34"
-# idle_fg = "#c8ccd4"
-# info_bg = "#abb2bf"
-# info_fg = "#353b45"
-# good_bg = "#98c379"
-# # good_fg
-# critical_bg = "#be5046"
-# # critical_fg
-# # separator
-# # separator_bg
-# # separator_fg
-# warning_bg = "#c678dd"
-# # warning_fg
+## Onedark theme
+idle_bg = "#282c34"
+idle_fg = "#c8ccd4"
+info_bg = "#abb2bf"
+info_fg = "#353b45"
+good_bg = "#98c379"
+# good_fg
+critical_bg = "#be5046"
+# critical_fg
+# separator
+# separator_bg
+# separator_fg
+warning_bg = "#c678dd"
+# warning_fg
 
 # ## Dracula theme
 # idle_bg = "#282936"

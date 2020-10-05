@@ -301,10 +301,10 @@ bindsym $mod+Ctrl+k move container to output up; focus output up
 bindsym $mod+Ctrl+j move container to output down; focus output down
 
 # Move workspace between monitors
-bindsym $mod+Ctrl+Shift+h move workspace to output left
-bindsym $mod+Ctrl+Shift+l move workspace to output right
-bindsym $mod+Ctrl+Shift+k move workspace to output up
-bindsym $mod+Ctrl+Shift+j move workspace to output down
+bindsym $mod+Ctrl+Shift+h move workspace to output left; focus output left
+bindsym $mod+Ctrl+Shift+l move workspace to output right; focus output right
+bindsym $mod+Ctrl+Shift+k move workspace to output up; focus output up
+bindsym $mod+Ctrl+Shift+j move workspace to output down; focus output down
 
 #####################################
 ## WINDOW AND WORKSPACE PROPERTIES ##
@@ -520,6 +520,7 @@ exec --no-startup-id lxqt-powermanagement
 exec --no-startup-id dunst
 # exec --no-startup-id xautolock -time 10  -locker multilockscreen -l
 exec_always --no-startup-id fix_xcursor
+exec_always --no-startup-id autotiling
 # exec --no-startup-id redshift_location_aware
 exec --no-startup_id sh -c $HOME/.local/bin/i3cmds/thinkpad_init
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -597,12 +598,12 @@ set $black #000000
 # set $bluer #458588
 
 bar  {
-	font pango:Monospace, Bold 13.0
+	font pango:Monospace, Bold 12
 	# font pango:FantasqueSansMono Nerd Font 13.5
         # font pango:DejaVu Serif, Bold 12.5
         # font pango:Iosevka, Bold 13.0
 	strip_workspace_numbers yes
-	tray_output DP1
+	tray_output eDP1
 	position top
         status_command /usr/bin/i3status-rs $HOME/.config/i3status-rust/config.toml
 	# status_command bumblebee-status -m title mpd weather pomodoro nic cpu bluetooth brightness pulseaudio:pasink battery-upower datetime -p interval=1 datetime.format="%b %d, %I:%M %p" cpu.format="{:3.0f}%" cpu.left-click="$TERMINAL -T dropdown_htop -e htop" nic.exclude="lo,enp0s25" nic.format="{state} {ssid}" nic.left-click="$TERMINAL -e nmtui-connect" nic.right-click="$TERMINAL -e nmtui-edit" nic.middle-click="$TERMINAL -e nmcli | less -S" spotify.format="{title} - {artist}" mpd.format="" mpd.layout="mpd.main mpd.next" date.format="%a_%b_%d" battery.device=BAT1 pacman.sum="true" pacman.left-click="pamac-manager"  weather.apikey="ff919dde6e7244856542b3931b367a66" weather.showcity="false"  pomodoro.format="%mm" title.max="30" pomodoro.notify=r'notify-send "Time up!"' -t dracula-powerline

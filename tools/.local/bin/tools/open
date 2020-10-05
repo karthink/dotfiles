@@ -68,6 +68,9 @@ do
                 image/*)
                     setsid $IMAGEVIEWER "$choice" >/dev/null 2>&1 &
                     ;;
+                video/*)
+                    setsid $MEDIAPLAYER "$choice"
+                    ;;
                 *)
                     if [ -n "$choice" ]; then
                         echo "Could not find matching application"
