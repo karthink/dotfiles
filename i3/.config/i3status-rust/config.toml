@@ -1,4 +1,11 @@
-icons = "awesome"
+[[icons]]
+name = "awesome5"
+[icons.overrides]
+backlight_empty = " 🌑 "
+backlight_partial1 = " 🌘 "
+backlight_partial2 = " 🌗 "
+backlight_partial3 = " 🌖 "
+backlight_full = " 🌕 "
 
 # [[block]]
 # block = "xrandr"
@@ -42,6 +49,7 @@ max_width = 45
 block = "music"
 max_width = 10
 buttons = ["prev", "play", "next"]
+on_collapsed_click = "playerctl play"
 
 [[block]]
 block = "weather"
@@ -108,6 +116,21 @@ block = "backlight"
 # collapsed = true
 
 [[block]]
+block = "memory"
+# format_mem = "{Mum}MB/{MTm}MB({Mup}%)"
+# format_swap = "{SUm}MB/{STm}MB({SUp}%)"
+format_mem = "{Mupi}%"
+format_swap = "{Mupi}%"
+display_type = "memory"
+icons = true
+clickable = true
+interval = 15
+warning_mem = 80
+warning_swap = 80
+critical_mem = 95
+critical_swap = 95
+
+[[block]]
 block = "cpu"
 # on_click = "htop"
 interval = 2
@@ -131,22 +154,22 @@ file = "nord.toml"
 # file = "dracula.toml"
 # name = "gruvbox-dark"
 
-[theme.overrides]
+# [theme.overrides]
 
-## Onedark theme
-idle_bg = "#282c34"
-idle_fg = "#c8ccd4"
-info_bg = "#abb2bf"
-info_fg = "#353b45"
-good_bg = "#98c379"
-# good_fg
-critical_bg = "#be5046"
-# critical_fg
-# separator
-# separator_bg
-# separator_fg
-warning_bg = "#c678dd"
-# warning_fg
+# ## Onedark theme
+# idle_bg = "#282c34"
+# idle_fg = "#c8ccd4"
+# info_bg = "#abb2bf"
+# info_fg = "#353b45"
+# good_bg = "#98c379"
+# # good_fg
+# critical_bg = "#be5046"
+# # critical_fg
+# # separator
+# # separator_bg
+# # separator_fg
+# warning_bg = "#c678dd"
+# # warning_fg
 
 # ## Dracula theme
 # idle_bg = "#282936"

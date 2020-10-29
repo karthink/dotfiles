@@ -30,15 +30,15 @@ DMENU_FN="Iosevka-12.0:bold"
 # # textcolour for unselected menu-items
 # DMENU_NF="#F7F7FB"
 
-# # Nord theme:
-# # background colour for unselected menu-items
-# DMENU_NB="#2E3440"
-# # background colour for selected menu-items
-# DMENU_SB="#BF616A"
-# # textcolour for selected menu-items
-# DMENU_SF="#2E3440"
-# # textcolour for unselected menu-items
-# DMENU_NF="#E5E9F0"
+# Nord theme:
+# background colour for unselected menu-items
+DMENU_NB="#2E3440"
+# background colour for selected menu-items
+DMENU_SB="#BF616A"
+# textcolour for selected menu-items
+DMENU_SF="#2E3440"
+# textcolour for unselected menu-items
+DMENU_NF="#E5E9F0"
 
 # ## Gruvbox theme
 # ## background colour for unselected menu-items
@@ -60,15 +60,15 @@ DMENU_FN="Iosevka-12.0:bold"
 # ## textcolour for selected menu-items
 # DMENU_SF="#262C35"
 
-## Onedark theme
-## background colour for unselected menu-items
-DMENU_NB="#282c34"
-## textcolour for unselected menu-items
-DMENU_NF="#c8ccd4"
-## background colour for selected menu-items
-DMENU_SB="#98c379"
-## textcolour for selected menu-items
-DMENU_SF="#353b45"
+# ## Onedark theme
+# ## background colour for unselected menu-items
+# DMENU_NB="#282c34"
+# ## textcolour for unselected menu-items
+# DMENU_NF="#c8ccd4"
+# ## background colour for selected menu-items
+# DMENU_SB="#98c379"
+# ## textcolour for selected menu-items
+# DMENU_SF="#353b45"
 
 # ## Dracula theme
 # ## background colour for unselected menu-items
