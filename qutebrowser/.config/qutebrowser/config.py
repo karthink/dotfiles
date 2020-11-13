@@ -1204,7 +1204,8 @@ c.tabs.title.format = '{audio} {current_title}'
 c.url.searchengines = {'s': 'https://searx.karthinks.com/?q={}',
                        'DEFAULT': 'https://duckduckgo.com/?q={}',
                        'r': 'https://old.reddit.com/r/{}',
-                       'gs': 'https://scholar.google.com/scholar?q={}'}
+                       'gs': 'https://scholar.google.com/scholar?q={}',
+                       'n': 'https://nitter.net/{}'}
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl

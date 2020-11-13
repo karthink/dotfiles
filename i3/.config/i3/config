@@ -42,7 +42,8 @@ bindsym $mod+Shift+bar exec --no-startup-id linkhandler
 bindsym $mod+backslash exec --no-startup-id cabl
 
 # Search for file
-bindsym XF86Search exec --no-startup-id dmenufindfile
+# bindsym XF86Search exec --no-startup-id dmenufindfile
+bindsym XF86Search exec --no-startup-id bash -c "open < <(dff)"
 bindsym $mod+o exec --no-startup-id bash -c "open < <(dff)"
 bindsym $mod+Ctrl+o exec --no-startup-id ddspawn -t zffdd
 # Get a cheatsheet on common linux commands
