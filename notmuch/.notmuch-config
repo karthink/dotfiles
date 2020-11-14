@@ -1,0 +1,20 @@
+[database]
+path=/home/karthik/.local/share/mail
+
+[user]
+name=Karthik Chikmagalur
+primary_email=karthikchikmagalur@gmail.com
+other_email=kchikmagalur@ucsb.edu;
+
+[new]
+tags=new
+ignore=/.*[.](json|lock|bak)$/;.mbsyncstate;.isyncuidmap.db;.uidvalidity
+
+[search]
+exclude_tags=deleted;spam;trash;
+
+[maildir]
+synchronize_flags=true
+
+[crypto]
+gpg_path=gpg
