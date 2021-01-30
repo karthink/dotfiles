@@ -1,0 +1,90 @@
+#!/bin/bash
+
+# ff-cache: Build a list of all files in the user's home directory.
+# Primarily for use by other commands, like dff and zff.
+
+# USAGE: ff-cache [options]
+#        By default, ff-cache will output the entire list
+#        OPTIONS:
+#        -r Rebuild cache and exit
+
+# COMMAND TO BUILD THE CACHE
+#---------------------------------------------------------
+FIND_CMD='fd . --hidden --follow
+Downloads
+Documents
+.config
+Desktop
+Dropbox/KarthikBassam
+.local/bin
+karthinks
+Pictures
+Videos
+Media
+org
+--no-ignore-vcs
+--exclude "vibrations2020/hw"
+--exclude .git
+--exclude '\''*~'\''
+--exclude '\''#*#'\''
+--exclude "Pictures/Photos"
+--exclude '\''*.bak'\''
+--exclude .cache
+--exclude '\''*cache*'\''
+--exclude '\''*.elc'\''
+--exclude skypeforlinux
+--exclude .mozilla
+--exclude google-chrome
+--exclude Brave-Browser
+--exclude watch_later
+--exclude cvx-rd
+--exclude ltximg
+--exclude .local/share/mail
+--exclude .password-store
+--exclude .aux
+--exclude .synctex.gz
+--exclude .bbl'
+#
+# CACHE MANAGEMENT
+#---------------------------------------------------------
+# By default the cache is stored in /tmp for faster access from tmpfs
+cache="/tmp/dmenufindfile.cache"
+cache_alt="$HOME/.cache/dmenufindfile.cache"
+
+# Rebuild file and folder cache
+function rebuild_cache {
+    cache="$1"
+    ls -A > "$cache"
+    $FIND_CMD >> "$cache"
+}
+
+for opt in "$@"; do
+    case $opt in
+        -r|--rebuild)
+            echo "rebuilding cache"
+            rebuild_cache "$cache"
+            exit 0
+            ;;
+        *)
+            ;;
+    esac
+done
+
+# 0. Build a cache if it doesn't exist or is older than 60 min:
+if [[ -f $(find "$cache" -mmin +60) ]]; then
+    rebuild_cache "$cache"
+fi
+
+# This should only happen on a fresh boot
+if [[ ! -e "$cache" ]]; then
+    if [[ -e "$cache_alt" ]]; then
+        cp "$cache_alt" "$cache"
+    else
+        rebuild_cache "$cache"
+        cp "$cache" "$cache_alt"
+    fi
+fi
+
+# OUTPUT THE CONTENTS OF THE FILE CACHE
+#---------------------------------------------------------
+cat $cache

@@ -517,8 +517,8 @@ c.content.notifications = False
 ## `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
 ## Same as `{column}`, but starting from index 0.
 ## Type: ShellCommand
-c.editor.command = ['st', '-T', 'dropdown_edit', '-e', '/usr/bin/nvim', '{file}']
-# c.editor.command = ['emacsclient', '-n', '{file}']
+# c.editor.command = ['st', '-T', 'dropdown_edit', '-e', '/usr/bin/nvim', '{file}']
+c.editor.command = ['emacsclient', '-c', '-F', r'((name . "dropdown_edit"))', '{file}']
 # c.editor.command = ['gvim', '-f', '{file}', '-c', 'normal {line}G{column0}l']
 
 ## Encoding to use for the editor.
@@ -1296,6 +1296,7 @@ config.bind(";mA", 'hint mpv_type spawn mpv --video=no --force-window=yes {hint-
 # config.bind('.', 'repeat-command')
 # config.bind('/', 'set-cmd-text /')
 # config.bind(':', 'set-cmd-text :')
+config.bind(';i', 'hint images download')
 # config.bind(';I', 'hint images tab')
 # config.bind(';O', 'hint links fill :open -t -r {hint-url}')
 # config.bind(';R', 'hint --rapid links window')

@@ -11,6 +11,7 @@
 
 TERMINAL="$TERMINAL"                   # Terminal emulator
 EDITOR="$VISUAL"                       # Text editor
+EDITOR='/usr/bin/emacsclient -c'       # Text editor
 IMAGEVIEWER="$IMAGEVIEWER"             # Image viewer
 BROWSER="$BROWSER"                     # Web browser
 READER="$READER"                       # Document (PDF etc) viewer

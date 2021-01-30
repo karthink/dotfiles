@@ -3,6 +3,16 @@ setbg() {
     cp "$1" "$HOME/.config/wall$2" && sh "$HOME/.fehbg" &
 }
 
+share() {
+    # [[ -f $HOME/.dmenurc ]] && source $HOME/.dmenurc
+    # website=$(echo "http://0x0.st (Persistent, unsecure)
+    #                 https://file.io"dmenu $DMENU_OPTIONS -p "Upload to: ")
+    url=$(curl -F"file=@$1" 'http://0x0.st')
+    [[ ! -d "$HOME/.cache/sxiv/" ]] && mkdir -p "$HOME/.cache/sxiv/"
+    echo $url | tee -a "$HOME/.cache/sxiv/uploads" | xclip -selection c
+    notify-send "Clipboard Link:\n$url"
+}
+
 while read file
 do
         case "$1" in
@@ -36,5 +46,7 @@ do
 	"d")
 		[ "$(printf "No\\nYes" | dmenu $DMENU_OPTIONS -i -p "Really delete $file?")" = "Yes" ] && rm "$file" && notify-send "$file deleted." ;;
 	"g")	ifinstalled gimp && gimp "$file" & ;;
+        "S")    share "$file" &;;
+        "U")    share "$file" &;;
         esac
 done

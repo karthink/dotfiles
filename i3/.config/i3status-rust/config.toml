@@ -55,8 +55,8 @@ on_collapsed_click = "playerctl play"
 block = "weather"
 format = "{weather} {temp}°"
 # format = "{weather} ({location}) {temp}°, {wind} m/s {direction}"
-service = { name = "openweathermap", api_key = "ff919dde6e7244856542b3931b367a66", city_id = "4846834", units = "metric" }
-# service = { name = "openweathermap", api_key = "ff919dde6e7244856542b3931b367a66", city_id = "5392952", units = "metric" }
+# service = { name = "openweathermap", api_key = "ff919dde6e7244856542b3931b367a66", city_id = "4846834", units = "metric" }
+service = { name = "openweathermap", api_key = "ff919dde6e7244856542b3931b367a66", city_id = "5392952", units = "metric" }
 
 # [[block]]
 # block = "memory"
@@ -97,16 +97,26 @@ device_format = "{icon}"
 [[block]]
 block = "bluetooth"
 mac = "00:02:5B:02:A5:9C"
+hide_disconnected = false
 # mac = "34:02:86:56:9B:8F"
+label = " Avantree"
 
 [[block]]
 block = "bluetooth"
 mac = "AC:19:06:00:31:DA"
-# mac = "34:02:86:56:9B:8F"
+hide_disconnected = true
+label = " TaoTronics"
+
+[[block]]
+block = "bluetooth"
+mac = "00:00:AB:CD:51:19"
+hide_disconnected = true
+label = " Geekee"
 
 [[block]]
 block = "sound"
-on_click = "pavucontrol-qt"
+# on_click = "pavucontrol-qt"
+on_click = "$TERMINAL -t \"dropdown_pulse\" -e pulsemixer"
 
 [[block]]
 block = "backlight"
@@ -150,26 +160,27 @@ format = "%a %d/%m %R"
 on_click = "notify-send \"$(cal -3)\""
 
 [theme]
-file = "nord.toml"
+# file = "nord.toml"
 # file = "dracula.toml"
 # name = "gruvbox-dark"
+name = "solarized-dark"
 
-# [theme.overrides]
+[theme.overrides]
 
-# ## Onedark theme
-# idle_bg = "#282c34"
-# idle_fg = "#c8ccd4"
-# info_bg = "#abb2bf"
-# info_fg = "#353b45"
-# good_bg = "#98c379"
-# # good_fg
-# critical_bg = "#be5046"
-# # critical_fg
-# # separator
-# # separator_bg
-# # separator_fg
-# warning_bg = "#c678dd"
-# # warning_fg
+## Onedark theme
+idle_bg = "#282c34"
+idle_fg = "#c8ccd4"
+info_bg = "#abb2bf"
+info_fg = "#353b45"
+good_bg = "#98c379"
+# good_fg
+critical_bg = "#be5046"
+# critical_fg
+# separator
+# separator_bg
+# separator_fg
+warning_bg = "#c678dd"
+# warning_fg
 
 # ## Dracula theme
 # idle_bg = "#282936"
@@ -190,15 +201,15 @@ file = "nord.toml"
 
 # ## Gruvbox dark hard
 # idle_bg = "#1d2021"
-# idle_fg = "#fbf1c7"
+# idle_fg = "#fbf1c7" 
 # info_bg = "#ebdbb2"
 # info_fg = "#3c3836"
-# good_bg = "#b8bb26"
-# # good_fg
-# critical_bg = "#d65d0e"
+# # good_bg = "#b8bb26"
+# good_fg = "#3c3836"
+# # critical_bg = "#d65d0e"
 # # critical_fg
 # # separator
 # # separator_bg
 # # separator_fg
-# warning_bg = "#d3869b"
+# # warning_bg = "#d3869b"
 # # warning_fg

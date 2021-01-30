@@ -1,7 +1,7 @@
 export TERMINAL="st"
 export TERMINAL_CMD="st"
 export EDITOR="/usr/bin/emacsclient"
-export VISUAL="/usr/bin/emacsclient"
+export VISUAL='/usr/bin/emacsclient -c'
 export ALTERNATE_EDITOR="/usr/bin/nvim"
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export READER="zathura"

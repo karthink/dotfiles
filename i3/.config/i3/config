@@ -44,8 +44,8 @@ bindsym $mod+backslash exec --no-startup-id cabl
 # Search for file
 # bindsym XF86Search exec --no-startup-id dmenufindfile
 bindsym XF86Search exec --no-startup-id bash -c "open < <(dff)"
-bindsym $mod+o exec --no-startup-id bash -c "open < <(dff)"
-bindsym $mod+Ctrl+o exec --no-startup-id ddspawn -t zffdd
+bindsym $mod+Ctrl+slash exec --no-startup-id bash -c "open < <(dff)"
+bindsym $mod+slash exec --no-startup-id ddspawn -t zffdd
 # Get a cheatsheet on common linux commands
 bindsym $mod+XF86Search exec --no-startup-id cheatsheet
 # Show contents of clipboard
@@ -73,9 +73,12 @@ bindsym XF86AudioPrev exec --no-startup-id  playerctl position 10-
 bindsym Shift+XF86AudioNext exec --no-startup-id  playerctl position 60+
 bindsym Shift+XF86AudioPrev exec --no-startup-id  playerctl position 60-
 bindsym $mod+XF86AudioNext exec --no-startup-id  playerctl next
+bindsym mod3+XF86AudioNext exec --no-startup-id  playerctl next
 bindsym $mod+XF86AudioPrev exec --no-startup-id  playerctl previous
+bindsym mod3+XF86AudioPrev exec --no-startup-id  playerctl previous
 bindsym Shift+XF86AudioPlay exec --no-startup-id  playerctl stop
 bindsym $mod+XF86AudioPlay exec --no-startup-id  mpvcontrol quit
+bindsym mod3+XF86AudioPlay exec --no-startup-id  mpvcontrol quit
 bindsym $mod+Shift+f exec --no-startup-id  mpvcontrol full
 bindsym $mod+Shift+XF86AudioPlay exec --no-startup-id umpv_last
 
@@ -85,10 +88,14 @@ bindsym XF86Tools exec --no-startup-id  playerctl position 10-
 bindsym Shift+XF86Explorer exec --no-startup-id  playerctl position 60+
 bindsym Shift+XF86Tools exec --no-startup-id  playerctl position 60-
 bindsym $mod+XF86Explorer exec --no-startup-id  playerctl next
+bindsym mod3+XF86Explorer exec --no-startup-id  playerctl next
 bindsym $mod+XF86Tools exec --no-startup-id  playerctl previous
+bindsym mod3+XF86Tools exec --no-startup-id  playerctl previous
 bindsym Shift+XF86LaunchA exec --no-startup-id  playerctl stop
 bindsym $mod+XF86LaunchA exec --no-startup-id  mpvcontrol quit
+bindsym mod3+XF86LaunchA exec --no-startup-id  mpvcontrol quit
 bindsym $mod+Shift+XF86LaunchA exec --no-startup-id umpv_last
+bindsym mod3+Shift+XF86LaunchA exec --no-startup-id umpv_last
 
 # Volume control
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks
@@ -120,8 +127,8 @@ bindsym XF86MonBrightnessDown exec "xbacklight -dec 5; notify-send 'brightness d
 bindsym Shift+XF86MonBrightnessUp exec --no-startup-id brightness_HID up
 bindsym Shift+XF86MonBrightnessDown exec --no-startup-id brightness_HID down
 
-bindsym $mod+F10 exec "xbacklight -inc 10; notify-send 'brightness up'"
-bindsym $mod+F9 exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym $mod+F10 exec "xbacklight -inc 5; notify-send 'brightness up'"
+bindsym $mod+F9 exec "xbacklight -dec 5; notify-send 'brightness down'"
 bindsym $mod+Shift+F10 exec --no-startup-id brightness_HID up
 bindsym $mod+Shift+F9 exec --no-startup-id brightness_HID down
 # bindsym $mod+Shift+equal exec --no-startup-id brightness_HID up
@@ -191,7 +198,8 @@ bindsym $mod+Shift+Right move right
 
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
-bindsym $mod+b workspace back_and_forth
+bindsym $mod+d workspace back_and_forth
+bindsym $mod+semicolon workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 bindsym $mod+Escape workspace back_and_forth
 bindsym $mod+Shift+Escape move container to workspace back_and_forth; workspace back_and_forth
@@ -209,7 +217,7 @@ bindsym $mod+s layout toggle stacking tabbed split
 # bindsym $mod+v layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+p floating toggle
+# bindsym $mod+p floating toggle
 bindsym $mod+w floating toggle
 
 # change focus between tiling / floating windows
@@ -315,7 +323,7 @@ bindsym $mod+Ctrl+Shift+j move workspace to output down; focus output down
 # default_border          normal 3
 # default_floating_border normal 3
 default_border          pixel 4
-default_floating_border pixel 3
+default_floating_border pixel 4
 
 # Make focused window easier to see
 for_window [class=".*"] title_format "<b>%title</b>"
@@ -335,7 +343,7 @@ bindsym $mod+Shift+t border toggle 4
 # font xft:URWGothic-Book 12
 # font pango:Fantasque Sans Mono 13
 # font pango:Iosevka Nerd Font 13
-font pango:monospace 12.5
+font pango:ubuntu 11.5
 
 # Window title alignment
 title_align center
@@ -366,6 +374,7 @@ for_window [class="plasmashell" window_type="notification"] floating enable, bor
 no_focus [class="plasmashell" window_type="notification"]
 
 # Open specific applications in floating mode
+for_window [class="pentablet"] floating enable border normal
 for_window [title="Figure "] floating enable border normal
 for_window [class="sun-awt-X11-*"] floating enable border normal
 for_window [class="Gnuplot"] floating enable border normal
@@ -411,6 +420,7 @@ for_window [class="(?i)virtualbox"] floating enable border normal
 # for_window [class="Xfburn"] floating enable
 for_window [title="GIMP Startup"] move workspace $ws5
 for_window [class="Gimp"] move workspace $ws5
+for_window [class="Firefox"] move workspace $ws4
 for_window [window_role="GtkFileChooserDialog"] resize set 800 600
 for_window [window_role="GtkFileChooserDialog"] move position center
 for_window [title="Default - Wine desktop"] floating enable
@@ -522,8 +532,8 @@ exec --no-startup-id lxqt-powermanagement
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id autotiling
 # exec --no-startup-id redshift_location_aware
+exec --no-startup-id systemctl --user restart dunst.service
 exec --no-startup_id sh -c $HOME/.local/bin/i3cmds/thinkpad_init
-exec --no-startup-id dunst
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # exec --no-startup-id nitrogen --set-auto --restore; sleep 1; compton -b
 # exec --no-startup-id manjaro-hello
@@ -599,7 +609,7 @@ set $black #000000
 # set $bluer #458588
 
 bar  {
-	font pango:Monospace, Bold 12
+	font pango:Monospace, Bold 12.5
 	# font pango:FantasqueSansMono Nerd Font 13.5
         # font pango:DejaVu Serif, Bold 12.5
         # font pango:Iosevka, Bold 13.0
@@ -612,7 +622,7 @@ bar  {
         # gruvbox: gruvbox-powerline gruvbox-powerline-light
         # Blue: iceberg-dark-powerline
         # Grey: greyish-powerline
-	# Unused modules: title spacer redshift spacer.text="" -t greyish-powerline mpd spotify pomodoro.notify=r'notify-send "Time up!"' notmuch_count notmuch_count.query="tag:unread AND tag:inbox AND from:bassam AND date:2d.." progress.placeholder="∫" progress 
+	# Unused modules: title spacer redshift spacer.text="" -t greyish-powerline mpd spotify pomodoro.notify=r'notify-send "Time up!"' notmuch_count notmuch_count.query="tag:unread AND tag:inbox AND from:bassam AND date:2d.." progress.placeholder="∫" progress
 
         colors {
                                    #$border          $background      $text
@@ -632,19 +642,19 @@ bar  {
 }
 
 
-# class                 $border          $backgr.         $text           $indic.    $child_border
-client.focused          $black           $base_bg         $focused_text   $indicator $focused_bg_brdr
-client.focused_inactive $nofocus_bg_brdr $nofocus_bg_brdr $unfocused_text $indicator $nofocus_bg_brdr
-client.unfocused        $nofocus_bg_brdr $nofocus_bg_brdr $unfocused_text $indicator $nofocus_bg_brdr
-client.urgent           $alert           $alert           $white          $alert     $alert
-client.background       $unfocused_text
+#class                   $border          $backgr.         $text           $indic.    $child_border
+client.focused           $bg              $base_bg         $focused_text   $indicator $focused_bg_brdr
+client.focused_inactive  $nofocus_bg_brdr $nofocus_bg_brdr $unfocused_text $indicator $nofocus_bg_brdr
+client.unfocused         $nofocus_bg_brdr $nofocus_bg_brdr $unfocused_text $indicator $nofocus_bg_brdr
+client.urgent            $alert           $alert           $white          $alert     $alert
+client.background        $unfocused_text
 
 #####################################
 ### SETTINGS FOR I3-GAPS-ROUNDED: ###
 #####################################
 
 # Set border radius
-border_radius 11
+border_radius 10
 
 # Set inner/outer gaps
 gaps outer 4

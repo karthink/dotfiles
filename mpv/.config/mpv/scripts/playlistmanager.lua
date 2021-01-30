@@ -106,10 +106,10 @@ local settings = {
   resolve_titles = false,
 
   --osd timeout on inactivity, with high value on this open_toggles is good to be true
-  playlist_display_timeout = 5,
+  playlist_display_timeout = 3600,
 
   --amount of entries to show before slicing. Optimal value depends on font/video size etc.
-  showamount = 16,
+  showamount = 20,
 
   --font size scales by window, if false requires larger font and padding sizes
   scale_playlist_by_window=true,
@@ -965,9 +965,10 @@ mp.register_script_message("playlistmanager", handlemessage)
 mp.add_key_binding("CTRL+p", "sortplaylist", sortplaylist)
 mp.add_key_binding("CTRL+P", "shuffleplaylist", shuffleplaylist)
 mp.add_key_binding("CTRL+R", "reverseplaylist", reverseplaylist)
-mp.add_key_binding("P", "loadfiles", playlist)
-mp.add_key_binding("p", "saveplaylist", save_playlist)
-mp.add_key_binding("SHIFT+ENTER", "showplaylist", toggle_playlist)
+mp.add_key_binding("SHIFT+ENTER", "loadfiles", playlist)
+mp.add_key_binding("S", "saveplaylist", save_playlist)
+mp.add_key_binding("P", "showplaylist", toggle_playlist)
+--mp.add_key_binding("SHIFT+ENTER", "showplaylist", toggle_playlist)
 
 mp.register_event("file-loaded", on_loaded)
 mp.register_event("end-file", on_closed)
