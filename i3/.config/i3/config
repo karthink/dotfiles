@@ -44,8 +44,8 @@ bindsym $mod+backslash exec --no-startup-id cabl
 # Search for file
 # bindsym XF86Search exec --no-startup-id dmenufindfile
 bindsym XF86Search exec --no-startup-id bash -c "open < <(dff)"
-bindsym $mod+Ctrl+slash exec --no-startup-id bash -c "open < <(dff)"
-bindsym $mod+slash exec --no-startup-id ddspawn -t zffdd
+bindsym $mod+slash exec --no-startup-id bash -c "open < <(dff)"
+bindsym $mod+Ctrl+slash exec --no-startup-id ddspawn -t zffdd
 # Get a cheatsheet on common linux commands
 bindsym $mod+XF86Search exec --no-startup-id cheatsheet
 # Show contents of clipboard
@@ -161,7 +161,7 @@ bindsym $mod+e exec "emacsclient -c"
 # kill focused window
 bindsym $mod+Shift+q kill
 bindsym --release button2 kill
-bindsym --whole-window mod+button2 kill
+bindsym --whole-window $mod+button2 kill
 
 # change focus
 bindsym $mod+h focus left
@@ -219,6 +219,8 @@ bindsym $mod+s layout toggle stacking tabbed split
 # toggle tiling / floating
 # bindsym $mod+p floating toggle
 bindsym $mod+w floating toggle
+bindsym --release button3 floating toggle
+bindsym --whole-window $mod+button3 floating toggle
 
 # change focus between tiling / floating windows
 bindsym mod1+Tab focus mode_toggle
@@ -308,12 +310,14 @@ bindsym $mod+Ctrl+h move container to output left; focus output left
 bindsym $mod+Ctrl+l move container to output right; focus output right
 bindsym $mod+Ctrl+k move container to output up; focus output up
 bindsym $mod+Ctrl+j move container to output down; focus output down
+bindsym --release button8 move container to output left
+bindsym --release button9 move container to output right
 
 # Move workspace between monitors
-bindsym $mod+Ctrl+Shift+h move workspace to output left; focus output left
-bindsym $mod+Ctrl+Shift+l move workspace to output right; focus output right
-bindsym $mod+Ctrl+Shift+k move workspace to output up; focus output up
-bindsym $mod+Ctrl+Shift+j move workspace to output down; focus output down
+bindsym $mod+Ctrl+Shift+h move workspace to output left
+bindsym $mod+Ctrl+Shift+l move workspace to output right
+bindsym $mod+Ctrl+Shift+k move workspace to output up
+bindsym $mod+Ctrl+Shift+j move workspace to output down
 
 #####################################
 ## WINDOW AND WORKSPACE PROPERTIES ##
@@ -321,9 +325,9 @@ bindsym $mod+Ctrl+Shift+j move workspace to output down; focus output down
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 # default_border          normal 3
-# default_floating_border normal 3
+default_floating_border normal 4
 default_border          pixel 4
-default_floating_border pixel 4
+# default_floating_border pixel 4
 
 # Make focused window easier to see
 for_window [class=".*"] title_format "<b>%title</b>"
@@ -427,7 +431,7 @@ for_window [title="Default - Wine desktop"] floating enable
 for_window [title="Bluetooth Devices"] floating enable border normal
 for_window [title="*Preferences"] floating enable border normal
 for_window [title="TexText"] floating enable border normal
-for_window [class="mpv"] floating enable border pixel
+for_window [class="mpv"] floating enable border normal 3
 no_focus [class="mpv"]
 # for_window [title="weather"] floating enable border pixel 4 resize set 1280 850
 for_window [class="Remmina"] floating enable border normal resize set 800 600
@@ -442,6 +446,7 @@ no_focus [title="mpvfloat"]
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
+focus_on_window_activation focus
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -454,11 +459,12 @@ bindsym $mod+Shift+r restart
 ######################
 
 # General dropdown window traits. The order can matter.
-for_window [title="dropdown_*"] floating enable # border pixel 0
+for_window [title="dropdown_*"] floating enable border normal 3 # border pixel 0
 for_window [title="dropdown_*"] move scratchpad
 for_window [title="dropdown_*"] sticky enable
 for_window [title="dropdown_*"] scratchpad show
 for_window [title="dropdown_tmuxdd"] resize set 900 550
+for_window [title="dropdown_tmuxdd"] border pixel 4
 for_window [title="dropdown_notmuch-emacs"] resize set 1000 600
 for_window [title="dropdown_quicklatex"] resize set 900 300
 for_window [title="dropdown_calc"] resize set 900 300
@@ -573,20 +579,20 @@ set_from_resource $bg               background #282828
 set_from_resource $fg               foreground #689d68
 set_from_resource $base_bg          color0     #49525B
 set_from_resource $alert_intense    color1     #b13f47
-set_from_resource $focused_bg_brdr  color2     #bbbb26
+set_from_resource $focused_bg_brdr  color5     #bbbb26 # used to be color6, color2
 set_from_resource $focused_intense  color3     #efef4a
 set_from_resource $term_color4      color4
-set_from_resource $indicator        color5     #d67cb8
-set_from_resource $focused_text     color6
+set_from_resource $indicator        color6     #d67cb8 # used to be color5
+set_from_resource $focused_text     color5     # used to be color 6
 set_from_resource $term_color7      color7
 set_from_resource $term_color8      color8
 set_from_resource $term_color9      color9
 set_from_resource $nofocus_bg_brdr  color10    #1d1d1d
 set_from_resource $term_color11     color11
 set_from_resource $term_color12     color12
-set_from_resource $term_color13     color13
+set_from_resource $unfocused_text   color13    #f4f4c3
 set_from_resource $alert            color14    #b13f47
-set_from_resource $unfocused_text   color15    #f4f4c3
+set_from_resource $term_color15     color15
 set $white #ffffff
 set $black #000000
 # set $aqua #689d68
@@ -609,8 +615,8 @@ set $black #000000
 # set $bluer #458588
 
 bar  {
-	font pango:Monospace, Bold 12.5
-	# font pango:FantasqueSansMono Nerd Font 13.5
+	font pango:Monospace, Bold 12.0
+        # font pango:FantasqueSansMono Nerd Font 13.5
         # font pango:DejaVu Serif, Bold 12.5
         # font pango:Iosevka, Bold 13.0
 	strip_workspace_numbers yes
@@ -627,7 +633,7 @@ bar  {
         colors {
                                    #$border          $background      $text
 		focused_workspace   $focused_bg_brdr $focused_bg_brdr $bg
-		active_workspace    $nofocus_bg_brdr $bg              $focused_bg_brdr
+		active_workspace    $focused_bg_brdr $bg              $focused_bg_brdr
 		inactive_workspace  $nofocus_bg_brdr $bg              $unfocused_text
 		urgent_workspace    $alert           $bg              $indicator
                 binding_mode        $nofocus_bg_brdr $bg              $focused_bg_brdr
@@ -654,7 +660,7 @@ client.background        $unfocused_text
 #####################################
 
 # Set border radius
-border_radius 10
+border_radius 4
 
 # Set inner/outer gaps
 gaps outer 4

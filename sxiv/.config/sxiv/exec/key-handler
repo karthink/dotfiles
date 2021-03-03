@@ -17,8 +17,8 @@ while read file
 do
         case "$1" in
         "w") setbg $file 1 && setbg $file 2 ;;
-        "1") setbg $file 1;;
-        "2") setbg $file 2;;
+        "1") setbg $file 1 ;;
+        "2") setbg $file 2 ;;
         "c")
 		[ -z "$destdir" ] && destdir="$(sed "s/\s.*#.*$//;/^\s*$/d" ~/.config/bmdirs | awk '{print $2}' | dmenu $DMENU_OPTIONS -l 20 -i -p "Copy file(s) to where?" | sed "s|~|$HOME|g")"
 		[ -z "$destdir" ] && exit
@@ -34,9 +34,14 @@ do
 	"R")
 		convert -rotate -90 "$file" "$file" ;;
 	"f")
-		convert -flop "$file" "$file" ;;
+		convert -flop "$file" "$file"
+                notify-send "Image flipped!" ;;
 	"|")
-		convert -flop "$file" "$file" ;;
+		convert -flop "$file" "$file"
+                notify-send "Image flopped!" ;;
+        
+        "_")    convert -flip "$file" "$file"
+                notify-send "Image flipped!" ;;
 	"y")
 		echo -n "$file" | xclip -selection clipboard &&
 		notify-send "$file copied to clipboard" & ;;
@@ -46,7 +51,7 @@ do
 	"d")
 		[ "$(printf "No\\nYes" | dmenu $DMENU_OPTIONS -i -p "Really delete $file?")" = "Yes" ] && rm "$file" && notify-send "$file deleted." ;;
 	"g")	ifinstalled gimp && gimp "$file" & ;;
-        "S")    share "$file" &;;
-        "U")    share "$file" &;;
+        "S")    share "$file" & ;;
+        "U")    share "$file" & ;;
         esac
 done

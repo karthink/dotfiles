@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # ~/.dmenurc
 #
@@ -6,82 +6,15 @@
 TERMINAL_CMD="alacritty -e"
 ## define the font for dmenu to be used
 # Was "Noto-11.0"
-DMENU_FN="Monospace-12.5:bold"
+DMENU_FN="Monospace-12.0:bold"
 # DMENU_FN="FantasqueSansMonoNerdFont-13.5"
 # DMENU_FN="Iosevka-12.0:bold"
 # DMENU_FN="UbuntuMono-12.5:bold"
 # DMENU_FN="IosevkaNerdFontMono-13.5"
 # DMENU_FN="DejaVuSerif-12.5"
 
-## Blue theme:
-## background colour for unselected menu-items
-# DMENU_NB="#262C35"
-## background colour for selected menu-items
-# DMENU_SB="#458588"
-## textcolour for selected menu-items
-# DMENU_SF="#1D1D1D"
-
-# # Dracula theme:
-# # background colour for unselected menu-items
-# DMENU_NB="#282936"
-# # background colour for selected menu-items
-# DMENU_SB="#EBFF87"
-# # textcolour for selected menu-items
-# DMENU_SF="#282936"
-# # textcolour for unselected menu-items
-# DMENU_NF="#F7F7FB"
-
-# # Nord theme:
-# # background colour for unselected menu-items
-# DMENU_NB="#2E3440"
-# # background colour for selected menu-items
-# DMENU_SB="#BF616A"
-# # textcolour for selected menu-items
-# DMENU_SF="#2E3440"
-# # textcolour for unselected menu-items
-# DMENU_NF="#E5E9F0"
-
-# ## Gruvbox theme
-# ## background colour for unselected menu-items
-# DMENU_NB="#282828"
-# ## textcolour for unselected menu-items
-# DMENU_NF="#CABD9A"
-# ## background colour for selected menu-items
-# DMENU_SB="#BBBB26"
-# ## textcolour for selected menu-items
-# DMENU_SF="#262C35"
-
-# ## Gruvbox Hard theme
-# ## background colour for unselected menu-items
-# DMENU_NB="#1D2021"
-# ## textcolour for unselected menu-items
-# DMENU_NF="#CABD9A"
-# ## background colour for selected menu-items
-# DMENU_SB="#BBBB26"
-# ## textcolour for selected menu-items
-# DMENU_SF="#262C35"
-
-## Onedark theme
-## background colour for unselected menu-items
-DMENU_NB="#282c34"
-## textcolour for unselected menu-items
-DMENU_NF="#c8ccd4"
-## background colour for selected menu-items
-DMENU_SB="#98c379"
-## textcolour for selected menu-items
-DMENU_SF="#353b45"
-
-# ## Dracula theme
-# ## background colour for unselected menu-items
-# DMENU_NB="#282936"
-# ## textcolour for unselected menu-items
-# DMENU_NF="#f7f7fb"
-# ## background colour for selected menu-items
-# # DMENU_SB="#6272a4"
-# DMENU_SB="#ebff87"
-# ## textcolour for selected menu-items
-# # DMENU_SF="#f8f8f2"
-# DMENU_SF="#282936"
+read DMENU_NB DMENU_SF DMENU_NF DMENU_SB <<< \
+$(xrdb -query | awk 'BEGIN {ORS=" "} /^\*color(0|13|5|10)/ {print $2}')
 
 ## command for the terminal application to be used:
 TERMINAL_CMD="st -T dropdown -e"

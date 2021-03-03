@@ -71,7 +71,7 @@ for opt in "$@"; do
 done
 
 # 0. Build a cache if it doesn't exist or is older than 60 min:
-if [[ -f $(find "$cache" -mmin +60) ]]; then
+if [[ -f $(find "$cache" -mtime +1) ]]; then
     rebuild_cache "$cache"
 fi
 

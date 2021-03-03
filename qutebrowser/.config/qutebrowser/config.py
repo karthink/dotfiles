@@ -5,7 +5,7 @@
 
 ## This is here so configs done via the GUI are still loaded.
 ## Remove it to not load settings done via the GUI.
-# config.load_autoconfig()
+config.load_autoconfig()
 
 ## Aliases for commands. The keys of the given dictionary are the
 ## aliases, while the values are the commands they map to.
@@ -270,6 +270,8 @@ c.content.autoplay = False
 ## Enable host blocking.
 ## Type: Bool
 # c.content.host_blocking.enabled = True
+c.content.blocking.enabled = True
+# content.blocking.method = both
 
 ## List of URLs of lists which contain hosts to block.  The file can be
 ## in one of the following formats:  - An `/etc/hosts`-like file - One
@@ -686,7 +688,7 @@ c.fonts.tabs.unselected = '12pt monospace'
 ## hints.
 ## Type: Dict
 # c.hints.selectors = {'all': ['a', 'area', 'textarea', 'select', 'input:not([type="hidden"])', 'button', 'frame', 'iframe', 'img', 'link', 'summary', '[onclick]', '[onmousedown]', '[role="link"]', '[role="option"]', '[role="button"]', '[ng-click]', '[ngClick]', '[data-ng-click]', '[x-ng-click]', '[tabindex]'], 'links': ['a[href]', 'area[href]', 'link[href]', '[role="link"][href]'], 'images': ['img'], 'media': ['audio', 'img', 'video'], 'url': ['[src]', '[href]'], 'inputs': ['input[type="text"]', 'input[type="date"]', 'input[type="datetime-local"]', 'input[type="email"]', 'input[type="month"]', 'input[type="number"]', 'input[type="password"]', 'input[type="search"]', 'input[type="tel"]', 'input[type="time"]', 'input[type="url"]', 'input[type="week"]', 'input:not([type])', 'textarea']}
-c.hints.selectors['mpv_type'] = [ 'a[href]', 'area[href]', 'link[href]', '[role="link"][href]', 'audio',  'video' ] 
+c.hints.selectors['mpv_type'] = [ 'a[href]', 'area[href]', 'link[href]', '[role="link"][href]', 'audio',  'video' ]
 
 ## Make characters in hint strings uppercase.
 ## Type: Bool
@@ -1242,7 +1244,7 @@ c.url.searchengines = {'s': 'https://searx.karthinks.com/?q={}',
 # c.zoom.text_only = False
 
 ## Custom CSS for sites
-# c.content.user_stylesheets = ["~/.config/qutebrowser/css/apprentice-all-sites.css"] 
+# c.content.user_stylesheets = ["~/.config/qutebrowser/css/apprentice-all-sites.css"]
 config.bind('<Ctrl-R>', 'config-cycle content.user_stylesheets "~/.config/qutebrowser/css/solarized-dark-all-sites.css" "~/.config/qutebrowser/css/darculized-all-sites.css" ""')
 
 ## Readline bindings in insert mode

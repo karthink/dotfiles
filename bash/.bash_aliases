@@ -28,9 +28,10 @@ alias   ka="killall" \
 	ccat="highlight --out-format=ansi" \
 	ref="shortcuts >/dev/null; source ~/.config/shortcutrc" \
 	ffmpeg="ffmpeg -hide_banner" \
-	dff="dmenufindfile" \
-	yta="youtube-dl -w -c -r 1M -o '%(playlist_index)s-%(title)s.%(ext)s' --add-metadata  -f 'bestaudio[ext=m4a]'" \
-	yt="youtube-dl -w -c -o '%(title)s.%(ext)s' -f 'bestvideo[height<=?1080]+bestaudio/best' --add-metadata"
+	dff="dmenufindfile"
+
+alias yta="youtube-dl -w -c -r 1M -o '%(playlist_index)s-%(title)s.%(ext)s' --add-metadata  -f 'bestaudio[ext=m4a]'" \
+alias yt="youtube-dl -w -c -o '%(title)s.%(ext)s' -f 'bestvideo[height<=?1080]+bestaudio/best' --add-metadata"
 
 command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d" # Use neovim for vim if present.
 
